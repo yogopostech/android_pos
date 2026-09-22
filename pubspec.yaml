@@ -1,0 +1,147 @@
+name: yogo_pos
+description: "A new Flutter project."
+version: 1.07.11+05
+
+environment:
+  sdk: ^3.8.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  shared_preferences: ^2.2.3
+  get: ^4.6.6
+  flutter_riverpod: ^3.2.0
+  dio: ^5.4.0
+  iconly: ^1.0.1
+  font_awesome_flutter: ^11.0.0
+  auto_size_text: ^3.0.0
+  dotted_border: ^2.1.0
+  pagination_flutter: ^0.0.8
+  cached_network_image: ^3.4.1
+  logger: ^2.4.0
+  timelines_plus: ^1.0.6
+  wolt_modal_sheet: ^0.11.0
+  latlong2: ^0.9.1
+  # flutter_typeahead: ^5.2.0
+  connectivity_plus: ^7.0.0
+  # flutter_keyboard_visibility: ^7.0.1
+
+  intl: ^0.20.3
+  flutter_svg: ^2.0.9
+  flutter_spinkit: ^5.2.0
+  flutter_staggered_grid_view: ^0.7.0
+  syncfusion_flutter_datepicker: 34.2.8
+  dropdown_button2: ^2.3.9
+  pdf: ^3.10.8
+  dropdown_textfield: ^1.2.0
+  animated_text_kit: ^4.2.2
+  path_provider: ^2.1.4
+  fraction: ^5.0.2 #for divide items
+  timezone: ^0.10.0
+  lottie: ^3.3.0
+  syncfusion_flutter_datagrid: 34.2.8
+  toastification: ^3.2.0
+  uuid: ^4.5.1
+  audioplayers: ^6.1.2
+  package_info_plus: ^10.2.1
+  syncfusion_flutter_xlsio: 34.2.8
+  geolocator: ^14.0.0
+  flutter_map: ^8.1.1
+  json_annotation: ^4.9.0
+  network_info_plus: ^8.2.1
+  screen_retriever: ^0.2.0
+  device_info_plus: ^13.2.0
+  lorem_ipsum: ^0.0.3
+  socket_io_client: ^3.1.2
+  flutter_dotenv: ^6.0.0
+  decimal: ^2.3.3
+  google_fonts: ^8.0.2
+  retry: ^3.1.2
+  collection: ^1.19.1
+  riverpod_annotation: ^4.0.2
+  mask_text_input_formatter: ^2.9.0
+  flutter_secure_storage: ^10.3.1
+  syncfusion_flutter_core: 34.2.8
+  dropdown_search: ^7.0.0
+  flutter_slidable: ^4.0.3
+  flutter_native_splash: ^2.4.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.3
+  # rename_app: ^1.6.6
+  json_serializable: ^6.9.5
+  build_runner: ^2.4.15
+  riverpod_generator: ^4.0.3
+
+# dependency_overrides:
+#  printing:
+#   git:
+#    url: https://github.com/DavBfr/dart_pdf
+#    ref: master
+#    path: printing
+#launcher icons
+flutter_launcher_icons:
+  android: "launcher_icon"
+  image_path: "assets/images/app_icon.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#E2E8F0"
+  adaptive_icon_foreground: "assets/images/app_icon.png"
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/splash/app_icon.png
+  # branding: assets/branding-development.png
+  color_dark: "#121212"
+  image_dark: assets/images/splash/app_icon.png
+  # branding_dark: assets/branding-development.png
+
+  android_12:
+    image: assets/images/splash/app_icon.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/images/splash/app_icon.png
+    icon_background_color_dark: "#121212"
+
+flutter:
+  uses-material-design: true
+  assets:
+    - .env
+    - assets/images/
+    - assets/images/splash/
+    - assets/icons/
+    - assets/icons/auth/
+    - assets/audio/
+    - assets/animations/
+    - assets/fonts/
+
+  fonts:
+    - family: RobotoMono
+      fonts:
+        - asset: assets/fonts/RobotoMono-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/RobotoMono-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/RobotoMono-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/RobotoMono-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/RobotoMono-Light.ttf
+          weight: 300
+        - asset: assets/fonts/RobotoMono-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/RobotoMono-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/RobotoMono-Italic.ttf
+          style: italic
+    - family: SfPro
+      fonts:
+        - asset: assets/sfpro/SFPRODISPLAYBOLD.OTF
+          weight: 600
+        - asset: assets/sfpro/SFPRODISPLAYMEDIUM.OTF
+          weight: 500
+        - asset: assets/sfpro/SFPRODISPLAYREGULAR.OTF
+          weight: 400
