@@ -47,12 +47,11 @@ Future<void> main() async {
   // await Geolocator.requestPermission();
   //hive init
   // PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  if(!kDebugMode){
-  bool isAllow = await SecurityCheck.isAllow();
-  if (!isAllow ) {
-    exit(0);
-  }
-
+  if (!kDebugMode) {
+    bool isAllow = await SecurityCheck.isAllow();
+    if (!isAllow) {
+      exit(0);
+    }
   }
 
   tz.initializeTimeZones();
@@ -112,4 +111,3 @@ class MyApp extends ConsumerWidget {
     );
   }
 }
-
