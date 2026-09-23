@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/order_model.dart';
-import 'package:yogo_pos/app/modules/setting/providers/caller_id_notifier.dart';
 import 'package:yogo_pos/app/modules/setting/repo/caller_id_data.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
 import 'package:yogo_pos/app/services/controller/config_controller.dart';

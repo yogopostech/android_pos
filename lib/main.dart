@@ -44,12 +44,12 @@ Future<void> main() async {
 
   providerContainer = ProviderContainer();
 
-  if (!kDebugMode) {
-    bool isAllow = await SecurityCheck.isAllow();
-    if (!isAllow) {
-      exit(0);
-    }
-  }
+  // if (!kDebugMode) {
+  //   bool isAllow = await SecurityCheck.isAllow();
+  //   if (!isAllow) {
+  //     exit(0);
+  //   }
+  // }
 
   tz.initializeTimeZones();
 

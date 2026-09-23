@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/order_model.dart';
-import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
-import 'package:yogo_pos/app/services/controller/config_controller.dart';
 
 extension CartPrinterRouting on List<String> {
   /// POS order → removes OLO type printers, returns the rest.

@@ -3,11 +3,9 @@ import 'package:yogo_pos/app/modules/clockIn/providers/clock_in_out.dart';
 import 'package:yogo_pos/app/modules/clockIn/widgets/clock_in_dialog.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/modules/pos/repo/pos_repo.dart';
-import 'package:yogo_pos/app/modules/terminalIntegration/elavon-cws/providers/cws_credentials_provider.dart';
 import 'package:yogo_pos/app/routes/app_pages.dart';
 import 'package:yogo_pos/app/services/base/preferences.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
-import 'package:yogo_pos/app/services/controller/config_controller.dart';
 import 'package:yogo_pos/app/utils/logger.dart';
 import 'package:yogo_pos/app/utils/my_func.dart';
 import 'package:yogo_pos/app/utils/urls.dart';
@@ -88,7 +86,7 @@ class AuthController extends GetxController {
 
       if (res.statusCode == 200 && res.data["data"] != null) {
         //auth code
-        print(res.data["data"]["employee"].toString());
+        // print(res.data["data"]["employee"].toString());
         password.value = "";
         Preferences.accessToken = res.data["data"]["accessToken"];
         await BaseController.to.setEmployeeData(res.data["data"]["employee"]);

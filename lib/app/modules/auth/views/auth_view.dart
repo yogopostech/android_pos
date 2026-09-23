@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yogo_pos/app/helper/app_helper.dart';
-import 'package:yogo_pos/app/modules/setting/providers/serial_caller_id_service.dart';
 import 'package:yogo_pos/app/routes/app_pages.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
 import 'package:yogo_pos/app/services/controller/config_controller.dart';

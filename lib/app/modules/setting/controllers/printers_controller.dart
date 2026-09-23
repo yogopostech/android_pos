@@ -1,11 +1,8 @@
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:yogo_pos/app/modules/setting/repo/printers_repo.dart';
 import 'package:yogo_pos/app/services/base/preferences.dart';
 import 'package:get/get.dart';
-import 'package:yogo_pos/app/services/controller/config_controller.dart';
-import 'package:yogo_pos/app/services/models/printer_model.dart';
-import 'package:yogo_pos/app/widgets/popup_dialogs.dart';
+
 
 class PrintersController extends GetxController {
   static PrintersController get to => Get.find();

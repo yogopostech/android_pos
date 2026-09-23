@@ -96,7 +96,7 @@ flutter_native_splash:
   color: "#ffffff"
   image: assets/images/splash/app_icon.png
   # branding: assets/branding-development.png
-  color_dark: "#121212"
+  color_dark: "#ffffff"
   image_dark: assets/images/splash/app_icon.png
   # branding_dark: assets/branding-development.png
 
@@ -104,7 +104,7 @@ flutter_native_splash:
     image: assets/images/splash/app_icon.png
     icon_background_color: "#ffffff"
     image_dark: assets/images/splash/app_icon.png
-    icon_background_color_dark: "#121212"
+    icon_background_color_dark: "#ffffff"
 
 flutter:
   uses-material-design: true
