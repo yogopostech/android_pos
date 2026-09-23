@@ -36,11 +36,11 @@ class SettingController extends GetxController {
     //   icon: Icons.scale_sharp,
     //   title: "Weighing Scale",
     // ),
-    SettingsMenuModel(
-      child: const Services(),
-      icon: Icons.design_services_outlined,
-      title: "Modules",
-    ),
+    // SettingsMenuModel(
+    //   child: const Services(),
+    //   icon: Icons.design_services_outlined,
+    //   title: "Modules",
+    // ),
 
     SettingsMenuModel(
       child: const General(),
@@ -48,11 +48,7 @@ class SettingController extends GetxController {
       title: "General",
     ),
 
-    SettingsMenuModel(
-      child: const UpdateDatCandyGiftCardView1(),
-      icon: Icons.credit_card,
-      title: "Gift Card",
-    ),
+
 
     //? must be last item in the list
     //? if need to remove this item, remove the code in the view as well

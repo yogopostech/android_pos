@@ -49,21 +49,21 @@ class BottomBar extends GetView<PosController> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      Visibility(
-                        visible: kDebugMode,
-                        child: PrimaryBtn(
-                          width: 90,
-                          height: 80,
-                          textColor: Colors.white,
-                          color: StaticColors.blueColor,
-                          onPressed: () async {
-                            // cwsPurchaseDialog(amountCents: 5050);
-                            // print(Preferences.user);
-                            // Get.toNamed(Routes.CALLER_ID_PAGE);
-                          },
-                          text: "No Tips".toUpperCase(),
-                        ).marginOnly(right: 10),
-                      ),
+                      // Visibility(
+                      //   visible: kDebugMode,
+                      //   child: PrimaryBtn(
+                      //     width: 90,
+                      //     height: 80,
+                      //     textColor: Colors.white,
+                      //     color: StaticColors.blueColor,
+                      //     onPressed: () async {
+                      //       // cwsPurchaseDialog(amountCents: 5050);
+                      //       // print(Preferences.user);
+                      //       // Get.toNamed(Routes.CALLER_ID_PAGE);
+                      //     },
+                      //     text: "No Tips".toUpperCase(),
+                      //   ).marginOnly(right: 10),
+                      // ),
                       // Visibility(
                       //   // visible: kDebugMode,
                       //   child: PrimaryBtn(
@@ -268,18 +268,18 @@ class BottomBar extends GetView<PosController> {
                           text: "Pay".toUpperCase(),
                         ).marginOnly(right: 10),
                       ),
-                      PrimaryBtn(
-                        width: 90,
-                        height: 80,
-                        textColor: Colors.white,
-                        color: StaticColors.blueColor,
-                        onPressed: () async {
-                          // final List<int> values = List.generate(20, (index) => (index + 1) * 5);
-                          Get.toNamed(Routes.Gift_Card_page);
-                          // BaseController.to.getRestaurantsDetailsFromAPI();
-                        },
-                        text: "Gift Card".toUpperCase(),
-                      ).marginOnly(right: 10),
+                      // PrimaryBtn(
+                      //   width: 90,
+                      //   height: 80,
+                      //   textColor: Colors.white,
+                      //   color: StaticColors.blueColor,
+                      //   onPressed: () async {
+                      //     // final List<int> values = List.generate(20, (index) => (index + 1) * 5);
+                      //     Get.toNamed(Routes.Gift_Card_page);
+                      //     // BaseController.to.getRestaurantsDetailsFromAPI();
+                      //   },
+                      //   text: "Gift Card".toUpperCase(),
+                      // ).marginOnly(right: 10),
 
                       PrimaryBtn(
                         height: 80,
@@ -301,90 +301,90 @@ class BottomBar extends GetView<PosController> {
                         },
                         text: "Discount".toUpperCase(),
                       ).marginOnly(right: 10),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: StaticColors.blueColor,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          padding: EdgeInsets.zero,
-                          fixedSize: Size(90, 80),
-                          alignment: Alignment.center,
-                          textStyle: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                        onPressed: () async {
-                          PopupDialog.permissionDialogWithAccessPin(
-                            title: "Open Drawer",
-                            onSubmit: () async {
-                              await PrintUtils().openDrawer1();
-                              if (Get.isDialogOpen == true) {
-                                Get.back();
-                              }
-                              Get.back();
-                            },
-                          );
-                        },
-                        onLongPress: () {
-                          PopupDialog.permissionDialogWithAccessPin(
-                            title: "Open Drawer".toUpperCase(),
-                            onSubmit: () async {
-                              await PrintUtils().openDrawer2();
-                              if (Get.isDialogOpen == true) {
-                                Get.back();
-                              }
-                              Get.back();
-                            },
-                          );
-                        },
-                        child: Text(
-                          "Open\nDrawer".toUpperCase(),
-                          textAlign: TextAlign.center,
-                        ),
-                      ).marginOnly(right: 10),
+                      // ElevatedButton(
+                      //   style: ElevatedButton.styleFrom(
+                      //     backgroundColor: StaticColors.blueColor,
+                      //     foregroundColor: Colors.white,
+                      //     shape: RoundedRectangleBorder(
+                      //       borderRadius: BorderRadius.circular(8),
+                      //     ),
+                      //     padding: EdgeInsets.zero,
+                      //     fixedSize: Size(90, 80),
+                      //     alignment: Alignment.center,
+                      //     textStyle: TextStyle(
+                      //       fontSize: 15,
+                      //       fontWeight: FontWeight.bold,
+                      //       color: Colors.white,
+                      //     ),
+                      //   ),
+                      //   onPressed: () async {
+                      //     PopupDialog.permissionDialogWithAccessPin(
+                      //       title: "Open Drawer",
+                      //       onSubmit: () async {
+                      //         await PrintUtils().openDrawer1();
+                      //         if (Get.isDialogOpen == true) {
+                      //           Get.back();
+                      //         }
+                      //         Get.back();
+                      //       },
+                      //     );
+                      //   },
+                      //   onLongPress: () {
+                      //     PopupDialog.permissionDialogWithAccessPin(
+                      //       title: "Open Drawer".toUpperCase(),
+                      //       onSubmit: () async {
+                      //         await PrintUtils().openDrawer2();
+                      //         if (Get.isDialogOpen == true) {
+                      //           Get.back();
+                      //         }
+                      //         Get.back();
+                      //       },
+                      //     );
+                      //   },
+                      //   child: Text(
+                      //     "Open\nDrawer".toUpperCase(),
+                      //     textAlign: TextAlign.center,
+                      //   ),
+                      // ).marginOnly(right: 10),
 
-                      GetBuilder<BaseController>(
-                        builder: (bc) {
-                          return Visibility(
-                            visible:
-                                bc.allowCallerIdTypeChange &&
-                                bc.callerIdType == CallerIdType.typeTwo,
-                            child: Obx(() {
-                              return Visibility(
-                                visible: BaseController.to.hasCallerId.value,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: StaticColors.blueColor,
-                                    foregroundColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    padding: EdgeInsets.zero,
-                                    fixedSize: Size(90, 80),
-                                    alignment: Alignment.center,
-                                    textStyle: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  onPressed: () async {
-                                    showCallerOrderSplitDialog(context);
-                                  },
-                                  child: Text(
-                                    "call\nhistory".toUpperCase(),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              );
-                            }),
-                          );
-                        },
-                      ),
+                      // GetBuilder<BaseController>(
+                      //   builder: (bc) {
+                      //     return Visibility(
+                      //       visible:
+                      //           bc.allowCallerIdTypeChange &&
+                      //           bc.callerIdType == CallerIdType.typeTwo,
+                      //       child: Obx(() {
+                      //         return Visibility(
+                      //           visible: BaseController.to.hasCallerId.value,
+                      //           child: ElevatedButton(
+                      //             style: ElevatedButton.styleFrom(
+                      //               backgroundColor: StaticColors.blueColor,
+                      //               foregroundColor: Colors.white,
+                      //               shape: RoundedRectangleBorder(
+                      //                 borderRadius: BorderRadius.circular(8),
+                      //               ),
+                      //               padding: EdgeInsets.zero,
+                      //               fixedSize: Size(90, 80),
+                      //               alignment: Alignment.center,
+                      //               textStyle: TextStyle(
+                      //                 fontSize: 15,
+                      //                 fontWeight: FontWeight.bold,
+                      //                 color: Colors.white,
+                      //               ),
+                      //             ),
+                      //             onPressed: () async {
+                      //               showCallerOrderSplitDialog(context);
+                      //             },
+                      //             child: Text(
+                      //               "call\nhistory".toUpperCase(),
+                      //               textAlign: TextAlign.center,
+                      //             ),
+                      //           ),
+                      //         );
+                      //       }),
+                      //     );
+                      //   },
+                      // ),
                     ],
                   ),
                 ),

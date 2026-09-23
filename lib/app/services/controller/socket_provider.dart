@@ -89,9 +89,9 @@ class SocketController extends _$SocketController {
     _socket!.onDisconnect((_) => _onDisconnected());
     _socket!.onError((err) => _onError(err));
 
-    _socket!.on(SocketEvent.tableBooking.value, _onTableBooking);
-    _socket!.on(SocketEvent.onlineOrderPlaced.value, _onOnlineOrder);
-    _socket!.on(SocketEvent.deliveryOrderPlaced.value, _onDeliveryOrder);
+    // _socket!.on(SocketEvent.tableBooking.value, _onTableBooking);
+    // _socket!.on(SocketEvent.onlineOrderPlaced.value, _onOnlineOrder);
+    // _socket!.on(SocketEvent.deliveryOrderPlaced.value, _onDeliveryOrder);
     _socket!.on(SocketEvent.deviceDisconnect.value, _onDeviceDisconnect);
     _socket!.on(SocketEvent.monerisPayment.value, _onMonerisPayment);
     _socket!.on(SocketEvent.updateOrder.value, _onUpdateOrder);

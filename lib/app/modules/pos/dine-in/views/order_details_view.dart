@@ -200,126 +200,6 @@ class OrderDetailsView extends GetView<DineInController> {
                                     textMinSize: textMinSize,
                                   ).marginOnly(right: 12),
                                 ),
-                                Visibility(
-                                  visible:
-                                      BaseController
-                                          .to
-                                          .restaurantDetails
-                                          ?.restaurant
-                                          .pickup ??
-                                      false,
-                                  child: GetBuilder<OnlineOrderController>(
-                                    builder: (c) {
-                                      return Badge(
-                                        isLabelVisible: c.unseenOrders == 0
-                                            ? false
-                                            : true,
-                                        label: Text(c.unseenOrders.toString()),
-                                        child: PrimaryBtn(
-                                          width: btnSize,
-                                          height: height,
-                                          onPressed: () {
-                                            PosController.to.onchangePage(4);
-                                            PosController.to.isUpdateView =
-                                                false;
-                                            // PosController.to.setOrderTypeIndex(
-                                            //     PosController.to.orderTypeList.first);
-                                            PosController.to
-                                                .setTakeOutTypeIndexAndValue(
-                                                  PosController
-                                                      .to
-                                                      .takeOutTypeList
-                                                      .first,
-                                                );
-                                            PosController.to
-                                                .onEditableAllCartTextField();
-                                            PosController.to.clearCartList();
-                                            Get.back();
-                                          },
-                                          color: StaticColors.greenColor,
-                                          textColor: Colors.white,
-                                          text: 'OLO'.toUpperCase(),
-                                          textMaxSize: textMaxSize,
-                                          textMinSize: textMinSize,
-                                        ).marginOnly(right: 10),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Visibility(
-                                  visible:
-                                      BaseController
-                                          .to
-                                          .restaurantDetails
-                                          ?.restaurant
-                                          .posDelivery ??
-                                      false,
-                                  child: GetBuilder<DeliveryController>(
-                                    builder: (c) {
-                                      return Badge(
-                                        isLabelVisible: c.unseenOrders == 0
-                                            ? false
-                                            : true,
-                                        label: Text(c.unseenOrders.toString()),
-                                        child: PrimaryBtn(
-                                          width: btnSize,
-                                          height: height,
-                                          onPressed: () {
-                                            PosController.to.onchangePage(5);
-                                            PosController.to.isUpdateView =
-                                                false;
-                                            // PosController.to.setOrderTypeIndex(
-                                            //     PosController.to.orderTypeList.first);
-                                            PosController.to
-                                                .setTakeOutTypeIndexAndValue(
-                                                  PosController
-                                                      .to
-                                                      .takeOutTypeList
-                                                      .first,
-                                                );
-                                            PosController.to
-                                                .onEditableAllCartTextField();
-                                            PosController.to.clearCartList();
-                                            Get.back();
-                                          },
-                                          color: StaticColors.greenColor,
-                                          textColor: Colors.white,
-                                          text: 'DELIVERY'.toUpperCase(),
-                                          textMaxSize: textMaxSize,
-                                          textMinSize: textMinSize,
-                                        ).marginOnly(right: 10),
-                                      );
-                                    },
-                                  ),
-                                ),
-
-                                // const SizedBox(width: 8),
-                                PrimaryBtn(
-                                  width: btnSize,
-                                  height: height,
-                                  onPressed: () {
-                                    PosController.to.onchangePage(1);
-                                    PosController.to.isUpdateView = false;
-                                    // PosController.to.setOrderTypeIndex(
-                                    //     PosController.to.orderTypeList.first);
-                                    PosController.to
-                                        .setTakeOutTypeIndexAndValue(
-                                          PosController
-                                              .to
-                                              .takeOutTypeList
-                                              .first,
-                                        );
-                                    PosController.to
-                                        .onEditableAllCartTextField();
-                                    PosController.to.clearCartList();
-                                    Get.back();
-                                  },
-                                  color: StaticColors.greenColor,
-                                  textColor: Colors.white,
-                                  text: 'Checks'.toUpperCase(),
-                                  textMaxSize: textMaxSize,
-                                  textMinSize: textMinSize,
-                                ).marginOnly(right: 40),
 
                                 GetBuilder<PosController>(
                                   builder: (context) {
@@ -2432,64 +2312,65 @@ class OrderDetailsView extends GetView<DineInController> {
                                       );
                                     },
                                   ),
-                                  // order status change button
-                                  GetBuilder<PosController>(
-                                    builder: (c) {
-                                      return Visibility(
-                                        // need to set ,when user can see the btn
-                                        visible:
-                                            c.myOrder.orderType != "DINE_IN" &&
-                                            c.myOrder.orderStatus ==
-                                                "CONFIRMED",
-                                        child: PrimaryBtn(
-                                          width: btnSize,
-                                          height: height,
-                                          textMaxSize: textMaxSize,
-                                          textMinSize: textMinSize,
-                                          onPressed: () {
-                                            if (c.myOrder.orderType ==
-                                                "DELIVERY") {
-                                              // change delivery to takeout
 
-                                              PopupDialog.permissionDialog(
-                                                theme,
-                                                onSubmit: () {
-                                                  Get.back();
-                                                  c.onChangeDeliveryToTakeout();
-                                                },
-                                                title: "Switch to Takeout?"
-                                                    .toUpperCase(),
-                                              );
-                                            } else {
-                                              // change takeout to delivery
-                                              PopupDialog.permissionDialog(
-                                                theme,
-                                                title: "Switch to Delivery?"
-                                                    .toUpperCase(),
-                                                onSubmit: () {
-                                                  Get.back();
-                                                  PopupDialog.customDialog(
-                                                    width: 900,
-                                                    child:
-                                                        ChangeTakeoutToDelivery(),
-                                                  );
-                                                },
-                                              );
-                                            }
-                                          },
-                                          // width: double.infinity,
-                                          text:
-                                              c.myOrder.orderType == "DELIVERY"
-                                              ? 'Switch to Takeout'
-                                                    .toUpperCase()
-                                              : 'Switch to Delivery'
-                                                    .toUpperCase(),
-                                          textColor: Colors.white,
-                                          color: StaticColors.blueColor,
-                                        ).marginOnly(left: 12),
-                                      );
-                                    },
-                                  ),
+                                  // order status change button
+                                  // GetBuilder<PosController>(
+                                  //   builder: (c) {
+                                  //     return Visibility(
+                                  //       // need to set ,when user can see the btn
+                                  //       visible:
+                                  //           c.myOrder.orderType != "DINE_IN" &&
+                                  //           c.myOrder.orderStatus ==
+                                  //               "CONFIRMED",
+                                  //       child: PrimaryBtn(
+                                  //         width: btnSize,
+                                  //         height: height,
+                                  //         textMaxSize: textMaxSize,
+                                  //         textMinSize: textMinSize,
+                                  //         onPressed: () {
+                                  //           if (c.myOrder.orderType ==
+                                  //               "DELIVERY") {
+                                  //             // change delivery to takeout
+
+                                  //             PopupDialog.permissionDialog(
+                                  //               theme,
+                                  //               onSubmit: () {
+                                  //                 Get.back();
+                                  //                 c.onChangeDeliveryToTakeout();
+                                  //               },
+                                  //               title: "Switch to Takeout?"
+                                  //                   .toUpperCase(),
+                                  //             );
+                                  //           } else {
+                                  //             // change takeout to delivery
+                                  //             PopupDialog.permissionDialog(
+                                  //               theme,
+                                  //               title: "Switch to Delivery?"
+                                  //                   .toUpperCase(),
+                                  //               onSubmit: () {
+                                  //                 Get.back();
+                                  //                 PopupDialog.customDialog(
+                                  //                   width: 900,
+                                  //                   child:
+                                  //                       ChangeTakeoutToDelivery(),
+                                  //                 );
+                                  //               },
+                                  //             );
+                                  //           }
+                                  //         },
+                                  //         // width: double.infinity,
+                                  //         text:
+                                  //             c.myOrder.orderType == "DELIVERY"
+                                  //             ? 'Switch to Takeout'
+                                  //                   .toUpperCase()
+                                  //             : 'Switch to Delivery'
+                                  //                   .toUpperCase(),
+                                  //         textColor: Colors.white,
+                                  //         color: StaticColors.blueColor,
+                                  //       ).marginOnly(left: 12),
+                                  //     );
+                                  //   },
+                                  // ),
                                 ],
                               ),
                             ),

@@ -26,6 +26,7 @@ ThemeData lightTheme = ThemeData(
   colorScheme: const ColorScheme.light(
     error: Colors.red,
     surface: Color(0xff0c0c0c),
+    onSurface: Colors.white,
   ), // Primary color for buttons, etc.
   // *****  Others Color *****
   // primarySwatch: MyFunc.createMaterialColor(const Color(0xff8A0051)),

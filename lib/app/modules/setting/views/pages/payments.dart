@@ -113,24 +113,25 @@ class Payments extends GetView<PaymentsController> {
             ),
           ),
         ),
-        // elavon cws terminal
-        Visibility(
-          visible: BaseController.to.posElavonCws,
-          child: SizedBox(
-            width: 500,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //title
-                Text('Elavon CWS', style: theme.textTheme.headlineMedium),
-                SizedBox(height: 8),
 
-                //IP
-                Text('CWS is Connected', style: theme.textTheme.titleSmall),
-              ],
-            ),
-          ),
-        ),
+        // elavon cws terminal
+        // Visibility(
+        //   visible: BaseController.to.posElavonCws,
+        //   child: SizedBox(
+        //     width: 500,
+        //     child: Column(
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         //title
+        //         Text('Elavon CWS', style: theme.textTheme.headlineMedium),
+        //         SizedBox(height: 8),
+
+        //         //IP
+        //         Text('CWS is Connected', style: theme.textTheme.titleSmall),
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

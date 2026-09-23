@@ -26,6 +26,7 @@ ThemeData darkTheme = ThemeData(
   colorScheme: const ColorScheme.dark(
     error: Color(0xffE7474B),
     surface: Color(0xffEDF2F7),
+    onSurface: Colors.black,
   ),
 
   // *****  Others Color *****
@@ -77,8 +78,9 @@ ThemeData darkTheme = ThemeData(
     dividerColor: Colors.white,
     headerBackgroundColor: StaticColors.blueColor,
     headerForegroundColor: Colors.white,
-    todayBackgroundColor:
-        const WidgetStatePropertyAll(StaticColors.orangeColor),
+    todayBackgroundColor: const WidgetStatePropertyAll(
+      StaticColors.orangeColor,
+    ),
     todayForegroundColor: const WidgetStatePropertyAll(Colors.white),
     rangeSelectionBackgroundColor: StaticColors.blueColor.withAlpha(51),
     rangeSelectionOverlayColor: const WidgetStatePropertyAll(Colors.green),
@@ -96,22 +98,27 @@ ThemeData darkTheme = ThemeData(
       return Colors.transparent;
     }),
     // week day Style
-    weekdayStyle:
-        const TextStyle(fontWeight: FontWeight.w600, color: Colors.red),
+    weekdayStyle: const TextStyle(
+      fontWeight: FontWeight.w600,
+      color: Colors.red,
+    ),
     yearStyle: const TextStyle(fontWeight: FontWeight.w600, color: Colors.red),
     // custom
     cancelButtonStyle: ButtonStyle(
       foregroundColor: const WidgetStatePropertyAll(StaticColors.redColor),
-      surfaceTintColor:
-          WidgetStatePropertyAll(StaticColors.redColor.withAlpha(26)),
+      surfaceTintColor: WidgetStatePropertyAll(
+        StaticColors.redColor.withAlpha(26),
+      ),
       overlayColor: WidgetStatePropertyAll(StaticColors.redColor.withAlpha(51)),
     ),
     confirmButtonStyle: ButtonStyle(
       foregroundColor: const WidgetStatePropertyAll(StaticColors.blueColor),
-      surfaceTintColor:
-          WidgetStatePropertyAll(StaticColors.blueColor.withAlpha(26)),
-      overlayColor:
-          WidgetStatePropertyAll(StaticColors.blueColor.withAlpha(51)),
+      surfaceTintColor: WidgetStatePropertyAll(
+        StaticColors.blueColor.withAlpha(26),
+      ),
+      overlayColor: WidgetStatePropertyAll(
+        StaticColors.blueColor.withAlpha(51),
+      ),
     ),
     yearForegroundColor: const WidgetStatePropertyAll(Colors.black),
     surfaceTintColor: StaticColors.blueColor,
@@ -122,7 +129,10 @@ ThemeData darkTheme = ThemeData(
       borderRadius: BorderRadius.circular(4),
     ),
     textStyle: TextStyle(
-        fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: Colors.black,
+    ),
   ),
   //  timePickerTheme
   timePickerTheme: const TimePickerThemeData(
@@ -147,106 +157,125 @@ ThemeData darkTheme = ThemeData(
   fontFamily: Fonts.primary,
   // ****** Card Theme ******
   cardTheme: CardThemeData(
-      color: const Color(0xffF9FAFD),
-      shadowColor: Colors.black,
-      surfaceTintColor: null,
-      margin: null,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12), // Adjust the radius as needed
-      ),
-      elevation: 1),
+    color: const Color(0xffF9FAFD),
+    shadowColor: Colors.black,
+    surfaceTintColor: null,
+    margin: null,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12), // Adjust the radius as needed
+    ),
+    elevation: 1,
+  ),
 
   //badge
   badgeTheme: const BadgeThemeData(
-      offset: Offset(-16, 6),
-      textColor: Colors.black,
-      backgroundColor: Colors.white,
-      padding: EdgeInsets.all(4),
-      textStyle: TextStyle(fontWeight: FontWeight.w600)),
+    offset: Offset(-16, 6),
+    textColor: Colors.black,
+    backgroundColor: Colors.white,
+    padding: EdgeInsets.all(4),
+    textStyle: TextStyle(fontWeight: FontWeight.w600),
+  ),
   // ****** Text Theme ******
-  textTheme: GoogleFonts.robotoTextTheme(const TextTheme(
-    //******  Label  ******
-    labelLarge: TextStyle(
+  textTheme: GoogleFonts.robotoTextTheme(
+    const TextTheme(
+      //******  Label  ******
+      labelLarge: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        color: Color(0xffEDF2F7)),
-    labelMedium: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      labelMedium: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: Color(0xffEDF2F7)),
-    labelSmall: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      labelSmall: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 12,
         fontWeight: FontWeight.w500,
-        color: Color(0xffEDF2F7)),
+        color: Color(0xffEDF2F7),
+      ),
 
-    //******  Body  ******
-    bodyLarge: TextStyle(
+      //******  Body  ******
+      bodyLarge: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 16,
         fontWeight: FontWeight.w400,
-        color: Color(0xffEDF2F7)),
-    bodyMedium: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      bodyMedium: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 14,
         fontWeight: FontWeight.w400,
-        color: Color(0xffEDF2F7)),
-    bodySmall: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      bodySmall: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 12,
         fontWeight: FontWeight.w400,
-        color: Color(0xffEDF2F7)),
-    //******  Title  ******
-    titleLarge: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      //******  Title  ******
+      titleLarge: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 20,
         fontWeight: FontWeight.w500,
-        color: Color(0xffEDF2F7)),
-    titleMedium: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      titleMedium: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 18,
         fontWeight: FontWeight.w500,
-        color: Color(0xffEDF2F7)),
-    titleSmall: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      titleSmall: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        color: Color(0xffEDF2F7)),
-    //******  HeadLine  ******
-    headlineLarge: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      //******  HeadLine  ******
+      headlineLarge: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 36,
         fontWeight: FontWeight.w700,
-        color: Color(0xffEDF2F7)),
-    headlineMedium: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      headlineMedium: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 28,
         fontWeight: FontWeight.w700,
-        color: Color(0xffEDF2F7)),
-    headlineSmall: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      headlineSmall: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 24,
         fontWeight: FontWeight.w700,
-        color: Color(0xffEDF2F7)),
-    //******  Display  ******
-    displayLarge: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      //******  Display  ******
+      displayLarge: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 60,
         fontWeight: FontWeight.w700,
-        color: Color(0xffEDF2F7)),
-    displayMedium: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      displayMedium: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 55,
         fontWeight: FontWeight.w700,
-        color: Color(0xffEDF2F7)),
-    displaySmall: TextStyle(
+        color: Color(0xffEDF2F7),
+      ),
+      displaySmall: TextStyle(
         fontFamily: Fonts.primary,
         fontSize: 32,
         fontWeight: FontWeight.w700,
-        color: Color(0xffEDF2F7)),
-  )),
+        color: Color(0xffEDF2F7),
+      ),
+    ),
+  ),
 
   scrollbarTheme: ScrollbarThemeData(
     thumbColor: WidgetStateProperty.all(Colors.grey.shade800),
@@ -259,9 +288,7 @@ ThemeData darkTheme = ThemeData(
     space: 10,
   ),
   radioTheme: const RadioThemeData(
-    fillColor: WidgetStatePropertyAll(
-      Color(0xfff65b1c),
-    ),
+    fillColor: WidgetStatePropertyAll(Color(0xfff65b1c)),
   ),
   dialogTheme: DialogThemeData(backgroundColor: const Color(0xffF9FAFD)),
   tabBarTheme: TabBarThemeData(indicatorColor: const Color(0x000000ff)),

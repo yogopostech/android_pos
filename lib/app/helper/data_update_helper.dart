@@ -5,7 +5,6 @@ import 'package:yogo_pos/app/modules/pos/dine-in/controllers/dine_in_controller.
 import 'package:yogo_pos/app/modules/pos/dine-in/controllers/table_mapping_managment_controller.dart';
 import 'package:yogo_pos/app/modules/pos/takeout/controllers/takeout_controller.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
-import 'package:yogo_pos/app/services/controller/config_controller.dart';
 import 'package:yogo_pos/app/utils/logger.dart';
 import 'package:yogo_pos/app/widgets/popup_dialogs.dart';
 
@@ -70,7 +69,7 @@ class DataUpdateHelper {
           "getAllTakeOutUnPaidOrders",
         ),
 
-        _safeApiCall(() => OnlineOrderController.to.getOrders(), "getOrders"),
+        // _safeApiCall(() => OnlineOrderController.to.getOrders(), "getOrders"),
       ]);
 
       // Perform dependent tasks after all API calls
@@ -131,36 +130,36 @@ class DataUpdateHelper {
 
   /// Fetch data for Online Orders
   static Future<void> getApiCallForOnlineOrder() async {
-    try {
-      kLogger.i("Starting getApiCallForOnlineOrder...");
-      await _safeApiCall(
-        () => OnlineOrderController.to.getOrders(),
-        "getOrders",
-      );
-      kLogger.i("Completed getApiCallForOnlineOrder.");
-    } catch (e) {
-      kLogger.e("Error in getApiCallForOnlineOrder: $e");
-    }
+    // try {
+    //   kLogger.i("Starting getApiCallForOnlineOrder...");
+    //   await _safeApiCall(
+    //     () => OnlineOrderController.to.getOrders(),
+    //     "getOrders",
+    //   );
+    //   kLogger.i("Completed getApiCallForOnlineOrder.");
+    // } catch (e) {
+    //   kLogger.e("Error in getApiCallForOnlineOrder: $e");
+    // }
   }
 
   /// Fetch data for Delivery Orders
   static Future<void> getApiCallForDeliveryOrder() async {
-    try {
-      kLogger.i("Starting getApiCallForDeliveryOrder...");
-      await Future.wait([
-        _safeApiCall(
-          () => DeliveryController.to.getAllDeliveryPaidOrders(),
-          "getAllDeliveryPaidOrders",
-        ),
-        _safeApiCall(
-          () => DeliveryController.to.getAllDeliveryUnPaidOrders(),
-          "getAllDeliveryUnPaidOrders",
-        ),
-      ]);
-      kLogger.i("Completed getApiCallForDeliveryOrder.");
-    } catch (e) {
-      kLogger.e("Error in getApiCallForDeliveryOrder: $e");
-    }
+    // try {
+    //   kLogger.i("Starting getApiCallForDeliveryOrder...");
+    //   await Future.wait([
+    //     _safeApiCall(
+    //       () => DeliveryController.to.getAllDeliveryPaidOrders(),
+    //       "getAllDeliveryPaidOrders",
+    //     ),
+    //     _safeApiCall(
+    //       () => DeliveryController.to.getAllDeliveryUnPaidOrders(),
+    //       "getAllDeliveryUnPaidOrders",
+    //     ),
+    //   ]);
+    //   kLogger.i("Completed getApiCallForDeliveryOrder.");
+    // } catch (e) {
+    //   kLogger.e("Error in getApiCallForDeliveryOrder: $e");
+    // }
   }
 
   /// Fetch data based on the order type

@@ -25,8 +25,9 @@ class DineInController extends GetxController {
   RxList<TableCategoryModel> tableCategoryList = <TableCategoryModel>[].obs;
   Future getTableCategories() async {
     try {
-      var res =
-          await BaseController.to.apiService.makeGetRequest(URLS.tableCategory);
+      var res = await BaseController.to.apiService.makeGetRequest(
+        URLS.tableCategory,
+      );
       if (res.statusCode == 200) {
         tableCategoryList.assignAll(
           (res.data["data"] as List)
@@ -40,14 +41,16 @@ class DineInController extends GetxController {
   }
 
   // tible status change
-  Future onChangeTableStatus(
-      {required String id, required String status}) async {
-    Map<String, dynamic> data = {
-      "tableAvailability": status,
-    };
+  Future onChangeTableStatus({
+    required String id,
+    required String status,
+  }) async {
+    Map<String, dynamic> data = {"tableAvailability": status};
     PopupDialog.showLoadingDialog();
-    var res = await BaseController.to.apiService
-        .makePatchRequest("${URLS.tableHold}/$id", data);
+    var res = await BaseController.to.apiService.makePatchRequest(
+      "${URLS.tableHold}/$id",
+      data,
+    );
     PopupDialog.closeLoadingDialog();
     if (res.statusCode == 200) {
       getTableCategories();
@@ -72,8 +75,8 @@ class DineInController extends GetxController {
     "CASH",
     "CASH_AND_CARD",
     "OTHERS",
-    "GIFT_CARD",
-    "CASH_AND_GIFT_CARD"
+    // "GIFT_CARD",
+    // "CASH_AND_GIFT_CARD"
   ];
   String? selectedCard;
   void updateSelectedCard(String val) {

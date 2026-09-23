@@ -259,31 +259,31 @@ class Printers extends GetView<PrintersController> {
               // olo print
               const SizedBox(height: 20),
               //** kitchen print **
-              Obx(() {
-                return _switch(
-                  theme: theme,
-                  value: controller.oloPrint.value,
-                  onChanged: controller.onOloPrint,
-                  title: "OLO Kitchen Print",
-                );
-              }),
-              Obx(() {
-                return _switch(
-                  theme: theme,
-                  value: controller.deliveryOrderPrint.value,
-                  onChanged: controller.onDeliveryOrderPrint,
-                  title: "Delivery Kitchen Print",
-                );
-              }),
-              SizedBox(height: 25),
-              Obx(() {
-                return _switch(
-                  theme: theme,
-                  value: controller.oloCustomerPrint.value,
-                  onChanged: controller.onOloCustomerPrint,
-                  title: "Auto-print Receipt for OLO Takeout",
-                );
-              }),
+              // Obx(() {
+              //   return _switch(
+              //     theme: theme,
+              //     value: controller.oloPrint.value,
+              //     onChanged: controller.onOloPrint,
+              //     title: "OLO Kitchen Print",
+              //   );
+              // }),
+              // Obx(() {
+              //   return _switch(
+              //     theme: theme,
+              //     value: controller.deliveryOrderPrint.value,
+              //     onChanged: controller.onDeliveryOrderPrint,
+              //     title: "Delivery Kitchen Print",
+              //   );
+              // }),
+              // SizedBox(height: 25),
+              // Obx(() {
+              //   return _switch(
+              //     theme: theme,
+              //     value: controller.oloCustomerPrint.value,
+              //     onChanged: controller.onOloCustomerPrint,
+              //     title: "Auto-print Receipt for OLO Takeout",
+              //   );
+              // }),
               Obx(() {
                 return _switch(
                   theme: theme,
@@ -292,25 +292,25 @@ class Printers extends GetView<PrintersController> {
                   title: "Auto-print Receipt for POS Takeout",
                 );
               }),
-              const SizedBox(height: 25),
-              Obx(() {
-                return _switch(
-                  theme: theme,
-                  value: controller.deliveryCustomerReceipt.value,
-                  onChanged: controller.onDeliveryCustomerOrderPrint,
-                  title: "Auto-print receipt for OLO Delivery",
-                );
-              }),
+              // const SizedBox(height: 25),
+              // Obx(() {
+              //   return _switch(
+              //     theme: theme,
+              //     value: controller.deliveryCustomerReceipt.value,
+              //     onChanged: controller.onDeliveryCustomerOrderPrint,
+              //     title: "Auto-print receipt for OLO Delivery",
+              //   );
+              // }),
 
-              Obx(() {
-                return _switch(
-                  theme: theme,
-                  value: controller.deliveryPOSCustomerReceipt.value,
-                  onChanged: controller.onDeliveryPOSCustomerReceipt,
-                  title: "Auto-print Receipt for POS Delivery",
-                );
-              }),
-              SizedBox(height: 20),
+              // Obx(() {
+              //   return _switch(
+              //     theme: theme,
+              //     value: controller.deliveryPOSCustomerReceipt.value,
+              //     onChanged: controller.onDeliveryPOSCustomerReceipt,
+              //     title: "Auto-print Receipt for POS Delivery",
+              //   );
+              // }),
+              // SizedBox(height: 20),
               Visibility(
                 visible:
                     BaseController.to.restaurantDetails?.printerSelectionMode !=

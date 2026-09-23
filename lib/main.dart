@@ -44,15 +44,11 @@ Future<void> main() async {
 
   providerContainer = ProviderContainer();
 
-  // await Geolocator.requestPermission();
-  //hive init
-  // PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  if(!kDebugMode){
-  bool isAllow = await SecurityCheck.isAllow();
-  if (!isAllow ) {
-    exit(0);
-  }
-
+  if (!kDebugMode) {
+    bool isAllow = await SecurityCheck.isAllow();
+    if (!isAllow) {
+      exit(0);
+    }
   }
 
   tz.initializeTimeZones();
@@ -62,6 +58,12 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  /// Status bar hide
+  await SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.manual,
+    overlays: [SystemUiOverlay.bottom],
+  );
 
   /// Initialize the dioflutter
   final dio = Dio();
@@ -112,4 +114,3 @@ class MyApp extends ConsumerWidget {
     );
   }
 }
-

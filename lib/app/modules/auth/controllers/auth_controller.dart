@@ -131,7 +131,7 @@ class AuthController extends GetxController {
           PosController.to.orderType = PosController.to.orderTypeList.first;
         }
         PosController.to.onFocusGuestName();
-        providerContainer.read(cwsCredentialsConfigProvider);
+        
 
         //auth code
         // clockIn logic
