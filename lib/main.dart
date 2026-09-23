@@ -62,6 +62,12 @@ Future<void> main() async {
     DeviceOrientation.portraitDown,
   ]);
 
+  /// Status bar hide
+  await SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.manual,
+    overlays: [SystemUiOverlay.bottom],
+  );
+
   /// Initialize the dioflutter
   final dio = Dio();
   // ignore: deprecated_member_use

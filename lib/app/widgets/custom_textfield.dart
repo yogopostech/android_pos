@@ -155,7 +155,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
           // ********** obscureText ********
           obscureText: widget.obscureText ?? false,
           // ********** readOnly ********
-          readOnly: true,
+          readOnly: widget.readOnly ?? false,
+          keyboardType: (Preferences.customKeyboard && widget.isCustomKeyboard)
+              ? TextInputType
+                    .none // system keyboard khulbe na, custom keyboard e cholbe
+              : null,
           // ********** autovalidateMode ********
           autovalidateMode: widget.autovalidateMode,
           // ********** cursorColor ********
