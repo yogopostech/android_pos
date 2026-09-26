@@ -55,8 +55,8 @@ Future<void> main() async {
 
   /// mobile orientation off
   SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
   ]);
 
   /// Status bar hide
