@@ -59,10 +59,10 @@ Future<void> main() async {
     DeviceOrientation.landscapeRight,
   ]);
 
-  /// Status bar hide
+  /// Status bar + navigation bar hide
   await SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.manual,
-    overlays: [SystemUiOverlay.bottom],
+    overlays: [],
   );
 
   /// Initialize the dioflutter

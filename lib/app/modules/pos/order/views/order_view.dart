@@ -412,7 +412,7 @@ class _ModifiersRowState extends State<ModifiersRow> {
                         ),
                         onPressed: () {
                           controller.addKitchenNote();
-                         
+
                           Get.back();
                         },
                         color: StaticColors.blueColor,
