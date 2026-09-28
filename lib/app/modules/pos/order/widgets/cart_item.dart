@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -139,8 +140,8 @@ class _CartItemState extends State<CartItem> {
               ? const Color.fromARGB(80, 139, 139, 139)
               : Colors.transparent,
           borderRadius: controller.selectedItemList.contains(widget.id)
-              ? BorderRadius.circular(6)
-              : BorderRadius.circular(6),
+              ? BorderRadius.circular(6.r)
+              : BorderRadius.circular(6.r),
           border: Border.all(
             width: 1,
             color: controller.selectedItemList.contains(widget.id)
@@ -155,7 +156,7 @@ class _CartItemState extends State<CartItem> {
         //     : Colors.transparent,
 
         // padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 3),
-        padding: const EdgeInsets.only(left: 12, right: 2, top: 3),
+        padding: EdgeInsets.only(left: 12.r, right: 2, top: 3.r),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -169,30 +170,30 @@ class _CartItemState extends State<CartItem> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 3),
+                      SizedBox(height: 3.r),
                       MyCustomText(
                         widget.title.toUpperCase(),
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
                         maxLines: 2,
                         height: 1.5,
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4.r),
                     ],
                   ),
                 ),
-                const SizedBox(width: 4),
+                SizedBox(width: 4.r),
                 Visibility(
                   visible: !widget.isUpdated,
                   replacement: Container(
-                    width: 70,
+                    width: 70.r,
                     margin: const EdgeInsets.symmetric(horizontal: 2),
                     // decoration:
                     //     BoxDecoration(border: Border.all(color: theme.hintColor)),
                     child: Center(
                       child: MyCustomText(
                         widget.quantity.toString(),
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -211,26 +212,26 @@ class _CartItemState extends State<CartItem> {
                                 color: Colors.transparent,
 
                                 // height: double.infinity,
-                                padding: const EdgeInsets.only(
-                                  top: 4,
-                                  bottom: 20,
+                                padding: EdgeInsets.only(
+                                  top: 4.r,
+                                  bottom: 20.r,
                                 ),
                                 child: Container(
                                   // width: isQuantityButttonSelect ? 50 : 70,
-                                  width: 70,
-                                  height: 30,
+                                  width: 70.r,
+                                  height: 30.r,
                                   margin: const EdgeInsets.symmetric(
                                     horizontal: 2,
                                   ),
                                   decoration: BoxDecoration(
                                     // color: Colors.red,
-                                    borderRadius: BorderRadius.circular(6),
+                                    borderRadius: BorderRadius.circular(6.r),
                                     border: Border.all(color: theme.hintColor),
                                   ),
                                   child: Center(
                                     child: MyCustomText(
                                       widget.quantity.toString(),
-                                      fontSize: 18,
+                                      fontSize: 18.sp,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -280,7 +281,7 @@ class _CartItemState extends State<CartItem> {
                   },
                   child: Container(
                     color: Colors.transparent,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(vertical: 4.r),
                     // decoration: BoxDecoration(
                     //   borderRadius: BorderRadius.circular(6),
                     //   border: Border.all(
@@ -288,8 +289,8 @@ class _CartItemState extends State<CartItem> {
                     //           ? theme.hintColor
                     //           : Colors.transparent),
                     // ),
-                    height: 40,
-                    width: 90,
+                    height: 40.r,
+                    width: 90.r,
                     child: Align(
                       alignment: Alignment.topRight,
                       child: MyCustomText(
@@ -298,7 +299,7 @@ class _CartItemState extends State<CartItem> {
                             : (widget.amount * widget.quantity).toStringAsFixed(
                                 2,
                               ),
-                        fontSize: showBorder ? 22 : 18,
+                        fontSize: showBorder ? 22.sp : 18.sp,
                         fontWeight: showBorder
                             ? FontWeight.w800
                             : FontWeight.w600,
@@ -306,7 +307,7 @@ class _CartItemState extends State<CartItem> {
                     ),
                   ),
                 ),
-                6.width,
+                SizedBox(width: 6.r),
               ],
             ).marginOnly(bottom: 2),
             Visibility(
@@ -332,22 +333,22 @@ class _CartItemState extends State<CartItem> {
                         ),
                       ),
                     ],
-                  ).marginOnly(right: 10);
+                  ).marginOnly(right: 10.r);
                 }),
-              ).marginOnly(bottom: 4),
+              ).marginOnly(bottom: 4.r),
             ),
             Visibility(
               visible: widget.modifiers.isNotEmpty,
               child: Padding(
-                padding: const EdgeInsets.only(right: 150, bottom: 4),
+                padding: EdgeInsets.only(right: 150.r, bottom: 4.r),
                 child: Wrap(
-                  spacing: 8,
-                  runSpacing: 4,
+                  spacing: 8.r,
+                  runSpacing: 4.r,
                   children: List.generate(widget.modifiers.length, (index) {
                     return Container(
                       // margin: EdgeInsets.only(right: 5),
                       padding: EdgeInsets.only(
-                        left: 3,
+                        left: 3.r,
                         top: 2,
                         bottom: 2,
                         right: 0,
@@ -357,7 +358,7 @@ class _CartItemState extends State<CartItem> {
                           width: .5,
                           color: theme.colorScheme.surface,
                         ),
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(4.r),
                         // color: StaticColors.purpleColor,
                       ),
                       child:
@@ -369,7 +370,7 @@ class _CartItemState extends State<CartItem> {
                           Text(
                             widget.modifiers[index].trim().toUpperCase(),
                             style: theme.textTheme.bodySmall,
-                          ).marginOnly(right: 5),
+                          ).marginOnly(right: 5.r),
                     );
                   }),
                 ),
@@ -405,7 +406,7 @@ class _CartItemState extends State<CartItem> {
     return Visibility(
       visible: value.contains(':') ? value.length > 6 : value != '',
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8),
+        padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.r),
         child: Text.rich(
           maxLines: maxLines,
           style: theme.textTheme.labelSmall?.copyWith(

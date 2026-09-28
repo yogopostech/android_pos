@@ -66,6 +66,7 @@ dependencies:
   dropdown_search: ^7.0.0
   flutter_slidable: ^4.0.3
   flutter_native_splash: ^2.4.8
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in/views/order_details_view.dart';
@@ -22,16 +23,16 @@ class TakeOutView extends GetView<TakeOutController> {
     controller.getAllTakeOutPaidOrders();
     controller.getAllTakeOutUnPaidOrders();
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 16,
-        bottom: 16,
-        right: 8,
+      padding: EdgeInsets.only(
+        left: 16.r,
+        bottom: 16.r,
+        right: 8.r,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const TopMenu(),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.r),
           // title
           SizedBox(
             // height: 60,
@@ -47,10 +48,10 @@ class TakeOutView extends GetView<TakeOutController> {
                       },
                       child: GetBuilder<TakeOutController>(builder: (context) {
                         return Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 20),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30.r, vertical: 20.r),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: BorderRadius.circular(6.r),
                               border: Border.all(
                                   width: 2,
                                   color: context.isUnPaidView
@@ -70,10 +71,10 @@ class TakeOutView extends GetView<TakeOutController> {
                       },
                       child: GetBuilder<TakeOutController>(builder: (context) {
                         return Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 20),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30.r, vertical: 20.r),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: BorderRadius.circular(6.r),
                               border: Border.all(
                                   width: 2,
                                   color: !context.isUnPaidView
@@ -130,15 +131,15 @@ class TakeOutView extends GetView<TakeOutController> {
               ],
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.r),
           Expanded(child: SingleChildScrollView(
             child: GetBuilder<TakeOutController>(builder: (context) {
               return Visibility(
                 visible: !controller.isUnPaidView,
                 replacement: StaggeredGrid.count(
                   crossAxisCount: 5,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8.r,
+                  crossAxisSpacing: 8.r,
                   children:
                       List.generate(context.unPaidTakeOutList.length, (index) {
                     var order = context.unPaidTakeOutList[index];
@@ -156,8 +157,8 @@ class TakeOutView extends GetView<TakeOutController> {
                 ),
                 child: StaggeredGrid.count(
                   crossAxisCount: 5,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8.r,
+                  crossAxisSpacing: 8.r,
                   children:
                       List.generate(context.paidTakeOutList.length, (index) {
                     var order = context.paidTakeOutList[index];

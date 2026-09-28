@@ -1,4 +1,6 @@
 
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -22,7 +24,7 @@ class TimeSheetReport extends ConsumerWidget {
     final notifier = ref.read(timeSheetProvider.notifier);
 
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.r),
       child: Column(
         children: [
           // ---- Top bar: range picker (left) + refresh (right) ----
@@ -31,7 +33,7 @@ class TimeSheetReport extends ConsumerWidget {
               // Date-time range picker
               SizedBox(
                 child: InkWell(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.r),
                   onTap: () async {
                     final range = await showDateTimeRangePickerDialog(
                       context,
@@ -45,25 +47,25 @@ class TimeSheetReport extends ConsumerWidget {
                     }
                   },
                   child: Container(
-                    height: 48,
-                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    height: 48.rMin(kMinTouch),
+                    padding: EdgeInsets.symmetric(horizontal: 14.r),
                     decoration: BoxDecoration(
                       border: Border.all(color: const Color(0xFFE0E0E0)),
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(8.r),
                     ),
                     child: Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.calendar_today_outlined,
-                          size: 18,
+                          size: 18.r,
                           color: StaticColors.blueColor,
                         ),
-                        const SizedBox(width: 10),
+                        SizedBox(width: 10.r),
                         Text(
                           _rangeLabel(notifier.range),
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 14,
+                          style: TextStyle(
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -72,38 +74,38 @@ class TimeSheetReport extends ConsumerWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12.r),
 
               // Refresh button
               InkWell(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
                 onTap: () async {
                   BaseController.to.playTapSound();
                   await notifier.refresh();
                 },
                 child: Container(
-                  height: 48,
-                  width: 48,
+                  height: 48.rMin(kMinTouch),
+                  width: 48.rMin(kMinTouch),
                   decoration: BoxDecoration(
                     color: StaticColors.blueColor,
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8.r),
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.refresh_rounded,
                     color: Colors.white,
-                    size: 22,
+                    size: 22.r,
                   ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.r),
 
           // ---- Body: loading / error / data ----
           Expanded(
             child: asyncState.when(
-              loading: () => const Center(
-                child: SpinKitRing(color: StaticColors.orangeColor, size: 53),
+              loading: () => Center(
+                child: SpinKitRing(color: StaticColors.orangeColor, size: 53.r),
               ),
               error: (e, _) => _TimeSheetError(
                 message: e.toString(),
@@ -126,7 +128,7 @@ class TimeSheetReport extends ConsumerWidget {
                             ),
                     ),
                     if (meta != null && meta.totalPages > 1) ...[
-                      const SizedBox(height: 12),
+                      SizedBox(height: 12.r),
                       CustomPagination(
                         numOfPages: meta.totalPages,
                         selectedPage: meta.currentPage,
@@ -138,7 +140,7 @@ class TimeSheetReport extends ConsumerWidget {
                           PopupDialog.closeLoadingDialog();
                         },
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.r),
                     ],
                   ],
                 );
@@ -204,7 +206,7 @@ class _TimeSheetGrid extends StatelessWidget {
         columns: [
           GridColumn(
             columnName: 'no',
-            width: 80,
+            width: 80.r,
             label: _headerCell('No.', isLight),
           ),
           GridColumn(
@@ -226,12 +228,12 @@ class _TimeSheetGrid extends StatelessWidget {
 
   Widget _headerCell(String label, bool isLight) => Container(
     alignment: Alignment.centerLeft,
-    padding: const EdgeInsets.symmetric(horizontal: 8),
+    padding: EdgeInsets.symmetric(horizontal: 8.r),
     child: Text(
       label,
       style: TextStyle(
         color: (isLight ? Colors.black : Colors.white).withAlpha(200),
-        fontSize: 18,
+        fontSize: 18.sp,
         fontWeight: FontWeight.w700,
         letterSpacing: 0.3,
       ),
@@ -253,11 +255,11 @@ class _TimeSheetEmptyState extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.access_time_outlined, size: 52, color: subColor),
-          const SizedBox(height: 12),
+          Icon(Icons.access_time_outlined, size: 52.r, color: subColor),
+          SizedBox(height: 12.r),
           Text(
             'No time sheet records found',
-            style: TextStyle(color: subColor, fontSize: 16),
+            style: TextStyle(color: subColor, fontSize: 16.sp),
           ),
         ],
       ),
@@ -282,13 +284,13 @@ class _TimeSheetError extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.error_outline, size: 52, color: Colors.red.shade300),
-          const SizedBox(height: 12),
+          Icon(Icons.error_outline, size: 52.r, color: Colors.red.shade300),
+          SizedBox(height: 12.r),
           Text(
             'Could not load time sheet',
-            style: TextStyle(color: subColor, fontSize: 16),
+            style: TextStyle(color: subColor, fontSize: 16.sp),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.r),
           ElevatedButton(
             onPressed: onRetry,
             style: ElevatedButton.styleFrom(
@@ -381,20 +383,20 @@ class TimeSheetDataSource extends DataGridSource {
 
         return Container(
           alignment: Alignment.centerLeft,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 8.r),
           child: isClockedInCell
               ? Container(
-                  padding: const EdgeInsets.all(6),
+                  padding: EdgeInsets.all(6.r),
                   decoration: BoxDecoration(
                     color: Colors.green.withAlpha(28),
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8.r),
                     border: Border.all(color: Colors.green.withAlpha(80)),
                   ),
                   child: Text(
                     cell.value.toString(),
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.green,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w700,
                     ),
                     overflow: TextOverflow.ellipsis,
@@ -406,7 +408,7 @@ class TimeSheetDataSource extends DataGridSource {
                     color: isActive
                         ? Colors.green
                         : textColor.withAlpha(isNo ? 160 : 200),
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     fontWeight: isNo ? FontWeight.w700 : FontWeight.w600,
                   ),
                   overflow: TextOverflow.ellipsis,

@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/utils/static_colors.dart';
 
@@ -27,14 +28,14 @@ class MenuBtn extends StatelessWidget {
       child: Container(
         width: double.infinity,
         color: isActive ? StaticColors.blueColor : Colors.transparent,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        padding: EdgeInsets.symmetric(horizontal: 12.r, vertical: 14.r),
         child: Row(
           children: [
             Icon(
               icon,
               color: isActive ? Colors.white : null,
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: 12.r),
             Text(
               title,
               style: theme.textTheme.labelLarge

@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/discount_model.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/option_model.dart';
@@ -79,17 +80,17 @@ class CustomTableItem extends StatelessWidget {
           children: [
             // item
             SizedBox(
-              width: 30,
+              width: 30.r,
               child: Text(
                 isHeader == true ? "No" : sl,
                 style: isHeader == true
                     ? theme.textTheme.labelMedium
                     : theme.textTheme.bodyLarge,
               ),
-            ).marginSymmetric(horizontal: 10),
+            ).marginSymmetric(horizontal: 10.r),
             // item (Checkbox)
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
+              padding: EdgeInsets.symmetric(horizontal: 6.r),
               child: Checkbox(value: isSelected, onChanged: onChanged),
             ),
             // item 3
@@ -132,7 +133,7 @@ class CustomTableItem extends StatelessWidget {
                       );
                     }),
                     //modifiers
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4.r),
                     ...List.generate(modifiers.length, (index) {
                       return Row(
                         children: [
@@ -143,23 +144,23 @@ class CustomTableItem extends StatelessWidget {
                             ),
                           ),
                         ],
-                      ).marginOnly(right: 10);
+                      ).marginOnly(right: 10.r);
                     }),
 
                     //modifiers
                     // const SizedBox(height: 4),
                     if (serveFirst.isNotEmpty)
-                      MyCustomText(serveFirst, fontSize: 12),
-                    if (toGo.isNotEmpty) MyCustomText(toGo, fontSize: 12),
+                      MyCustomText(serveFirst, fontSize: 12.sp),
+                    if (toGo.isNotEmpty) MyCustomText(toGo, fontSize: 12.sp),
                     if (dontMake.isNotEmpty)
-                      MyCustomText(dontMake, fontSize: 12),
-                    if (rush.isNotEmpty) MyCustomText(rush, fontSize: 12),
+                      MyCustomText(dontMake, fontSize: 12.sp),
+                    if (rush.isNotEmpty) MyCustomText(rush, fontSize: 12.sp),
                     if (heat.isNotEmpty)
-                      MyCustomText('Heat: $heat', fontSize: 12),
-                    if (note.isNotEmpty) MyCustomText(note, fontSize: 12),
+                      MyCustomText('Heat: $heat', fontSize: 12.sp),
+                    if (note.isNotEmpty) MyCustomText(note, fontSize: 12.sp),
                   ],
                 ),
-              ).marginAll(10),
+              ).marginAll(10.r),
             ),
             // item  4
             Expanded(
@@ -177,7 +178,7 @@ class CustomTableItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-              ).marginAll(10),
+              ).marginAll(10.r),
             ),
             // item 5
             Expanded(
@@ -192,7 +193,7 @@ class CustomTableItem extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-              ).marginAll(10),
+              ).marginAll(10.r),
             ),
             // item 6
             Expanded(
@@ -207,7 +208,7 @@ class CustomTableItem extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-              ).marginAll(10),
+              ).marginAll(10.r),
             ),
             Expanded(
               flex: 1,
@@ -221,7 +222,7 @@ class CustomTableItem extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-              ).marginAll(10),
+              ).marginAll(10.r),
             ),
             Expanded(
               flex: 1,
@@ -237,7 +238,7 @@ class CustomTableItem extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                ).marginAll(10),
+                ).marginAll(10.r),
               ),
             ),
           ],

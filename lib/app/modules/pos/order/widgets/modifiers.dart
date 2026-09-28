@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
@@ -26,13 +27,13 @@ class _ModifiersState extends State<Modifiers> {
     return GetBuilder<PosController>(
       builder: (context) {
         return Container(
-          padding: widget.hasIssue ? const EdgeInsets.all(8) : EdgeInsets.zero,
-          margin: const EdgeInsets.only(bottom: 10),
+          padding: widget.hasIssue ? EdgeInsets.all(8.r) : EdgeInsets.zero,
+          margin: EdgeInsets.only(bottom: 10.r),
           decoration: BoxDecoration(
             border: widget.hasIssue
                 ? Border.all(color: StaticColors.redColor)
                 : null,
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(4.r),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,7 +144,7 @@ class _ModifiersState extends State<Modifiers> {
                       },
                       label: option.title.toUpperCase(),
                       isSelected: isSelected,
-                    ).marginOnly(bottom: 4);
+                    ).marginOnly(bottom: 4.r);
                   }),
                 ),
               ),
@@ -162,7 +163,7 @@ class _ModifiersState extends State<Modifiers> {
     return PrimaryBtnWithChild(
       onPressed: onChanged,
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 25),
+      padding: EdgeInsets.symmetric(horizontal: 8.r, vertical: 25.r),
       isOutline: true,
       color: isSelected
           ? StaticColors.blueColor
@@ -172,7 +173,7 @@ class _ModifiersState extends State<Modifiers> {
           : StaticColors.greenColor,
       child: MyCustomText(
         label.toUpperCase(),
-        fontSize: 16,
+        fontSize: 16.sp,
         maxLines: 21,
         color: isSelected
             ? Colors.white
@@ -180,6 +181,6 @@ class _ModifiersState extends State<Modifiers> {
             ? Colors.black
             : Colors.grey,
       ),
-    ).marginOnly(bottom: 8);
+    ).marginOnly(bottom: 8.r);
   }
 }

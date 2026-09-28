@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/option_model.dart';
 import 'package:yogo_pos/app/utils/logger.dart';
@@ -64,34 +66,34 @@ class _VariationRowState extends State<VariationRow> {
           "Choose 1 item"; // Single selection usually has fixed choice
     }
     return Container(
-      padding: widget.hasIssue ? const EdgeInsets.all(8) : EdgeInsets.zero,
-      margin: const EdgeInsets.only(bottom: 10),
+      padding: widget.hasIssue ? EdgeInsets.all(8.r) : EdgeInsets.zero,
+      margin: EdgeInsets.only(bottom: 10.r),
       decoration: BoxDecoration(
           border:
               widget.hasIssue ? Border.all(color: StaticColors.redColor) : null,
-          borderRadius: BorderRadius.circular(4)),
+          borderRadius: BorderRadius.circular(4.r)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Title
           MyCustomText(
             "${MyFunc.capitalizeEachWord(s: widget.variation.name)} ${widget.variation.required ? "(Required)" : ""}",
-            fontSize: 16,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w700,
             color: widget.hasIssue ? StaticColors.redColor : null,
           ),
           // Subtitle
           MyCustomText(
             subtitleText,
-            fontSize: 14,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w500,
             color: Theme.of(context).hintColor,
-          ).marginOnly(top: 8),
-          const SizedBox(height: 10),
+          ).marginOnly(top: 8.r),
+          SizedBox(height: 10.r),
           SizedBox(
             child: Wrap(
-              spacing: 10,
-              runSpacing: 10,
+              spacing: 10.r,
+              runSpacing: 10.r,
               children: List.generate(
                 widget.variation.options.length,
                 (index) {
@@ -163,8 +165,8 @@ class __BtnState extends State<_Btn> {
 
     return PrimaryBtnWithChild(
       onPressed: () => widget.onChanged(_quantity), // send current qty
-      height: widget.option.isQuantityOn ? 150 : 90,
-      width: 250,
+      height: widget.option.isQuantityOn ? 150.r : 90.r,
+      width: 250.r,
       isOutline: true,
       color: widget.isSelected
           ? StaticColors.greenColor
@@ -191,34 +193,36 @@ class __BtnState extends State<_Btn> {
           Visibility(
             visible: option.isQuantityOn,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              padding: EdgeInsets.symmetric(vertical: 8.0.r),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   PrimaryBtnWithChild(
                     onPressed: _decrementQuantity,
-                    width: 40,
-                    height: 40,
+                    width: 40.rMin(36),
+                    padding: EdgeInsets.zero,
+                    height: 40.rMin(36),
                     color: StaticColors.blueColor,
                     child:
-                        const Icon(Icons.remove, size: 18, color: Colors.white),
+                        Icon(Icons.remove, size: 18.r, color: Colors.white),
                   ),
                   SizedBox(
-                    width: 65,
+                    width: 65.r,
                     child: Center(
                       child: MyCustomText(
                         "$_quantity",
-                        fontSize: 26,
+                        fontSize: 26.sp,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
                   PrimaryBtnWithChild(
                     onPressed: _incrementQuantity,
-                    width: 40,
-                    height: 40,
+                    width: 40.rMin(36),
+                    padding: EdgeInsets.zero,
+                    height: 40.rMin(36),
                     color: StaticColors.blueColor,
-                    child: const Icon(Icons.add, size: 18, color: Colors.white),
+                    child: Icon(Icons.add, size: 18.r, color: Colors.white),
                   ),
                 ],
               ),

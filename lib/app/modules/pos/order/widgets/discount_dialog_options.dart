@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yogo_pos/app/widgets/custom_btn.dart';
@@ -68,15 +69,15 @@ class _DiscountDialogOptionsState extends State<DiscountDialogOptions> {
                 children: [
                   MyCustomText(
                     'Discount Type',
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                     color: Theme.of(context).hintColor,
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4.r),
                 ],
               ),
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: 12.r),
             Expanded(
               flex: 1,
               child: Column(
@@ -84,11 +85,11 @@ class _DiscountDialogOptionsState extends State<DiscountDialogOptions> {
                 children: [
                   MyCustomText(
                     'Discount',
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                     color: Theme.of(context).hintColor,
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4.r),
                   CustomTextField(
                     controller: _priceController,
                     maxLines: 1,
@@ -106,35 +107,35 @@ class _DiscountDialogOptionsState extends State<DiscountDialogOptions> {
             ),
           ],
         ),
-        const SizedBox(height: 14),
+        SizedBox(height: 14.r),
         //description
         MyCustomText(
           'Reason',
-          fontSize: 14,
+          fontSize: 14.sp,
           fontWeight: FontWeight.w500,
           color: Theme.of(context).hintColor,
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4.r),
         CustomTextField(
           controller: _descriptionController,
           maxLines: 5,
           isFilled: true,
         ),
-        const SizedBox(height: 14),
+        SizedBox(height: 14.r),
         //quantity row
         MyCustomText(
           'Access Pin',
-          fontSize: 14,
+          fontSize: 14.sp,
           fontWeight: FontWeight.w500,
           color: Theme.of(context).hintColor,
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4.r),
         const CustomTextField(
           // controller: _descriptionController,
           maxLines: 1, obscureText: true,
           isFilled: true,
         ),
-        const SizedBox(height: 28),
+        SizedBox(height: 28.r),
         //order button
         Center(
           child: PrimaryBtn(
@@ -143,8 +144,8 @@ class _DiscountDialogOptionsState extends State<DiscountDialogOptions> {
             },
             text: 'Apply',
             textColor: Colors.white,
-            textMaxSize: 20,
-            textMinSize: 16,
+            textMaxSize: 20.sp.roundToDouble(),
+            textMinSize: 16.sp.roundToDouble(),
           ),
         ),
       ],

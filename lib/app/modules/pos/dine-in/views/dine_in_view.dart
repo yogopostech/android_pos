@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in/controllers/dine_in_controller.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in/widgets/table_body.dart';
@@ -12,14 +13,14 @@ class DineInView extends GetView<DineInController> {
   Widget build(BuildContext context) {
     DineInController.to.getTableCategories();
     return Padding(
-      padding: EdgeInsets.only(left: 16, bottom: 16, right: 8),
+      padding: EdgeInsets.only(left: 16.r, bottom: 16.r, right: 8.r),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TopMenu(),
-          SizedBox(height: 16),
+          SizedBox(height: 16.r),
           TableAvailabilityHeader(),
-          SizedBox(height: 12.0),
+          SizedBox(height: 12.0.r),
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
@@ -338,7 +340,7 @@ class _VariationState extends State<Variation> {
 
               Visibility(
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 50),
+                  padding: EdgeInsets.only(right: 50.r),
                   child: PrimaryBtn(
                     onPressed: () {
                       if (!validateAllVariations(variations)) {
@@ -379,10 +381,10 @@ class _VariationState extends State<Variation> {
                       }
                     },
                     text: 'ADD',
-                    textMaxSize: 22,
-                    textMinSize: 18,
-                    width: 150,
-                    height: 100,
+                    textMaxSize: 22.sp.roundToDouble(),
+                    textMinSize: 18.sp.roundToDouble(),
+                    width: 150.r,
+                    height: 100.r,
                     color: StaticColors.blueColor,
                     textColor: Colors.white,
                   ),
@@ -402,21 +404,22 @@ class _VariationState extends State<Variation> {
                           onPressed: () {
                             _changeQuantity(isIncrement: false);
                           },
-                          width: 60,
-                          height: 60,
+                          width: 60.rMin(44),
+                          padding: EdgeInsets.zero,
+                          height: 60.rMin(44),
                           color: StaticColors.blueColor,
-                          child: const Icon(
+                          child: Icon(
                             Icons.remove,
-                            size: 24,
+                            size: 24.r,
                             color: Colors.white,
                           ),
                         ),
                         SizedBox(
-                          width: 65,
+                          width: 65.r,
                           child: Center(
                             child: MyCustomText(
                               quantity.toString(),
-                              fontSize: 28,
+                              fontSize: 28.sp,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
@@ -425,12 +428,13 @@ class _VariationState extends State<Variation> {
                           onPressed: () {
                             _changeQuantity(isIncrement: true);
                           },
-                          width: 60,
-                          height: 60,
+                          width: 60.rMin(44),
+                          padding: EdgeInsets.zero,
+                          height: 60.rMin(44),
                           color: StaticColors.blueColor,
-                          child: const Icon(
+                          child: Icon(
                             Icons.add,
-                            size: 24,
+                            size: 24.r,
                             color: Colors.white,
                           ),
                         ),
@@ -439,10 +443,10 @@ class _VariationState extends State<Variation> {
                     Align(
                       alignment: Alignment.topRight,
                       child: Padding(
-                        padding: const EdgeInsets.only(right: 16),
+                        padding: EdgeInsets.only(right: 16.r),
                         child: MyCustomText(
                           '\$${(_calculatePrice() * quantity).toStringAsFixed(2)}',
-                          fontSize: 35,
+                          fontSize: 35.sp,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -466,31 +470,31 @@ class _ItemInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 14),
+        SizedBox(height: 14.r),
         //! item name & price
         MyCustomText(
           item.name.toUpperCase(),
-          fontSize: 20,
+          fontSize: 20.sp,
           fontWeight: FontWeight.w700,
         ),
 
-        const SizedBox(height: 14),
+        SizedBox(height: 14.r),
         // !description
         MyCustomText(
           'Description',
-          fontSize: 14,
+          fontSize: 14.sp,
           fontWeight: FontWeight.w500,
           color: Theme.of(context).hintColor,
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4.r),
         MyCustomText(
           item.description == ''
               ? 'N/A'
               : MyFunc.capitalizeEachWord(s: item.description),
-          fontSize: 14,
+          fontSize: 14.sp,
           maxLines: 4,
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: 24.r),
       ],
     );
   }
@@ -530,11 +534,11 @@ class _VariationRow extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.all(12),
-      margin: const EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.all(12.r),
+      margin: EdgeInsets.only(bottom: 12.r),
       decoration: BoxDecoration(
         // color: theme.cardColor,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -549,7 +553,7 @@ class _VariationRow extends StatelessWidget {
                   : colorScheme.onSurface,
             ),
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4.r),
 
           // Subtitle
           Text(
@@ -559,12 +563,12 @@ class _VariationRow extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 12),
+          SizedBox(height: 12.r),
 
           // Options
           Wrap(
-            spacing: 25,
-            runSpacing: 25,
+            spacing: 25.r,
+            runSpacing: 25.r,
             children: List.generate(variation.options.length, (index) {
               final option = variation.options[index];
               return _VariationBTN(
@@ -626,11 +630,11 @@ class _VariationBTN extends StatelessWidget {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       curve: Curves.easeOut,
-      width: 360,
-      height: 70,
+      width: 360.r,
+      height: 70.r,
       decoration: BoxDecoration(
         color: bgColor,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         border: Border.all(color: borderColor, width: isSelected ? 1.6 : .5),
         boxShadow: [
           if (isSelected)
@@ -642,7 +646,7 @@ class _VariationBTN extends StatelessWidget {
         ],
       ),
       child: InkWell(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         onTap: onPressed,
         child: Row(
           children: [
@@ -657,9 +661,9 @@ class _VariationBTN extends StatelessWidget {
             // Option info
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 12.r,
+                  vertical: 6.r,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -673,7 +677,7 @@ class _VariationBTN extends StatelessWidget {
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4.r),
                     Text(
                       "\$${option.price.toStringAsFixed(2)}",
                       style: theme.textTheme.bodyMedium?.copyWith(
@@ -714,12 +718,12 @@ class _QuantityButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final radius = BorderRadius.circular(8);
+    final radius = BorderRadius.circular(8.r);
     return InkWell(
       onTap: onTap,
       borderRadius: radius,
       child: Container(
-        width: 44,
+        width: 44.rMin(36),
         height: double.infinity,
         alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -727,12 +731,12 @@ class _QuantityButton extends StatelessWidget {
           borderRadius: radius,
         ),
         child: icon != null
-            ? Icon(icon, color: Colors.white, size: 22)
+            ? Icon(icon, color: Colors.white, size: 22.r)
             : Text(
                 label ?? '',
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
-                  fontSize: 22,
+                  fontSize: 22.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),

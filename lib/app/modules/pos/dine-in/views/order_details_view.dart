@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'dart:ui';
 
 import 'package:dropdown_textfield/dropdown_textfield.dart';
@@ -53,11 +55,11 @@ class OrderDetailsView extends GetView<DineInController> {
     PosController.to.orderDetailItemsScrollToBottom();
     PosController.to.selectedItemList.clear();
 
-    const double btnSize = 140;
-    const double height = 90;
+    final double btnSize = 140.r;
+    final double height = 90.r;
 
-    const double textMaxSize = 25;
-    const double textMinSize = 20;
+    final double textMaxSize = 25.sp.roundToDouble();
+    final double textMinSize = 20.sp.roundToDouble();
     return Scaffold(
       body: Column(
         children: [
@@ -67,9 +69,9 @@ class OrderDetailsView extends GetView<DineInController> {
               builder: (controller) {
                 var data = controller.myOrder;
                 return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 12,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.r,
+                    vertical: 12.r,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,15 +122,15 @@ class OrderDetailsView extends GetView<DineInController> {
                                   },
                                   color: StaticColors.greenColor,
                                   textColor: Colors.white,
-                                  child: const Icon(
+                                  child: Icon(
                                     Icons.home,
-                                    size: 28,
+                                    size: 28.r,
                                     color: Colors.white,
                                   ),
                                   // text: 'pos'.toUpperCase(),
                                   // textMaxSize: txtMaxSize,
                                   // textMinSize: txtMinSize,
-                                ).marginOnly(right: 16),
+                                ).marginOnly(right: 16.r),
 
                                 Visibility(
                                   visible:
@@ -163,7 +165,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                     text: 'TakeOut'.toUpperCase(),
                                     textMaxSize: textMaxSize,
                                     textMinSize: textMinSize,
-                                  ).marginOnly(right: 10),
+                                  ).marginOnly(right: 10.r),
                                 ),
                                 Visibility(
                                   visible:
@@ -198,7 +200,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                     text: 'Dine-in'.toUpperCase(),
                                     textMaxSize: textMaxSize,
                                     textMinSize: textMinSize,
-                                  ).marginOnly(right: 12),
+                                  ).marginOnly(right: 12.r),
                                 ),
 
                                 GetBuilder<PosController>(
@@ -235,7 +237,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                       ),
                                     );
                                   },
-                                ).marginOnly(right: 10),
+                                ).marginOnly(right: 10.r),
 
                                 GetBuilder<PosController>(
                                   builder: (context) {
@@ -265,7 +267,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                       text: "Print\nCheck".toUpperCase(),
                                     );
                                   },
-                                ).marginOnly(right: 40),
+                                ).marginOnly(right: 40.r),
                                 Visibility(
                                   visible:
                                       PosController
@@ -296,9 +298,9 @@ class OrderDetailsView extends GetView<DineInController> {
                                     textMaxSize: textMaxSize,
                                     textMinSize: textMinSize,
                                     text: 'Split Check'.toUpperCase(),
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 6,
-                                      vertical: 10,
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 6.r,
+                                      vertical: 10.r,
                                     ),
                                     textColor: Colors.white,
                                     color: StaticColors.blueColor,
@@ -307,7 +309,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                             "CANCELED"
                                         ? true
                                         : false,
-                                  ).marginOnly(right: 10),
+                                  ).marginOnly(right: 10.r),
                                 ),
                                 GetBuilder<PosController>(
                                   builder: (context) {
@@ -379,7 +381,7 @@ class OrderDetailsView extends GetView<DineInController> {
                             Expanded(child: _itemDetails(theme, data)),
                             // order setup
                             SizedBox(
-                              width: 400,
+                              width: 400.r,
                               child: _orderSetup(theme, data),
                             ),
                           ],
@@ -399,7 +401,7 @@ class OrderDetailsView extends GetView<DineInController> {
   // title row widgets
   Widget _titleRow(ThemeData theme, OrderModel data, BuildContext context) {
     return SizedBox(
-      height: 45,
+      height: 45.rMin(36),
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(
           dragDevices: {
@@ -409,7 +411,7 @@ class OrderDetailsView extends GetView<DineInController> {
           },
         ),
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 8),
+          padding: EdgeInsets.symmetric(vertical: 4.r),
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
@@ -419,7 +421,7 @@ class OrderDetailsView extends GetView<DineInController> {
                   "Guest: ${data.guestName.toUpperCase()}",
                   // 'Order: #${data.orderId}',
                   style: theme.textTheme.titleMedium,
-                ).marginOnly(right: 16),
+                ).marginOnly(right: 16.r),
               ),
               Visibility(
                 visible: data.guestPhoneNumber.isNotEmpty,
@@ -427,22 +429,22 @@ class OrderDetailsView extends GetView<DineInController> {
                   "Number: ${data.guestPhoneNumber}",
                   // 'Order: #${data.orderId}',
                   style: theme.textTheme.titleMedium,
-                ).marginOnly(right: 16),
+                ).marginOnly(right: 16.r),
               ),
               Text(
                 "Check: #${data.orderId}${(data.splitAmounts.isNotEmpty || data.splitOrders.isNotEmpty) ? "-SC" : ""}",
                 // 'Order: #${data.orderId}',
                 style: theme.textTheme.titleMedium,
-              ).marginOnly(right: 16),
+              ).marginOnly(right: 16.r),
               Text(
                 "Token: ${data.tokenId}",
                 // 'Order: #${data.orderId}',
                 style: theme.textTheme.titleMedium,
-              ).marginOnly(right: 16),
+              ).marginOnly(right: 16.r),
               Text(
                 'Items: ${data.carts.length}',
                 style: theme.textTheme.titleMedium,
-              ).marginOnly(right: 16),
+              ).marginOnly(right: 16.r),
               GetBuilder<PosController>(
                 builder: (context) {
                   return Visibility(
@@ -450,7 +452,7 @@ class OrderDetailsView extends GetView<DineInController> {
                     child: Text(
                       'Table: ${data.tableName}',
                       style: theme.textTheme.titleMedium,
-                    ).marginOnly(right: 16),
+                    ).marginOnly(right: 16.r),
                   );
                 },
               ),
@@ -461,7 +463,7 @@ class OrderDetailsView extends GetView<DineInController> {
                     child: Text(
                       'Guests: ${data.numberOfPeople}',
                       style: theme.textTheme.titleMedium,
-                    ).marginOnly(right: 16),
+                    ).marginOnly(right: 16.r),
                   );
                 },
               ),
@@ -480,12 +482,12 @@ class OrderDetailsView extends GetView<DineInController> {
                                 'Change Server',
                                 style: theme.textTheme.displaySmall,
                               ),
-                              const SizedBox(height: 22),
+                              SizedBox(height: 22.r),
                               Text(
                                 'Select Server',
                                 style: theme.textTheme.titleMedium,
                               ),
-                              const SizedBox(height: 8),
+                              SizedBox(height: 8.r),
                               GetBuilder<DineInOrderController>(
                                 builder: (context) {
                                   return CustomSearchTextField(
@@ -520,7 +522,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                   );
                                 },
                               ),
-                              const SizedBox(height: 35),
+                              SizedBox(height: 35.r),
                             ],
                           ),
                         );
@@ -539,18 +541,18 @@ class OrderDetailsView extends GetView<DineInController> {
                       ),
                     ),
                   ],
-                ).marginOnly(right: 16),
+                ).marginOnly(right: 16.r),
               ),
               Text(
                 'Order Type: ${data.orderType}'.replaceAll("_", " "),
                 style: theme.textTheme.titleMedium,
-              ).marginOnly(right: 16),
+              ).marginOnly(right: 16.r),
               Visibility(
                 visible: data.orderType == 'TAKEOUT',
                 child: Text(
                   'Takeout Type: ${data.takeOutType}'.replaceAll("_", " "),
                   style: theme.textTheme.titleMedium,
-                ).marginOnly(right: 16),
+                ).marginOnly(right: 16.r),
               ),
               Visibility(
                 visible: data.orderType == 'TAKEOUT',
@@ -577,16 +579,16 @@ class OrderDetailsView extends GetView<DineInController> {
                             ),
                           );
                         },
-                  child: const Row(
+                  child: Row(
                     children: [
                       Text(
                         'Notes',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
-                      SizedBox(width: 8),
+                      SizedBox(width: 8.r),
                       Icon(Icons.visibility, color: StaticColors.blueColor),
                     ],
                   ),
@@ -605,13 +607,13 @@ class OrderDetailsView extends GetView<DineInController> {
                     );
                   },
                   text: "Details",
-                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 12.r),
                   color: StaticColors.greenColor,
                   textColor: Colors.white,
                   // textMaxSize: 10,
                   // textMinSize: 10,
-                  height: 30,
-                ).marginOnly(left: 8),
+                  height: 30.rMin(28),
+                ).marginOnly(left: 8.r),
               ),
             ],
           ),
@@ -631,8 +633,8 @@ class OrderDetailsView extends GetView<DineInController> {
               children: [
                 // cal 1
                 Container(
-                  margin: const EdgeInsets.only(left: 16),
-                  padding: const EdgeInsets.all(20.0),
+                  margin: EdgeInsets.only(left: 16.r),
+                  padding: EdgeInsets.all(20.0.r),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.white),
                   ),
@@ -648,7 +650,7 @@ class OrderDetailsView extends GetView<DineInController> {
                       //   'Change Order Status',
                       //   style: theme.textTheme.titleLarge,
                       // ),
-                      const SizedBox(height: 12),
+                      SizedBox(height: 12.r),
                       GetBuilder<DineInOrderController>(
                         builder: (context) {
                           return CustomSearchTextField(
@@ -710,8 +712,8 @@ class OrderDetailsView extends GetView<DineInController> {
                   visible: data.orderStatus == "CANCELED",
                   replacement: Container(
                     width: double.infinity,
-                    margin: const EdgeInsets.only(left: 16, top: 16),
-                    padding: const EdgeInsets.all(20.0),
+                    margin: EdgeInsets.only(left: 16.r, top: 16.r),
+                    padding: EdgeInsets.all(20.0.r),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.white),
                     ),
@@ -726,7 +728,7 @@ class OrderDetailsView extends GetView<DineInController> {
                           //   style: theme.textTheme.titleLarge,
                           // )),
                           _row(
-                            fontSize: 22,
+                            fontSize: 22.sp,
                             fontWeight: FontWeight.w800,
                             theme,
                             title: "Pay. Mode: ",
@@ -739,7 +741,7 @@ class OrderDetailsView extends GetView<DineInController> {
                               Text(
                                 "Payment Method: ",
                                 style: theme.textTheme.titleSmall?.copyWith(
-                                  fontSize: 17,
+                                  fontSize: 17.sp,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -751,17 +753,17 @@ class OrderDetailsView extends GetView<DineInController> {
                                           .replaceAll('_', ' ') ??
                                       "",
                                   style: theme.textTheme.titleSmall?.copyWith(
-                                    fontSize: 17,
+                                    fontSize: 17.sp,
                                     fontWeight: FontWeight.w800,
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                          const SizedBox(height: 14),
+                          SizedBox(height: 14.r),
                           if (data.payment?.cardType != '')
                             _row(
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.w800,
                               theme,
                               title: "Card: ",
@@ -773,7 +775,7 @@ class OrderDetailsView extends GetView<DineInController> {
                             visible:
                                 data.payment?.maskedPan.isNotEmpty ?? false,
                             child: _row(
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.w800,
                               theme,
                               title: "Card Number: ",
@@ -785,7 +787,7 @@ class OrderDetailsView extends GetView<DineInController> {
                             visible:
                                 data.payment?.entryMode.isNotEmpty ?? false,
                             child: _row(
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.w800,
                               theme,
                               title: "Payment Method: ",
@@ -796,7 +798,7 @@ class OrderDetailsView extends GetView<DineInController> {
                             visible:
                                 data.payment?.transactionId.isNotEmpty ?? false,
                             child: _row(
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.w800,
                               theme,
                               title: "Approval Code:",
@@ -805,7 +807,7 @@ class OrderDetailsView extends GetView<DineInController> {
                           ),
                           if ((data.payment?.cardPaidAmount ?? 0) > 0)
                             _row(
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.w800,
                               theme,
                               title: "Card Amount: ",
@@ -814,7 +816,7 @@ class OrderDetailsView extends GetView<DineInController> {
                             ),
                           if ((data.payment?.cardTipAmount ?? 0) > 0)
                             _row(
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.w800,
                               theme,
                               title: "Card Tip Amount: ",
@@ -823,7 +825,7 @@ class OrderDetailsView extends GetView<DineInController> {
                             ),
                           if ((data.payment?.cashPaidAmount ?? 0) > 0)
                             _row(
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.w800,
                               theme,
                               title: "Cash Amount: ",
@@ -832,7 +834,7 @@ class OrderDetailsView extends GetView<DineInController> {
                             ),
                           if ((data.payment?.cashTipAmount ?? 0) > 0)
                             _row(
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.w800,
                               theme,
                               title: "Cash Tip Amount: ",
@@ -841,16 +843,16 @@ class OrderDetailsView extends GetView<DineInController> {
                             ),
                           if ((data.payment?.change ?? 0) > 0)
                             _row(
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.w800,
                               theme,
                               title: "Cash Change: ",
                               value:
                                   "\$${data.payment?.change.toStringAsFixed(2)}",
                             ),
-                          const SizedBox(height: 14),
+                          SizedBox(height: 14.r),
                           _row(
-                            fontSize: 25,
+                            fontSize: 25.sp,
                             fontWeight: FontWeight.w800,
                             theme,
                             title: "Total ${MyFunc.orderCondition(data)}: ",
@@ -875,7 +877,7 @@ class OrderDetailsView extends GetView<DineInController> {
                               'Select Payment Method :',
                               style: theme.textTheme.titleSmall,
                             ),
-                            const SizedBox(height: 8),
+                            SizedBox(height: 8.r),
                             GetBuilder<PaymentsController>(
                               builder: (paymentsController) {
                                 return Column(
@@ -918,21 +920,21 @@ class OrderDetailsView extends GetView<DineInController> {
                                           }
                                         },
                                         text: "Moneris Pay".toUpperCase(),
-                                        height: 103,
+                                        height: 103.r,
                                         width: double.infinity,
                                         color: StaticColors.blueColor,
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12,
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 12.r,
                                         ),
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.white,
                                         ),
-                                        textMaxSize: 20,
-                                        textMinSize: 20,
+                                        textMaxSize: 20.sp.roundToDouble(),
+                                        textMinSize: 20.sp.roundToDouble(),
                                         borderColor: Colors.transparent,
                                         isOutline: true,
-                                      ).marginOnly(bottom: 12),
+                                      ).marginOnly(bottom: 12.r),
                                     ),
 
                                     Visibility(
@@ -953,26 +955,26 @@ class OrderDetailsView extends GetView<DineInController> {
                                           );
                                         },
                                         text: "Elavon Pay".toUpperCase(),
-                                        height: 103,
+                                        height: 103.r,
                                         width: double.infinity,
                                         color: StaticColors.blueColor,
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12,
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 12.r,
                                         ),
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.white,
                                         ),
-                                        textMaxSize: 20,
-                                        textMinSize: 20,
+                                        textMaxSize: 20.sp.roundToDouble(),
+                                        textMinSize: 20.sp.roundToDouble(),
                                         borderColor: Colors.transparent,
                                         isOutline: true,
-                                      ).marginOnly(bottom: 12),
+                                      ).marginOnly(bottom: 12.r),
                                     ),
                                     StaggeredGrid.count(
                                       crossAxisCount: 2,
-                                      mainAxisSpacing: 8,
-                                      crossAxisSpacing: 8,
+                                      mainAxisSpacing: 8.r,
+                                      crossAxisSpacing: 8.r,
                                       children: List.generate(controller.paymentMathod.length, (
                                         index,
                                       ) {
@@ -980,7 +982,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                             controller.paymentMathod[index];
 
                                         return PrimaryBtn(
-                                          height: 103,
+                                          height: 103.r,
                                           color: StaticColors.blueColor,
                                           onPressed: () {
                                             kLogger.e(data);
@@ -996,8 +998,8 @@ class OrderDetailsView extends GetView<DineInController> {
                                                         BaseController
                                                             .to
                                                             .posElavonTerminal)
-                                                    ? 550
-                                                    : 400,
+                                                    ? 550.r
+                                                    : 400.r,
                                                 child: Column(
                                                   children: [
                                                     Text(
@@ -1006,7 +1008,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                                           .textTheme
                                                           .headlineMedium,
                                                     ),
-                                                    const SizedBox(height: 22),
+                                                    SizedBox(height: 22.r),
                                                     Row(
                                                       children: [
                                                         // ! Moneris
@@ -1117,13 +1119,13 @@ class OrderDetailsView extends GetView<DineInController> {
                                                               },
                                                               text: 'Moneris'
                                                                   .toUpperCase(),
-                                                              height: 103,
+                                                              height: 103.r,
                                                               color: StaticColors
                                                                   .blueColor,
                                                               padding:
-                                                                  const EdgeInsets.symmetric(
+                                                                  EdgeInsets.symmetric(
                                                                     horizontal:
-                                                                        12,
+                                                                        12.r,
                                                                   ),
                                                               style: const TextStyle(
                                                                 fontWeight:
@@ -1132,8 +1134,8 @@ class OrderDetailsView extends GetView<DineInController> {
                                                                 color: Colors
                                                                     .white,
                                                               ),
-                                                              textMaxSize: 20,
-                                                              textMinSize: 20,
+                                                              textMaxSize: 20.sp.roundToDouble(),
+                                                              textMinSize: 20.sp.roundToDouble(),
                                                               borderColor: Colors
                                                                   .transparent,
                                                               isOutline: true,
@@ -1145,7 +1147,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                                               .to
                                                               .posMonerisTerminal,
                                                           child: SizedBox(
-                                                            width: 16,
+                                                            width: 16.r,
                                                           ),
                                                         ),
                                                         // !elavon
@@ -1230,13 +1232,13 @@ class OrderDetailsView extends GetView<DineInController> {
                                                               },
                                                               text: 'Elavon'
                                                                   .toUpperCase(),
-                                                              height: 103,
+                                                              height: 103.r,
                                                               color: StaticColors
                                                                   .blueColor,
                                                               padding:
-                                                                  const EdgeInsets.symmetric(
+                                                                  EdgeInsets.symmetric(
                                                                     horizontal:
-                                                                        12,
+                                                                        12.r,
                                                                   ),
                                                               style: const TextStyle(
                                                                 fontWeight:
@@ -1245,8 +1247,8 @@ class OrderDetailsView extends GetView<DineInController> {
                                                                 color: Colors
                                                                     .white,
                                                               ),
-                                                              textMaxSize: 20,
-                                                              textMinSize: 20,
+                                                              textMaxSize: 20.sp.roundToDouble(),
+                                                              textMinSize: 20.sp.roundToDouble(),
                                                               borderColor: Colors
                                                                   .transparent,
                                                               isOutline: true,
@@ -1258,7 +1260,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                                               .to
                                                               .posElavonTerminal,
                                                           child: SizedBox(
-                                                            width: 16,
+                                                            width: 16.r,
                                                           ),
                                                         ),
                                                         //! standalone
@@ -1367,13 +1369,13 @@ class OrderDetailsView extends GetView<DineInController> {
                                                             },
                                                             text: 'standalone'
                                                                 .toUpperCase(),
-                                                            height: 103,
+                                                            height: 103.r,
                                                             color: StaticColors
                                                                 .blueColor,
                                                             padding:
-                                                                const EdgeInsets.symmetric(
+                                                                EdgeInsets.symmetric(
                                                                   horizontal:
-                                                                      12,
+                                                                      12.r,
                                                                 ),
                                                             style:
                                                                 const TextStyle(
@@ -1383,8 +1385,8 @@ class OrderDetailsView extends GetView<DineInController> {
                                                                   color: Colors
                                                                       .white,
                                                                 ),
-                                                            textMaxSize: 20,
-                                                            textMinSize: 20,
+                                                            textMaxSize: 20.sp.roundToDouble(),
+                                                            textMinSize: 20.sp.roundToDouble(),
                                                             borderColor: Colors
                                                                 .transparent,
                                                             isOutline: true,
@@ -1515,21 +1517,21 @@ class OrderDetailsView extends GetView<DineInController> {
                                           text: data
                                               .replaceAll('_', ' ')
                                               .replaceAll('AND', '&'),
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 12,
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 12.r,
                                           ),
                                           style: const TextStyle(
                                             fontWeight: FontWeight.w700,
                                             color: Colors.white,
                                           ),
-                                          textMaxSize: 20,
-                                          textMinSize: 20,
+                                          textMaxSize: 20.sp.roundToDouble(),
+                                          textMinSize: 20.sp.roundToDouble(),
                                           borderColor: Colors.transparent,
                                           isOutline: true,
                                         );
                                       }),
                                     ),
-                                    SizedBox(height: 12),
+                                    SizedBox(height: 12.r),
                                   ],
                                 );
                               },
@@ -1701,10 +1703,10 @@ class OrderDetailsView extends GetView<DineInController> {
   // item details
   Widget _itemDetails(ThemeData theme, OrderModel data) {
     // print("ZZZ ${data.discountReason}");
-    const double btnSize = 180;
-    const double height = 60;
-    const double textMaxSize = 30;
-    const double textMinSize = 11;
+    final double btnSize = 180.r;
+    final double height = 60.r;
+    final double textMaxSize = 30.sp.roundToDouble();
+    final double textMinSize = 11.sp.roundToDouble();
     return Container(
       // width: double.infinity,
       // padding: const EdgeInsets.all(12.0),
@@ -1787,19 +1789,19 @@ class OrderDetailsView extends GetView<DineInController> {
             maxLines: 5,
           ),
 
-          const Divider(height: 20),
+          Divider(height: 20.r),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: EdgeInsets.symmetric(horizontal: 8.r),
             child: Column(
               children: [
                 _row(
                   theme,
                   title: "Subtotal :",
-                  fontSize: 15,
+                  fontSize: 15.sp,
                   value: "\$ ${data.subTotal.toStringAsFixed(2)}",
                   fontWeight: FontWeight.w800,
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4.r),
                 if (data.totalDiscount > 0)
                   _row(
                     child: Visibility(
@@ -1827,8 +1829,8 @@ class OrderDetailsView extends GetView<DineInController> {
                         child: data.paymentStatus == "PAID"
                             ? const SizedBox()
                             : Container(
-                                margin: const EdgeInsets.only(left: 4),
-                                padding: const EdgeInsets.all(4.0),
+                                margin: EdgeInsets.only(left: 4.r),
+                                padding: EdgeInsets.all(4.0.r),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
@@ -1838,16 +1840,16 @@ class OrderDetailsView extends GetView<DineInController> {
                                         Colors.white,
                                   ),
                                 ),
-                                child: const Icon(
+                                child: Icon(
                                   Icons.delete,
                                   color: StaticColors.redColor,
-                                  size: 20,
+                                  size: 20.r,
                                 ),
                               ),
                       ),
                     ),
                     fontWeight: FontWeight.w800,
-                    fontSize: 13,
+                    fontSize: 13.sp,
                     theme,
                     title: "Discount : ",
                     value: "(-)  \$${data.totalDiscount.toStringAsFixed(2)}",
@@ -1858,14 +1860,14 @@ class OrderDetailsView extends GetView<DineInController> {
                     theme,
                     title:
                         "GST ${BaseController.to.restaurantDetails?.businessProfile.gstNumber ?? 0}% :",
-                    fontSize: 13,
+                    fontSize: 13.sp,
                     value: "\$ ${data.totalGst.toStringAsFixed(2)}",
                     fontWeight: FontWeight.w800,
                   ),
                 ),
                 if (data.totalPst > 0)
                   _row(
-                    fontSize: 13,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w800,
                     theme,
                     title:
@@ -1874,7 +1876,7 @@ class OrderDetailsView extends GetView<DineInController> {
                   ),
                 if (data.totalPst2 > 0)
                   _row(
-                    fontSize: 13,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w800,
                     theme,
                     title:
@@ -1902,8 +1904,8 @@ class OrderDetailsView extends GetView<DineInController> {
                         : Row(
                             children: [
                               Container(
-                                margin: const EdgeInsets.only(left: 4),
-                                padding: const EdgeInsets.all(4.0),
+                                margin: EdgeInsets.only(left: 4.r),
+                                padding: EdgeInsets.all(4.0.r),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
@@ -1935,7 +1937,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                   },
                                 ),
                               ),
-                              SizedBox(width: 34),
+                              SizedBox(width: 34.r),
                               Visibility(
                                 visible:
                                     (data.gratuityPercentage ??
@@ -1947,8 +1949,8 @@ class OrderDetailsView extends GetView<DineInController> {
                                             0)) !=
                                     0,
                                 child: Container(
-                                  margin: const EdgeInsets.only(left: 4),
-                                  padding: const EdgeInsets.all(4.0),
+                                  margin: EdgeInsets.only(left: 4.r),
+                                  padding: EdgeInsets.all(4.0.r),
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(
@@ -1989,7 +1991,7 @@ class OrderDetailsView extends GetView<DineInController> {
                 ),
                 if (data.tip > 0)
                   _row(
-                    fontSize: 13,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w800,
                     theme,
                     title: "Tip : ",
@@ -2006,8 +2008,8 @@ class OrderDetailsView extends GetView<DineInController> {
                         : Row(
                             children: [
                               Container(
-                                margin: const EdgeInsets.only(left: 4),
-                                padding: const EdgeInsets.all(4.0),
+                                margin: EdgeInsets.only(left: 4.r),
+                                padding: EdgeInsets.all(4.0.r),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
@@ -2039,13 +2041,13 @@ class OrderDetailsView extends GetView<DineInController> {
                                   },
                                 ),
                               ),
-                              SizedBox(width: 34),
+                              SizedBox(width: 34.r),
                               Visibility(
                                 visible: data.deliveryFee != 0,
 
                                 child: Container(
-                                  margin: const EdgeInsets.only(left: 4),
-                                  padding: const EdgeInsets.all(4.0),
+                                  margin: EdgeInsets.only(left: 4.r),
+                                  padding: EdgeInsets.all(4.0.r),
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(
@@ -2102,21 +2104,21 @@ class OrderDetailsView extends GetView<DineInController> {
                     value: "\$${data.packagingCost.toStringAsFixed(2)}",
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.r),
                 _row(
                   theme,
                   title: "Total ${MyFunc.orderCondition(data)}: ",
                   value: "\$ ${data.totalOrderAmount.toStringAsFixed(2)}",
-                  fontSize: 26,
+                  fontSize: 26.sp,
                   fontWeight: FontWeight.w800,
                 ),
               ],
             ),
           ),
 
-          const SizedBox(height: 16),
+          SizedBox(height: 16.r),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            padding: EdgeInsets.symmetric(horizontal: 8.r, vertical: 8.r),
             child: GetBuilder<PosController>(
               builder: (pc) {
                 return Visibility(
@@ -2145,7 +2147,7 @@ class OrderDetailsView extends GetView<DineInController> {
                               child: Row(
                                 children: [
                                   PrimaryBtn(
-                                    width: 200,
+                                    width: 200.r,
                                     height: height,
                                     textMaxSize: textMaxSize,
                                     textMinSize: textMinSize,
@@ -2202,9 +2204,9 @@ class OrderDetailsView extends GetView<DineInController> {
                                     text: 'Add Items ,\nChange Table, Guests'
                                         .toUpperCase(),
                                     textColor: Colors.white,
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 6,
-                                      vertical: 10,
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 6.r,
+                                      vertical: 10.r,
                                     ),
                                     color: theme.primaryColor,
                                   ),
@@ -2241,11 +2243,11 @@ class OrderDetailsView extends GetView<DineInController> {
                                           text: 'Repeat Items'.toUpperCase(),
                                           textColor: Colors.white,
                                           color: StaticColors.greenColor,
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 6,
-                                            vertical: 10,
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 6.r,
+                                            vertical: 10.r,
                                           ),
-                                        ).marginOnly(left: 12),
+                                        ).marginOnly(left: 12.r),
                                       );
                                     },
                                   ),
@@ -2308,7 +2310,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                           text: 'Remove Items'.toUpperCase(),
                                           textColor: Colors.white,
                                           color: StaticColors.orangeColor,
-                                        ).marginOnly(left: 12),
+                                        ).marginOnly(left: 12.r),
                                       );
                                     },
                                   ),
@@ -2377,7 +2379,7 @@ class OrderDetailsView extends GetView<DineInController> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 12),
+                      SizedBox(width: 12.r),
 
                       InkWell(
                         onTap: () {
@@ -2385,10 +2387,10 @@ class OrderDetailsView extends GetView<DineInController> {
                           Get.back();
                         },
                         child: Container(
-                          width: 60,
-                          height: 60,
+                          width: 60.rMin(44),
+                          height: 60.rMin(44),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(6.r),
                             color: theme.cardColor,
                             border: Border.all(
                               width: 2,
@@ -2397,9 +2399,9 @@ class OrderDetailsView extends GetView<DineInController> {
                                   Colors.white,
                             ),
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.arrow_back_ios_rounded,
-                            size: 40,
+                            size: 40.r,
                           ),
                         ),
                       ),
@@ -2414,10 +2416,10 @@ class OrderDetailsView extends GetView<DineInController> {
                           Get.back();
                         },
                         child: Container(
-                          width: 60,
-                          height: 60,
+                          width: 60.rMin(44),
+                          height: 60.rMin(44),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(6.r),
                             color: theme.cardColor,
                             border: Border.all(
                               width: 2,
@@ -2426,9 +2428,9 @@ class OrderDetailsView extends GetView<DineInController> {
                                   Colors.white,
                             ),
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.arrow_back_ios_rounded,
-                            size: 40,
+                            size: 40.r,
                           ),
                         ),
                       ),
@@ -2454,7 +2456,7 @@ Widget _row(
   required String value,
 }) {
   return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 3),
+    padding: EdgeInsets.symmetric(vertical: 3.r),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -2463,7 +2465,7 @@ Widget _row(
             Text(
               title,
               style: theme.textTheme.titleSmall?.copyWith(
-                fontSize: fontSize ?? 14,
+                fontSize: fontSize ?? 14.sp,
                 fontWeight: fontWeight ?? FontWeight.w700,
               ),
             ),
@@ -2474,7 +2476,7 @@ Widget _row(
           child: Text(
             value,
             style: theme.textTheme.titleSmall?.copyWith(
-              fontSize: fontSize ?? 14,
+              fontSize: fontSize ?? 14.sp,
               fontWeight: fontWeight ?? FontWeight.w700,
             ),
             maxLines: 1,
@@ -2507,7 +2509,7 @@ class ItemTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+        padding: EdgeInsets.symmetric(horizontal: 4.0.r, vertical: 8.0.r),
         decoration: BoxDecoration(
           color: bgColor,
           border: Border.all(color: Theme.of(context).focusColor, width: 0.15),
@@ -2537,7 +2539,7 @@ Widget _modifiers(
   return Visibility(
     visible: value.contains(':') ? value.length > 6 : value != '',
     child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8),
+      padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.r),
       child: Text.rich(
         maxLines: maxLines,
         style: theme.textTheme.labelSmall?.copyWith(

@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:async';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -104,23 +105,23 @@ class _GeneralState extends State<General> {
 
         // Custom Keyboard
         Text("Keyboard Settings", style: theme.textTheme.titleLarge),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.r),
         Container(
-          width: 500,
+          width: 500.r,
           decoration: BoxDecoration(
             border: Border.all(
               color: ConfigController.to.isLightTheme
                   ? theme.cardColor
                   : Colors.white.withAlpha(51),
             ),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(8.r),
           ),
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 12.r,
+                  vertical: 6.r,
                 ),
                 decoration: BoxDecoration(
                   border: Border(
@@ -155,9 +156,9 @@ class _GeneralState extends State<General> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 12.r,
+                  vertical: 6.r,
                 ),
                 child: Row(
                   children: [
@@ -195,9 +196,9 @@ class _GeneralState extends State<General> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("POS Layout Mode", style: theme.textTheme.titleLarge),
-                  8.height,
+                  SizedBox(height: 8.r),
                   SizedBox(
-                    width: 500,
+                    width: 500.r,
                     child: AbsorbPointer(
                       absorbing:
                           bc
@@ -217,14 +218,14 @@ class _GeneralState extends State<General> {
                           fit: FlexFit.loose,
                           itemBuilder: (context, item, isSelected, isDisabled) {
                             return Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 14,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 16.r,
+                                vertical: 14.r,
                               ),
                               child: Text(
                                 item.label,
-                                style: const TextStyle(
-                                  fontSize: 18,
+                                style: TextStyle(
+                                  fontSize: 18.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -242,8 +243,8 @@ class _GeneralState extends State<General> {
                               ),
                             ),
                           ),
-                          baseStyle: const TextStyle(
-                            fontSize: 18,
+                          baseStyle: TextStyle(
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -258,7 +259,7 @@ class _GeneralState extends State<General> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30.r),
                 ],
               ),
             );
@@ -293,12 +294,12 @@ class _CustomSwitch extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return SizedBox(
-      width: 500,
+      width: 500.r,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title, style: theme.textTheme.titleLarge),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.r),
           Container(
             decoration: BoxDecoration(
               border: Border.all(
@@ -306,14 +307,14 @@ class _CustomSwitch extends StatelessWidget {
                     ? theme.cardColor
                     : Colors.white.withAlpha(51),
               ),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
             ),
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.r,
+                    vertical: 6.r,
                   ),
                   decoration: BoxDecoration(
                     border: Border(
@@ -340,7 +341,7 @@ class _CustomSwitch extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: 30.r),
         ],
       ),
     );

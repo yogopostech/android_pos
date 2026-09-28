@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/modules/setting/controllers/servicees_controller.dart';
 import 'package:yogo_pos/app/services/controller/config_controller.dart';
@@ -32,7 +33,7 @@ class _ServicesState extends State<Services> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Modules", style: theme.textTheme.titleLarge),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.r),
         Container(
           decoration: BoxDecoration(
             border: Border.all(
@@ -40,14 +41,14 @@ class _ServicesState extends State<Services> {
                   ? theme.cardColor
                   : Colors.white.withAlpha(51),
             ),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(8.r),
           ),
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 12.r,
+                  vertical: 6.r,
                 ),
                 decoration: BoxDecoration(
                   border: Border(
@@ -84,9 +85,9 @@ class _ServicesState extends State<Services> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 12.r,
+                  vertical: 6.r,
                 ),
                 child: Row(
                   children: [

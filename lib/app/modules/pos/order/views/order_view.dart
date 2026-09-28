@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/order_model.dart';
@@ -45,28 +46,28 @@ class OrderView extends GetView<PosController> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const TopMenu(paddingLeft: 16),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.r),
                   //search row
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.r),
                     child: SearchAndCustomItemRow(),
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12.r),
                   // sub category and product
                   Expanded(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // item 1 (Category)
-                        const SizedBox(width: 16),
+                        SizedBox(width: 16.r),
 
                         Visibility(
                           visible: isCategoryWithItems,
                           child: Container(
-                            margin: EdgeInsets.only(right: 6),
-                            width: 200,
+                            margin: EdgeInsets.only(right: 6.r),
+                            width: 200.r,
                             child: CategoryBody(
-                              padding: EdgeInsets.only(right: 14),
+                              padding: EdgeInsets.only(right: 14.r),
                               crossAxisCount: 1,
                             ),
                           ),
@@ -81,7 +82,7 @@ class OrderView extends GetView<PosController> {
 
                                 replacement: CategoryBody(
                                   crossAxisCount: 5,
-                                  padding: EdgeInsets.only(right: 14),
+                                  padding: EdgeInsets.only(right: 14.r),
                                 ),
                                 child: GetBuilder<PosController>(
                                   builder: (controller) {
@@ -92,7 +93,7 @@ class OrderView extends GetView<PosController> {
                                         crossAxisCount: isCategoryWithItems
                                             ? 3
                                             : 4,
-                                        padding: EdgeInsets.only(right: 14),
+                                        padding: EdgeInsets.only(right: 14.r),
                                       );
                                     }
                                   },
@@ -101,7 +102,7 @@ class OrderView extends GetView<PosController> {
                             },
                           ),
                         ),
-                        const SizedBox(width: 4),
+                        SizedBox(width: 4.r),
                         GetBuilder<PosController>(
                           builder: (controller) {
                             return Visibility(
@@ -109,13 +110,13 @@ class OrderView extends GetView<PosController> {
                                   ? true
                                   : controller.isItemsShow,
                               child: SizedBox(
-                                width: 180,
+                                width: 180.r,
                                 child: ModifiersRow(),
                               ),
                             );
                           },
                         ),
-                        const SizedBox(width: 16),
+                        SizedBox(width: 16.r),
                       ],
                     ),
                   ),
@@ -299,14 +300,14 @@ class _ModifiersRowState extends State<ModifiersRow> {
                   trackColor: WidgetStateProperty.all(theme.cardColor),
                   trackBorderColor: WidgetStateProperty.all(Colors.transparent),
                   thickness: WidgetStateProperty.all(6),
-                  radius: const Radius.circular(8),
+                  radius: Radius.circular(8.r),
                   thumbVisibility: WidgetStateProperty.all(true),
                   trackVisibility: WidgetStateProperty.all(true),
                 ),
                 child: Scrollbar(
                   controller: controller.modifierScrollController,
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.only(right: 14),
+                    padding: EdgeInsets.only(right: 14.r),
                     controller: controller.modifierScrollController,
                     child: Column(
                       children: [
@@ -314,8 +315,8 @@ class _ModifiersRowState extends State<ModifiersRow> {
                           var modifier = c.modifiers[index];
                           return Modifiers(modifier: modifier);
                         }),
-                        const SizedBox(height: 16),
-                        const SizedBox(height: 16),
+                        SizedBox(height: 16.r),
+                        SizedBox(height: 16.r),
                       ],
                     ),
                   ),
@@ -377,17 +378,17 @@ class _ModifiersRowState extends State<ModifiersRow> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           MyCustomText(
                             'Add  Notes',
-                            fontSize: 24,
+                            fontSize: 24.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ],
                       ),
-                      const SizedBox(height: 14),
+                      SizedBox(height: 14.r),
                       CustomTextField(
                         controller: controller.kitchenNoteTEC,
                         allowRegex:
@@ -396,17 +397,17 @@ class _ModifiersRowState extends State<ModifiersRow> {
                             ),
                         hintText: '',
                         maxLines: 10,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 16,
-                          horizontal: 16,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 16.r,
+                          horizontal: 16.r,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.r),
                       PrimaryBtn(
-                        width: 200,
-                        height: 70,
-                        style: const TextStyle(
-                          fontSize: 22,
+                        width: 200.r,
+                        height: 70.r,
+                        style: TextStyle(
+                          fontSize: 22.sp,
                           fontWeight: FontWeight.w600,
                           color: Colors.white,
                         ),
@@ -426,7 +427,7 @@ class _ModifiersRowState extends State<ModifiersRow> {
               },
               text: 'NOTE',
               isSelected: false,
-            ).marginOnly(right: 14),
+            ).marginOnly(right: 14.r),
           ],
         );
       },

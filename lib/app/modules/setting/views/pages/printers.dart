@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/modules/setting/controllers/printers_controller.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
@@ -20,7 +21,7 @@ class Printers extends GetView<PrintersController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Printer Settings', style: theme.textTheme.displayMedium),
-              const SizedBox(height: 35),
+              SizedBox(height: 35.r),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -31,10 +32,10 @@ class Printers extends GetView<PrintersController> {
                         'Counter Printer',
                         style: theme.textTheme.titleLarge,
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.r),
                       Obx(() {
                         return SizedBox(
-                          width: 320,
+                          width: 320.r,
                           child: CustomTextField(
                             controller: controller.counterPrinterController,
                             hintText: controller.counterPrinter.value.isEmpty
@@ -62,7 +63,7 @@ class Printers extends GetView<PrintersController> {
                       }),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12.r),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -70,10 +71,10 @@ class Printers extends GetView<PrintersController> {
                         'Kitchen Printer',
                         style: theme.textTheme.titleLarge,
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.r),
                       Obx(() {
                         return SizedBox(
-                          width: 320,
+                          width: 320.r,
                           child: CustomTextField(
                             controller: controller.kitchenPrinterController,
                             //allow 123.232.323.23 max 10 characters ip address
@@ -182,9 +183,9 @@ class Printers extends GetView<PrintersController> {
               //     ],
               //   ),
 
-              const SizedBox(height: 22),
+              SizedBox(height: 22.r),
               SizedBox(
-                width: 650,
+                width: 650.r,
                 child: Row(
                   children: [
                     Expanded(
@@ -251,13 +252,13 @@ class Printers extends GetView<PrintersController> {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12.r),
                     const Expanded(child: SizedBox()),
                   ],
                 ),
               ),
               // olo print
-              const SizedBox(height: 20),
+              SizedBox(height: 20.r),
               //** kitchen print **
               // Obx(() {
               //   return _switch(
@@ -339,9 +340,9 @@ Widget _switch({
   required String title,
 }) {
   return SizedBox(
-    width: 400,
+    width: 400.r,
     child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 12.r, vertical: 6.r),
       child: Row(
         children: [
           Expanded(child: Text(title, style: theme.textTheme.titleSmall)),

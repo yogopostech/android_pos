@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,13 +22,13 @@ class Payments extends GetView<PaymentsController> {
         Visibility(
           visible: BaseController.to.posMonerisTerminal,
           child: SizedBox(
-            width: 500,
+            width: 500.r,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Moneris', style: theme.textTheme.headlineMedium),
-                SizedBox(height: 8),
+                SizedBox(height: 8.r),
                 Text('Terminal IP', style: theme.textTheme.titleSmall),
                 GetBuilder<PosController>(
                   builder: (pc) {
@@ -50,7 +51,7 @@ class Payments extends GetView<PaymentsController> {
                     );
                   },
                 ),
-                SizedBox(height: 42),
+                SizedBox(height: 42.r),
               ],
             ),
           ),
@@ -59,7 +60,7 @@ class Payments extends GetView<PaymentsController> {
         Visibility(
           visible: BaseController.to.posElavonTerminal,
           child: SizedBox(
-            width: 500,
+            width: 500.r,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -68,11 +69,11 @@ class Payments extends GetView<PaymentsController> {
                   'Elavon Series 5000',
                   style: theme.textTheme.headlineMedium,
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 8.r),
 
                 //IP
                 Text('Terminal IP', style: theme.textTheme.titleSmall),
-                SizedBox(height: 4),
+                SizedBox(height: 4.r),
                 CustomTextField(
                   controller: controller.terminalIpController,
                   focusNode: controller.terminalIpFocus,
@@ -87,10 +88,10 @@ class Payments extends GetView<PaymentsController> {
                   // allowRegex: RegExp(r'^(?!\.)(?!.*\.\.)[\d.]*$'),
                   allowRegex: RegExp(r'^(?!\.)(?!.*\.\.)[\d.]{0,25}$'),
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: 12.r),
                 // port
                 Text('Terminal Port', style: theme.textTheme.titleSmall),
-                SizedBox(height: 4),
+                SizedBox(height: 4.r),
                 CustomTextField(
                   controller: controller.terminalPortController,
                   focusNode: controller.terminalPortFocus,

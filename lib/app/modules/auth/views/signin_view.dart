@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
@@ -44,16 +45,16 @@ class _SigninViewState extends State<SigninView> {
           const TitleBar(),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 10.r),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   // header
-                  8.height,
+                  SizedBox(height: 8.r),
                   SizedBox(
                     child: SvgPicture.asset(
-                      width: 150,
+                      width: 150.r,
                       'assets/images/splash/yogo_logo.svg',
                       colorFilter: ColorFilter.mode(
                         ConfigController.to.isLightTheme
@@ -66,7 +67,7 @@ class _SigninViewState extends State<SigninView> {
                   Center(
                     child: SizedBox(
                       // color: Colors.amber,
-                      width: 450,
+                      width: 450.r,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +86,7 @@ class _SigninViewState extends State<SigninView> {
                                       'Welcome back',
                                       style: theme.textTheme.headlineSmall,
                                     ),
-                                    const SizedBox(height: 6),
+                                    SizedBox(height: 6.r),
                                     Text.rich(
                                         TextSpan(
                                             text: controller
@@ -120,7 +121,7 @@ class _SigninViewState extends State<SigninView> {
                                               )
                                             ]),
                                         style: theme.textTheme.labelLarge),
-                                    const SizedBox(height: 16),
+                                    SizedBox(height: 16.r),
                                     Obx(() {
                                       return CustomTextField(
                                         initOpenKeyboard: true,
@@ -157,8 +158,8 @@ class _SigninViewState extends State<SigninView> {
                                           }
                                           return null;
                                         },
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 12, vertical: 19),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 12.r, vertical: 19.r),
                                         onFieldSubmitted: (value) {
                                           // login process
                                           if (Get.isDialogOpen == true) {
@@ -178,7 +179,7 @@ class _SigninViewState extends State<SigninView> {
                                       'Sign in',
                                       style: theme.textTheme.headlineSmall,
                                     ),
-                                    const SizedBox(height: 16),
+                                    SizedBox(height: 16.r),
                                     GetBuilder<SignInController>(
                                         builder: (controller) {
                                       return CustomTextField(
@@ -198,8 +199,8 @@ class _SigninViewState extends State<SigninView> {
                                           }
                                           return null;
                                         },
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 12, vertical: 19),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 12.r, vertical: 19.r),
                                         onFieldSubmitted: (value) {
                                           //if have dialog then close it
                                           if (Get.isDialogOpen == true) {
@@ -222,7 +223,7 @@ class _SigninViewState extends State<SigninView> {
                               );
                             }),
                           ),
-                          const SizedBox(height: 16),
+                          SizedBox(height: 16.r),
                           PrimaryBtn(
                             onPressed: () {
                               if (controller.formKey.currentState!.validate()) {
@@ -245,7 +246,7 @@ class _SigninViewState extends State<SigninView> {
                             text: "Next",
                             textColor: Colors.white,
                             color: StaticColors.blueColor,
-                            borderRadius: 4,
+                            borderRadius: 4.r,
                           ),
                           // const SizedBox(height: 100),
                         ],

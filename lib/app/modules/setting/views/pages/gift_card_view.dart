@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import '../../../../services/controller/config_controller.dart';
 import '../../../../utils/static_colors.dart';
@@ -20,9 +21,9 @@ class _GiftCardSettingsState extends State<GiftCardSettings> {
         children: [
           // ✅ Transparent TabBar section
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 4.r),
             child: SizedBox(
-              width: 500, // fixed width for both tabs
+              width: 500.r, // fixed width for both tabs
               child: TabBar(
                 indicatorColor: StaticColors.blueColor,
                 dividerColor: Colors.transparent,
@@ -50,7 +51,7 @@ class _GiftCardSettingsState extends State<GiftCardSettings> {
                   child: Text(
                     "",
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.bold,
                       color: ConfigController.to.isLightTheme
                           ? Colors.black

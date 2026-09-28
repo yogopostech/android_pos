@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in/controllers/dine_in_controller.dart';
@@ -42,8 +44,8 @@ class TableBody extends GetView<DineInController> {
                 _title(controller.tableCategoryList[index].name),
                 StaggeredGrid.count(
                   crossAxisCount: 10,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8.r,
+                  crossAxisSpacing: 8.r,
                   children: List.generate(tables.length, (index) {
                     var table = tables[index];
                     return GestureDetector(
@@ -167,10 +169,10 @@ class TableBody extends GetView<DineInController> {
                         }
                       },
                       child: Container(
-                        height: 110,
-                        padding: const EdgeInsets.all(8.0),
+                        height: 110.r,
+                        padding: EdgeInsets.all(8.0.r),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(6.r),
                           color: MyFunc.getTableColorWithStatus(
                               table.tableAvailability),
                         ),
@@ -183,40 +185,40 @@ class TableBody extends GetView<DineInController> {
                                 Expanded(
                                   child: MyCustomText(
                                     table.tableName,
-                                    fontSize: 22,
+                                    fontSize: 22.sp,
                                     fontWeight: FontWeight.w700,
                                     color: Colors.white,
                                   ),
                                 ),
                                 MyCustomText(
                                   '${table.tableCapacity}',
-                                  fontSize: 16,
+                                  fontSize: 16.sp,
                                   color: Colors.white,
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 3),
+                            SizedBox(height: 3.r),
                             Align(
                               alignment: Alignment.bottomLeft,
                               child: MyCustomText(
                                 table.currentOrder?.employee?.firstName ?? "",
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
                             ),
-                            const SizedBox(height: 3),
+                            SizedBox(height: 3.r),
                             Align(
                               alignment: Alignment.bottomLeft,
                               child: SizedBox(
-                                height: 20,
+                                height: 20.r,
                                 child: Visibility(
                                   visible:
                                       table.currentOrder?.totalOrderAmount !=
                                           null,
                                   child: MyCustomText(
                                     "\$${table.currentOrder?.totalOrderAmount.toStringAsFixed(2)}",
-                                    fontSize: 14,
+                                    fontSize: 14.sp,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -238,17 +240,18 @@ class TableBody extends GetView<DineInController> {
 
   Container _title(String title) {
     return Container(
-      height: 35,
+      height: 35.rMin(28),
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 6),
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      alignment: Alignment.centerLeft,
+      margin: EdgeInsets.symmetric(vertical: 6.r),
+      padding: EdgeInsets.symmetric(horizontal: 16.r),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(6.r),
         color: StaticColors.blackLightColor,
       ),
       child: MyCustomText(
         title.toUpperCase(),
-        fontSize: 18,
+        fontSize: 18.sp,
         fontWeight: FontWeight.w600,
         color: Colors.white,
       ),

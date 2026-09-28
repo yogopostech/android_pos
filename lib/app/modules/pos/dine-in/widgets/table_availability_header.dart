@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/utils/my_func.dart';
 import '../../../../widgets/my_custom_text.dart';
@@ -15,7 +16,7 @@ class TableAvailabilityHeader extends StatelessWidget {
           ' Table Availability',
           fontWeight: FontWeight.w500,
         ),
-        const SizedBox(width: 10.0),
+        SizedBox(width: 10.0.r),
         ColorTextRow(
           color: MyFunc.getTableColorWithStatus("AVAILABLE"),
           text: 'Available'.toUpperCase(),
@@ -47,14 +48,14 @@ class ColorTextRow extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: EdgeInsets.symmetric(horizontal: 10.0.r),
       child: Row(
         children: [
           CircleAvatar(
-            radius: 8,
+            radius: 8.r,
             backgroundColor: color,
           ),
-          const SizedBox(width: 4.0),
+          SizedBox(width: 4.0.r),
           Text(
             text,
             style: theme.textTheme.titleSmall,

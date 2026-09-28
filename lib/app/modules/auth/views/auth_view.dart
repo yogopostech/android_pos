@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,19 +38,19 @@ class AuthView extends GetView<AuthController> {
               const TitleBar(),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 8,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.r,
+                    vertical: 8.r,
                   ),
                   child: Column(
                     children: [
                       // top bar
-                      8.height,
+                      SizedBox(height: 8.r),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SvgPicture.asset(
-                            width: 150,
+                            width: 150.r,
                             'assets/images/splash/yogo_logo.svg',
                             colorFilter: ColorFilter.mode(
                               ConfigController.to.isLightTheme
@@ -79,17 +81,17 @@ class AuthView extends GetView<AuthController> {
                                       // Preferences.clear();
                                     },
                                     child: Container(
-                                      height: 55,
-                                      width: 55,
+                                      height: 55.rMin(44),
+                                      width: 55.rMin(44),
                                       // padding: const EdgeInsets.all(20),
                                       decoration: const BoxDecoration(
                                         color: StaticColors.redColor,
                                         shape: BoxShape.circle,
                                       ),
-                                      child: const Icon(
+                                      child: Icon(
                                         color: Colors.white,
                                         Icons.logout,
-                                        size: 33,
+                                        size: 33.rMin(26),
                                       ),
                                     ),
                                   );
@@ -99,18 +101,18 @@ class AuthView extends GetView<AuthController> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 25),
+                      SizedBox(height: 25.r),
                       // body
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          padding: EdgeInsets.symmetric(vertical: 20.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Expanded(
                                 flex: 5,
                                 child: Container(
-                                  padding: const EdgeInsets.only(left: 50),
+                                  padding: EdgeInsets.only(left: 50.r),
                                   // color: Colors.red,
                                   alignment: Alignment.centerLeft,
                                   // child: ,
@@ -153,14 +155,14 @@ class AuthView extends GetView<AuthController> {
                                 flex: 3,
                                 child: FittedBox(
                                   child: Container(
-                                    width: 400,
+                                    width: 400.r,
                                     alignment: Alignment.centerRight,
                                     decoration: BoxDecoration(
                                       color: Colors.transparent,
                                       // color: ConfigController.to.isLightTheme
                                       //     ? const Color(0xffEFEFEF)
                                       //     : const Color(0xff2A2A2A),
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(8.r),
                                     ),
                                     child: Column(
                                       mainAxisAlignment:
@@ -169,7 +171,7 @@ class AuthView extends GetView<AuthController> {
                                       children: [
                                         // password display
                                         _passwordDisplay(theme),
-                                        const SizedBox(height: 4),
+                                        SizedBox(height: 4.r),
                                         // keybord area
                                         _customKeybord(theme),
                                       ],
@@ -181,7 +183,7 @@ class AuthView extends GetView<AuthController> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 25),
+                      SizedBox(height: 25.r),
                       // bottom
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -191,16 +193,19 @@ class AuthView extends GetView<AuthController> {
                             builder: (context) {
                               return MyCustomText(
                                 'Version: ${BaseController.to.packageInfo?.version ?? '1.0.0'}',
-                                fontSize: 22,
+                                fontSize: 22.sp,
                                 fontWeight: FontWeight.w400,
                               );
                             },
                           ),
-                          25.width,
-                          MyCustomText(
-                            '© YOGO POS Entities- All rights reserved. Protected by copyright & patents.',
-                            fontSize: 22,
-                            fontWeight: FontWeight.w400,
+                          SizedBox(width: 25.r),
+                          // Flexible: choto screen e overflow na kore ellipsis hobe
+                          Flexible(
+                            child: MyCustomText(
+                              '© YOGO POS Entities- All rights reserved. Protected by copyright & patents.',
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                           // MyTime(),
                         ],
@@ -218,15 +223,15 @@ class AuthView extends GetView<AuthController> {
 
   Widget _passwordDisplay(ThemeData theme) {
     return Container(
-      height: 100,
-      width: 400,
-      padding: const EdgeInsets.symmetric(horizontal: 26),
+      height: 100.r,
+      width: 400.r,
+      padding: EdgeInsets.symmetric(horizontal: 26.r),
       decoration: BoxDecoration(
         color: Colors.transparent,
         // color: ConfigController.to.isLightTheme
         //     ? theme.cardColor
         //     : theme.canvasColor,
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(6.r),
         // border: Border.all(
         //   color: theme.colorScheme.surface,
         //   width: 1.75,
@@ -246,7 +251,7 @@ class AuthView extends GetView<AuthController> {
               backgroundColor: index + 1 > controller.password.value.length
                   ? Colors.transparent
                   : theme.colorScheme.surface,
-              radius: 10,
+              radius: 10.r,
             ),
           ),
         ),
@@ -256,16 +261,16 @@ class AuthView extends GetView<AuthController> {
 
   Widget _customKeybord(ThemeData theme) {
     return SizedBox(
-      width: 400,
+      width: 400.r,
       child: StaggeredGrid.count(
         crossAxisCount: 3,
-        mainAxisSpacing: 18,
+        mainAxisSpacing: 18.r,
         crossAxisSpacing: 0,
         children: List.generate(
           controller.numberList.length,
           (index) => SizedBox(
-            width: 100,
-            height: 100,
+            width: 100.r,
+            height: 100.r,
             child: ElevatedButton(
               onPressed: () {
                 controller.toggleStartup(false);
@@ -287,7 +292,7 @@ class AuthView extends GetView<AuthController> {
                 textStyle: theme.textTheme.titleLarge?.copyWith(
                   color: StaticColors.redColor,
                   fontWeight: FontWeight.w700,
-                  fontSize: 36,
+                  fontSize: 36.sp,
                 ),
                 backgroundColor: controller.numberList[index] == "*"
                     ? controller.numberList.length - 1 == index
@@ -304,19 +309,19 @@ class AuthView extends GetView<AuthController> {
               ),
               child: controller.numberList[index] == "*"
                   ? controller.numberList.length - 1 == index
-                        ? const FaIcon(
+                        ? FaIcon(
                             FontAwesomeIcons.check,
                             color: Colors.white,
-                            size: 36,
+                            size: 36.r,
                           )
-                        : const FaIcon(
+                        : FaIcon(
                             FontAwesomeIcons.deleteLeft,
                             color: Colors.white,
-                            size: 36,
+                            size: 36.r,
                           )
                   : MyCustomText(
                       controller.numberList[index],
-                      fontSize: 40,
+                      fontSize: 40.sp,
                       fontWeight: FontWeight.w500,
                     ),
             ),

@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -140,7 +141,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             fontSize: widget.extraLabelFontSize,
           ),
         if (widget.extraLabel != null)
-          SizedBox(height: widget.extralabeldownpadding ?? 10),
+          SizedBox(height: widget.extralabeldownpadding ?? 10.r),
         TextFormField(
           // enableInteractiveSelection: false,
 
@@ -214,7 +215,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
             contentPadding:
                 widget.padding ??
-                const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                EdgeInsets.symmetric(vertical: 8.r, horizontal: 12.r),
             // ********** prefixIcon ********
             prefixIcon: widget.prefixIcon,
             prefixText: widget.prefixText,
@@ -222,28 +223,28 @@ class _CustomTextFieldState extends State<CustomTextField> {
             suffixIcon: widget.suffixIcon,
             // ********** border ********
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(widget.borderRadius ?? 6),
+              borderRadius: BorderRadius.circular(widget.borderRadius ?? 6.r),
               borderSide: BorderSide(color: theme.hintColor),
             ),
             // ********** focusedBorder ********
             focusColor: theme.primaryColor,
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(widget.borderRadius ?? 6),
+              borderRadius: BorderRadius.circular(widget.borderRadius ?? 6.r),
               borderSide: BorderSide(color: theme.primaryColor),
             ),
             // ********** enabledBorder ********
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(widget.borderRadius ?? 6),
+              borderRadius: BorderRadius.circular(widget.borderRadius ?? 6.r),
               borderSide: BorderSide(color: theme.hintColor),
             ),
             // ********** errorBorder ********
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(widget.borderRadius ?? 6),
+              borderRadius: BorderRadius.circular(widget.borderRadius ?? 6.r),
               borderSide: const BorderSide(color: Colors.red),
             ),
             // ********** errorBorder ********
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(widget.borderRadius ?? 6),
+              borderRadius: BorderRadius.circular(widget.borderRadius ?? 6.r),
               borderSide: const BorderSide(color: Colors.red),
             ),
             // ********** hintText ********
@@ -302,7 +303,7 @@ class CustomDropdownTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (label != null) MyCustomText(label ?? ""),
-        SizedBox(height: label == null ? 0 : 8),
+        SizedBox(height: label == null ? 0 : 8.r),
         DropdownButtonFormField<String>(
           hint:
               hint ??
@@ -318,20 +319,20 @@ class CustomDropdownTextField extends StatelessWidget {
           focusColor: theme.scaffoldBackgroundColor,
           decoration: InputDecoration(
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(6.r),
               borderSide: BorderSide(color: theme.hintColor),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(6.r),
               borderSide: BorderSide(color: theme.hintColor),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(6.r),
               borderSide: BorderSide(color: theme.hintColor),
             ),
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: 12,
-              horizontal: 14,
+            contentPadding: EdgeInsets.symmetric(
+              vertical: 12.r,
+              horizontal: 14.r,
             ),
             focusColor: theme.scaffoldBackgroundColor,
             hintStyle:
@@ -407,35 +408,35 @@ class CustomSearchTextField extends StatelessWidget {
         filled: isFilled,
         fillColor: theme.scaffoldBackgroundColor,
         // ********** padding ********
-        contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        contentPadding: EdgeInsets.symmetric(vertical: 8.r, horizontal: 16.r),
         // // ********** prefixIcon ********
         // prefixIcon: prefixIcon,
         // // ********** suffixIcon ********
         // suffixIcon: suffixIcon,
         // ********** border ********
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius ?? 4),
+          borderRadius: BorderRadius.circular(radius ?? 4.r),
           borderSide: BorderSide(color: theme.hintColor),
         ),
         // ********** focusedBorder ********
         focusColor: theme.primaryColor,
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius ?? 4),
+          borderRadius: BorderRadius.circular(radius ?? 4.r),
           borderSide: BorderSide(color: theme.hintColor),
         ),
         // ********** enabledBorder ********
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius ?? 4),
+          borderRadius: BorderRadius.circular(radius ?? 4.r),
           borderSide: BorderSide(color: theme.hintColor),
         ),
         // ********** errorBorder ********
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius ?? 4),
+          borderRadius: BorderRadius.circular(radius ?? 4.r),
           borderSide: const BorderSide(color: Colors.red),
         ),
         // ********** errorBorder ********
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius ?? 4),
+          borderRadius: BorderRadius.circular(radius ?? 4.r),
           borderSide: const BorderSide(color: Colors.red),
         ),
         // ********** hintText ********
@@ -473,15 +474,15 @@ class CardNumberField extends StatelessWidget {
         border: const OutlineInputBorder(),
         errorStyle: theme.textTheme.bodyMedium?.copyWith(color: Colors.red),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(6.r),
           borderSide: BorderSide(color: theme.hintColor),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(6.r),
           borderSide: BorderSide(color: Colors.red),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(6.r),
           borderSide: BorderSide(color: Colors.red),
         ),
         hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.hintColor),

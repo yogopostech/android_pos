@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/modules/setting/widgets/menu_btn.dart';
 import 'package:yogo_pos/app/services/controller/config_controller.dart';
@@ -30,16 +31,30 @@ class SettingView extends GetView<SettingController> {
                   backgroundColor: ConfigController.to.isLightTheme
                       ? theme.cardColor
                       : StaticColors.cartColor,
+
                   title: GetBuilder<SettingController>(
                     builder: (context) {
-                      return Text(context.menuList[context.menuIndex].title);
+                      return Text(
+                        context.menuList[context.menuIndex].title,
+                        style: TextStyle(
+                          color: ConfigController.to.isLightTheme
+                              ? Colors.black
+                              : Colors.white,
+                        ),
+                      );
                     },
                   ),
                   // backgroundColor: (ConfigController.to.isLightTheme
                   //     ? theme.canvasColor
                   //     : StaticColors.cartColor),
                   leading: IconButton(
-                    icon: const Icon(Icons.arrow_back, size: 36),
+                    icon: Icon(
+                      Icons.arrow_back,
+                      size: 36.r,
+                      color: ConfigController.to.isLightTheme
+                          ? Colors.black
+                          : Colors.white,
+                    ),
                     onPressed: () {
                       Get.back();
                     },
@@ -79,7 +94,7 @@ class SettingView extends GetView<SettingController> {
                       color: ConfigController.to.isLightTheme
                           ? theme.cardColor
                           : StaticColors.cartColor,
-                      width: 300,
+                      width: 300.r,
                       height: double.infinity,
                       child: SingleChildScrollView(
                         child: GetBuilder<SettingController>(
@@ -118,7 +133,7 @@ class SettingView extends GetView<SettingController> {
                     // body
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.all(12),
+                        padding: EdgeInsets.all(12.r),
                         color: theme.scaffoldBackgroundColor,
                         height: double.infinity,
                         child: GetBuilder<SettingController>(

@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yogo_pos/app/helper/data_update_helper.dart';
@@ -29,18 +31,18 @@ class TopMenu extends GetView<PosController> {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-    const double width = 110;
-    const double height = 90;
-    const double txtMaxSize = 33;
-    const double txtMinSize = 20;
+    final double width = 110.r;
+    final double height = 90.r;
+    final double txtMaxSize = 33.sp.roundToDouble();
+    final double txtMinSize = 20.sp.roundToDouble();
     return ColoredBox(
       color: theme.scaffoldBackgroundColor,
       child: Column(
         children: [
           //row 1
-          12.height,
+          SizedBox(height: 12.r),
           Container(
-            padding: const EdgeInsets.only(right: 16, left: 16),
+            padding: EdgeInsets.only(right: 16.r, left: 16.r),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -80,16 +82,17 @@ class TopMenu extends GetView<PosController> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         PrimaryBtnWithChild(
-                          width: 48,
-                          height: 48,
+                          width: 48.rMin(kMinTouch),
+                          height: 48.rMin(kMinTouch),
+                          padding: EdgeInsets.zero,
                           color: StaticColors.blueColor,
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
                                 Icons.refresh_rounded,
                                 color: Colors.white,
-                                size: 23,
+                                size: 23.r,
                               ),
                             ],
                           ),
@@ -101,16 +104,17 @@ class TopMenu extends GetView<PosController> {
                             PosController.to.clearCartList();
                           },
                         ),
-                        const SizedBox(width: 18),
+                        SizedBox(width: 18.r),
                         //setting button
                         PrimaryBtnWithChild(
-                          width: 48,
-                          height: 48,
+                          width: 48.rMin(kMinTouch),
+                          height: 48.rMin(kMinTouch),
+                          padding: EdgeInsets.zero,
                           textColor: Colors.white,
                           color: StaticColors.blueColor,
-                          child: const Icon(
+                          child: Icon(
                             Icons.settings,
-                            size: 25,
+                            size: 25.r,
                             color: Colors.white,
                           ),
                           onPressed: () {
@@ -140,9 +144,9 @@ class TopMenu extends GetView<PosController> {
                                       false),
                               child: Row(
                                 children: [
-                                  const SizedBox(width: 18),
+                                  SizedBox(width: 18.r),
                                   PrimaryBtn(
-                                    width: 100,
+                                    width: 100.rMin(80),
                                     onPressed: () async {
                                       PopupDialog.customDialog2(
                                         barrierDismissible: false,
@@ -164,9 +168,9 @@ class TopMenu extends GetView<PosController> {
                           },
                         ),
                         //clock in/out button
-                        const SizedBox(width: 18),
+                        SizedBox(width: 18.r),
                         PrimaryBtn(
-                          width: 100,
+                          width: 100.rMin(80),
                           onPressed: () async {
                             AuthController.to.isShowSplashScreen.value = false;
                             Get.offAndToNamed(Routes.AUTH);
@@ -190,7 +194,7 @@ class TopMenu extends GetView<PosController> {
               ],
             ),
           ),
-          12.height,
+          SizedBox(height: 12.r),
           //row 2
           GetBuilder<PosController>(
             builder: (c) {
@@ -251,15 +255,15 @@ class TopMenu extends GetView<PosController> {
                                 : StaticColors.greenColor,
                             width: 2,
                           ),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(8.r),
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.home,
-                          size: 28,
+                          size: 28.r,
                           color: Colors.white,
                         ),
                       ),
-                    ).marginOnly(right: 16),
+                    ).marginOnly(right: 16.r),
                     Expanded(
                       child: ScrollConfiguration(
                         behavior: ScrollBehavior().copyWith(overscroll: false),
@@ -309,7 +313,7 @@ class TopMenu extends GetView<PosController> {
                                   text: 'TAKEOUT',
                                   textMaxSize: txtMaxSize,
                                   textMinSize: txtMinSize,
-                                ).marginOnly(right: 10),
+                                ).marginOnly(right: 10.r),
                               ),
                               Visibility(
                                 visible:
@@ -353,7 +357,7 @@ class TopMenu extends GetView<PosController> {
                                   text: 'DINE-IN',
                                   textMaxSize: txtMaxSize,
                                   textMinSize: txtMinSize,
-                                ).marginOnly(right: 10),
+                                ).marginOnly(right: 10.r),
                               ),
 
                               // Visibility(

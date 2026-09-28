@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/services/base/preferences.dart';
@@ -96,9 +97,9 @@ class _MyTimeState extends State<MyTime> {
       builder: (context, timeString, child) {
         return Text(
           timeString,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.black,
-            fontSize: 16,
+            fontSize: 16.sp,
             fontWeight: FontWeight.bold,
           ),
         );

@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yogo_pos/app/services/controller/config_controller.dart';
@@ -23,10 +24,10 @@ class SwitchStyleThemeToggle extends StatelessWidget {
         child: AnimatedContainer(
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOut,
-          width: 50,
-          height: 30,
+          width: 50.r,
+          height: 30.r,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(15.r),
             gradient: LinearGradient(
               colors: controller.isLightTheme
                   ? [
@@ -52,27 +53,27 @@ class SwitchStyleThemeToggle extends StatelessWidget {
             children: [
               // Background icons
               Positioned(
-                left: 6,
-                top: 7,
+                left: 6.r,
+                top: 7.r,
                 child: AnimatedOpacity(
                   duration: Duration(milliseconds: 200),
                   opacity: controller.isLightTheme ? 0.3 : 1.0,
                   child: Icon(
                     Icons.nightlight_round,
-                    size: 14,
+                    size: 14.r,
                     color: Colors.white,
                   ),
                 ),
               ),
               Positioned(
-                right: 6,
-                top: 7,
+                right: 6.r,
+                top: 7.r,
                 child: AnimatedOpacity(
                   duration: Duration(milliseconds: 200),
                   opacity: controller.isLightTheme ? 1.0 : 0.3,
                   child: Icon(
                     Icons.wb_sunny,
-                    size: 14,
+                    size: 14.r,
                     color: Colors.white,
                   ),
                 ),
@@ -81,11 +82,11 @@ class SwitchStyleThemeToggle extends StatelessWidget {
               AnimatedPositioned(
                 duration: Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
-                left: controller.isLightTheme ? 22 : 2,
+                left: controller.isLightTheme ? 22.r : 2,
                 top: 2,
                 child: Container(
-                  width: 26,
-                  height: 26,
+                  width: 26.r,
+                  height: 26.r,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
@@ -101,7 +102,7 @@ class SwitchStyleThemeToggle extends StatelessWidget {
                     controller.isLightTheme
                         ? Icons.wb_sunny
                         : Icons.nightlight_round,
-                    size: 14,
+                    size: 14.r,
                     color: controller.isLightTheme
                         ? Color(0xFFFFA500)
                         : Color(0xFF4C1D95),
@@ -131,10 +132,10 @@ class MinimalSwitchThemeToggle extends StatelessWidget {
         child: AnimatedContainer(
           duration: Duration(milliseconds: 250),
           curve: Curves.easeInOut,
-          width: 50,
-          height: 30,
+          width: 50.r,
+          height: 30.r,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(15.r),
             color:
                 controller.isLightTheme ? Color(0xFFFFA500) : Color(0xFF4C1D95),
             boxShadow: [
@@ -147,7 +148,7 @@ class MinimalSwitchThemeToggle extends StatelessWidget {
               ),
             ],
           ),
-          padding: EdgeInsets.all(3),
+          padding: EdgeInsets.all(3.r),
           child: AnimatedAlign(
             duration: Duration(milliseconds: 250),
             curve: Curves.easeInOut,
@@ -155,8 +156,8 @@ class MinimalSwitchThemeToggle extends StatelessWidget {
                 ? Alignment.centerRight
                 : Alignment.centerLeft,
             child: Container(
-              width: 24,
-              height: 24,
+              width: 24.r,
+              height: 24.r,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
@@ -174,7 +175,7 @@ class MinimalSwitchThemeToggle extends StatelessWidget {
                       ? Icons.wb_sunny
                       : Icons.nightlight_round,
                   key: ValueKey(controller.isLightTheme),
-                  size: 14,
+                  size: 14.r,
                   color: controller.isLightTheme
                       ? Color(0xFFFFA500)
                       : Color(0xFF4C1D95),
@@ -202,10 +203,10 @@ class IOSSwitchThemeToggle extends StatelessWidget {
         },
         child: AnimatedContainer(
           duration: Duration(milliseconds: 300),
-          width: 50,
-          height: 30,
+          width: 50.r,
+          height: 30.r,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(15.r),
             color: controller.isLightTheme
                 ? Color(0xFFFFA500)
                 : Color(0xFF34C759).withAlpha(76),
@@ -220,11 +221,11 @@ class IOSSwitchThemeToggle extends StatelessWidget {
             duration: Duration(milliseconds: 300),
             curve: Curves.easeInOut,
             padding: controller.isLightTheme
-                ? EdgeInsets.only(left: 22)
-                : EdgeInsets.only(right: 22),
+                ? EdgeInsets.only(left: 22.r)
+                : EdgeInsets.only(right: 22.r),
             child: Container(
-              width: 26,
-              height: 26,
+              width: 26.r,
+              height: 26.r,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
@@ -243,7 +244,7 @@ class IOSSwitchThemeToggle extends StatelessWidget {
                       ? Icons.wb_sunny
                       : Icons.nightlight_round,
                   key: ValueKey(controller.isLightTheme),
-                  size: 14,
+                  size: 14.r,
                   color: controller.isLightTheme
                       ? Color(0xFFFFA500)
                       : Color(0xFF4C1D95),
@@ -271,10 +272,10 @@ class MaterialSwitchThemeToggle extends StatelessWidget {
         },
         child: AnimatedContainer(
           duration: Duration(milliseconds: 300),
-          width: 50,
-          height: 30,
+          width: 50.r,
+          height: 30.r,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(15.r),
             color: controller.isLightTheme
                 ? Colors.orange.shade100
                 : Colors.indigo.shade900,
@@ -283,22 +284,22 @@ class MaterialSwitchThemeToggle extends StatelessWidget {
             children: [
               // Track icons
               Positioned(
-                left: 8,
-                top: 8,
+                left: 8.r,
+                top: 8.r,
                 child: Icon(
                   Icons.nightlight_round,
-                  size: 12,
+                  size: 12.r,
                   color: controller.isLightTheme
                       ? Colors.grey.shade400
                       : Colors.white70,
                 ),
               ),
               Positioned(
-                right: 8,
-                top: 8,
+                right: 8.r,
+                top: 8.r,
                 child: Icon(
                   Icons.wb_sunny,
-                  size: 12,
+                  size: 12.r,
                   color: controller.isLightTheme
                       ? Colors.orange.shade700
                       : Colors.grey.shade600,
@@ -308,10 +309,10 @@ class MaterialSwitchThemeToggle extends StatelessWidget {
               AnimatedPositioned(
                 duration: Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
-                left: controller.isLightTheme ? 20 : 0,
+                left: controller.isLightTheme ? 20.r : 0,
                 child: Container(
-                  width: 30,
-                  height: 30,
+                  width: 30.r,
+                  height: 30.r,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
@@ -331,7 +332,7 @@ class MaterialSwitchThemeToggle extends StatelessWidget {
                     controller.isLightTheme
                         ? Icons.wb_sunny
                         : Icons.nightlight_round,
-                    size: 16,
+                    size: 16.r,
                     color: Colors.white,
                   ),
                 ),
@@ -357,10 +358,10 @@ class GradientSwitchThemeToggle extends StatelessWidget {
           controller.update();
         },
         child: Container(
-          width: 50,
-          height: 30,
+          width: 50.r,
+          height: 30.r,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(15.r),
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
@@ -389,14 +390,14 @@ class GradientSwitchThemeToggle extends StatelessWidget {
               // Background icons
               AnimatedPositioned(
                 duration: Duration(milliseconds: 300),
-                left: controller.isLightTheme ? 8 : 4,
-                top: 8,
+                left: controller.isLightTheme ? 8.r : 4.r,
+                top: 8.r,
                 child: AnimatedOpacity(
                   duration: Duration(milliseconds: 200),
                   opacity: controller.isLightTheme ? 0.5 : 1.0,
                   child: Icon(
                     Icons.nightlight_round,
-                    size: 12,
+                    size: 12.r,
                     color: Colors.white,
                   ),
                 ),
@@ -404,13 +405,13 @@ class GradientSwitchThemeToggle extends StatelessWidget {
               AnimatedPositioned(
                 duration: Duration(milliseconds: 300),
                 // right: controller ? 4 : 8,
-                top: 8,
+                top: 8.r,
                 child: AnimatedOpacity(
                   duration: Duration(milliseconds: 200),
                   opacity: controller.isLightTheme ? 1.0 : 0.5,
                   child: Icon(
                     Icons.wb_sunny,
-                    size: 12,
+                    size: 12.r,
                     color: Colors.white,
                   ),
                 ),
@@ -419,11 +420,11 @@ class GradientSwitchThemeToggle extends StatelessWidget {
               AnimatedPositioned(
                 duration: Duration(milliseconds: 350),
                 curve: Curves.easeInOutCubic,
-                left: controller.isLightTheme ? 22 : 2,
+                left: controller.isLightTheme ? 22.r : 2,
                 top: 2,
                 child: Container(
-                  width: 26,
-                  height: 26,
+                  width: 26.r,
+                  height: 26.r,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
@@ -457,7 +458,7 @@ class GradientSwitchThemeToggle extends StatelessWidget {
                           ? Icons.wb_sunny
                           : Icons.nightlight_round,
                       key: ValueKey(controller.isLightTheme),
-                      size: 14,
+                      size: 14.r,
                       color: controller.isLightTheme
                           ? Color(0xFFFFA500)
                           : Color(0xFF4C1D95),
@@ -486,7 +487,7 @@ class SwitchStyleThemeToggleDemo extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 30,
+          spacing: 30.r,
           children: [
             _buildOption(
                 'Option 1: Classic Switch ⭐', SwitchStyleThemeToggle()),
@@ -508,9 +509,9 @@ class SwitchStyleThemeToggleDemo extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w600),
         ),
-        SizedBox(height: 12),
+        SizedBox(height: 12.r),
         toggle,
       ],
     );

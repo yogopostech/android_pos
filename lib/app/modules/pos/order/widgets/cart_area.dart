@@ -4446,6 +4446,8 @@
 
 //TODO:3rd UI
 
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -4486,7 +4488,7 @@ class CartArea extends GetView<PosController> {
     return AbsorbPointer(
       absorbing: false,
       child: Container(
-        width: 400,
+        width: 400.r,
         decoration: BoxDecoration(
           color: ConfigController.to.isLightTheme
               ? theme.cardColor
@@ -4498,10 +4500,10 @@ class CartArea extends GetView<PosController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 12, top: 10),
+                  padding: EdgeInsets.only(left: 12.r, top: 10.r),
                   child: Wrap(
                     crossAxisAlignment: WrapCrossAlignment.end,
-                    spacing: 26,
+                    spacing: 26.r,
                     children: List.generate(controller.orderTypeList.length, (
                       index,
                     ) {
@@ -4582,7 +4584,7 @@ class CartArea extends GetView<PosController> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 12, right: 12, top: 10),
+                  padding: EdgeInsets.only(left: 12.r, right: 12.r, top: 10.r),
                   child: Row(
                     children: [
                       Expanded(
@@ -4622,7 +4624,7 @@ class CartArea extends GetView<PosController> {
                           },
                         ),
                       ),
-                      const SizedBox(width: 12),
+                      SizedBox(width: 12.r),
                       Expanded(
                         child: CustomTextField(
                           keyboardType: KeyboardType.numeric,
@@ -4723,11 +4725,11 @@ class CartArea extends GetView<PosController> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.r),
                 Visibility(
                   visible: controller.orderType == "DINE_IN",
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 12, right: 12),
+                    padding: EdgeInsets.only(left: 12.r, right: 12.r),
                     child: Row(
                       children: [
                         Expanded(
@@ -4774,7 +4776,7 @@ class CartArea extends GetView<PosController> {
                             },
                           ),
                         ),
-                        const SizedBox(width: 12),
+                        SizedBox(width: 12.r),
                         Expanded(
                           child: CustomTextField(
                             readOnly: controller.isGuestReadOnly,
@@ -4820,10 +4822,10 @@ class CartArea extends GetView<PosController> {
                 Visibility(
                   visible: controller.orderType == "DELIVERY",
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 12,
-                      right: 12,
-                      bottom: 12,
+                    padding: EdgeInsets.only(
+                      left: 12.r,
+                      right: 12.r,
+                      bottom: 12.r,
                     ),
                     child: CustomTextField(
                       controller: controller.addressController,
@@ -4851,10 +4853,10 @@ class CartArea extends GetView<PosController> {
                       controller.selectedLon != null &&
                       controller.orderType == "DELIVERY",
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 12,
-                      right: 12,
-                      bottom: 12,
+                    padding: EdgeInsets.only(
+                      left: 12.r,
+                      right: 12.r,
+                      bottom: 12.r,
                     ),
                     child: CustomTextField(
                       controller: controller.additionalDetailsController,
@@ -4874,7 +4876,7 @@ class CartArea extends GetView<PosController> {
                       controller.orderType == "TAKEOUT" ||
                       controller.orderType == "DELIVERY",
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 12, right: 12),
+                    padding: EdgeInsets.only(left: 12.r, right: 12.r),
                     child: CustomTextField(
                       controller: controller.notesController,
                       focusNode: controller.notesFocusNode,
@@ -4887,22 +4889,22 @@ class CartArea extends GetView<PosController> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.r),
                 Expanded(
                   child: SlidableAutoCloseBehavior(
                     child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      padding: EdgeInsets.symmetric(horizontal: 12.r),
                       controller: controller.cartListScrollController,
                       shrinkWrap: true,
                       itemCount: controller.myOrder.carts.length,
                       itemBuilder: (context, index) {
                         var data = controller.myOrder.carts[index];
                         return Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
+                          padding: EdgeInsets.only(bottom: 12.r),
                           // ClipRRect stops the item content from overflowing
                           // outside its bounds while it is being swiped.
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(6.r),
                             child: Slidable(
                               enabled: !controller.isUpdateView,
                               key: ValueKey(data.id),
@@ -4923,25 +4925,25 @@ class CartArea extends GetView<PosController> {
                                     padding: EdgeInsets.zero,
                                     child: Center(
                                       child: Container(
-                                        width: 90,
-                                        padding: const EdgeInsets.only(
-                                          left: 8,
-                                          right: 8,
-                                          top: 4,
-                                          bottom: 4,
+                                        width: 90.r,
+                                        padding: EdgeInsets.only(
+                                          left: 8.r,
+                                          right: 8.r,
+                                          top: 4.r,
+                                          bottom: 4.r,
                                         ),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(
-                                            6,
+                                            6.r,
                                           ),
                                           color: StaticColors.greenColor,
                                         ),
-                                        child: const Text(
+                                        child: Text(
                                           "Repeat",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 20,
+                                            fontSize: 20.sp,
                                             fontWeight: FontWeight.w800,
                                           ),
                                         ),
@@ -4969,25 +4971,25 @@ class CartArea extends GetView<PosController> {
                                     padding: EdgeInsets.zero,
                                     child: Center(
                                       child: Container(
-                                        width: 90,
-                                        padding: const EdgeInsets.only(
-                                          left: 8,
-                                          right: 8,
-                                          top: 4,
-                                          bottom: 4,
+                                        width: 90.r,
+                                        padding: EdgeInsets.only(
+                                          left: 8.r,
+                                          right: 8.r,
+                                          top: 4.r,
+                                          bottom: 4.r,
                                         ),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(
-                                            6,
+                                            6.r,
                                           ),
                                           color: StaticColors.redColor,
                                         ),
-                                        child: const Text(
+                                        child: Text(
                                           "Remove",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 20,
+                                            fontSize: 20.sp,
                                             fontWeight: FontWeight.w800,
                                           ),
                                         ),
@@ -5020,7 +5022,7 @@ class CartArea extends GetView<PosController> {
                                                 ).withAlpha(60)
                                               : Colors.transparent,
                                           borderRadius: BorderRadius.circular(
-                                            6,
+                                            6.r,
                                           ),
                                         ),
                                         child: child,
@@ -5165,7 +5167,7 @@ class CartArea extends GetView<PosController> {
                   maxLines: 5,
                 ),
                 const Divider(thickness: .5, height: 1),
-                SizedBox(height: 5),
+                SizedBox(height: 5.r),
                 _row(
                   theme,
                   title: "Subtotal : ",
@@ -5182,8 +5184,8 @@ class CartArea extends GetView<PosController> {
                         ? const SizedBox()
                         : InkWell(
                             child: Container(
-                              margin: const EdgeInsets.only(left: 4),
-                              padding: const EdgeInsets.all(4.0),
+                              margin: EdgeInsets.only(left: 4.r),
+                              padding: EdgeInsets.all(4.0.rMin(6)),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
@@ -5193,10 +5195,10 @@ class CartArea extends GetView<PosController> {
                                       Colors.white,
                                 ),
                               ),
-                              child: const Icon(
+                              child: Icon(
                                 Icons.delete,
                                 color: StaticColors.redColor,
-                                size: 20,
+                                size: 20.rMin(18),
                               ),
                             ),
                             onTap: () {
@@ -5248,8 +5250,8 @@ class CartArea extends GetView<PosController> {
                         : Row(
                             children: [
                               Container(
-                                margin: const EdgeInsets.only(left: 4),
-                                padding: const EdgeInsets.all(4.0),
+                                margin: EdgeInsets.only(left: 4.r),
+                                padding: EdgeInsets.all(4.0.r),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
@@ -5282,13 +5284,13 @@ class CartArea extends GetView<PosController> {
                                   },
                                 ),
                               ),
-                              SizedBox(width: 34),
+                              SizedBox(width: 34.r),
                               Visibility(
                                 visible:
                                     controller.myOrder.gratuityPercentage != 0,
                                 child: Container(
-                                  margin: const EdgeInsets.only(left: 4),
-                                  padding: const EdgeInsets.all(4.0),
+                                  margin: EdgeInsets.only(left: 4.r),
+                                  padding: EdgeInsets.all(4.0.r),
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(
@@ -5350,8 +5352,8 @@ class CartArea extends GetView<PosController> {
                     child: controller.myOrder.paymentStatus == "PAID"
                         ? const SizedBox.shrink()
                         : Container(
-                            margin: const EdgeInsets.only(left: 4),
-                            padding: const EdgeInsets.all(4.0),
+                            margin: EdgeInsets.only(left: 4.r),
+                            padding: EdgeInsets.all(4.0.r),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
@@ -5385,8 +5387,8 @@ class CartArea extends GetView<PosController> {
                         : Row(
                             children: [
                               Container(
-                                margin: const EdgeInsets.only(left: 4),
-                                padding: const EdgeInsets.all(4.0),
+                                margin: EdgeInsets.only(left: 4.r),
+                                padding: EdgeInsets.all(4.0.r),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
@@ -5419,12 +5421,12 @@ class CartArea extends GetView<PosController> {
                                   },
                                 ),
                               ),
-                              SizedBox(width: 34),
+                              SizedBox(width: 34.r),
                               Visibility(
                                 visible: controller.myOrder.deliveryFee != 0,
                                 child: Container(
-                                  margin: const EdgeInsets.only(left: 4),
-                                  padding: const EdgeInsets.all(4.0),
+                                  margin: EdgeInsets.only(left: 4.r),
+                                  padding: EdgeInsets.all(4.0.r),
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(
@@ -5478,15 +5480,15 @@ class CartArea extends GetView<PosController> {
                 ),
                 _row(
                   theme,
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   title: "Total : ",
                   value:
                       "\$ ${controller.myOrder.totalOrderAmount.toStringAsFixed(2)}",
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 12,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.r,
+                    vertical: 12.r,
                   ),
                   child: Row(
                     children: [
@@ -5529,9 +5531,9 @@ class CartArea extends GetView<PosController> {
                                     );
                                   }
                                 },
-                                textMaxSize: 26,
-                                textMinSize: 24,
-                                height: 70,
+                                textMaxSize: 26.sp.roundToDouble(),
+                                textMinSize: 24.sp.roundToDouble(),
+                                height: 70.r,
                                 color: StaticColors.blueColor,
                                 textColor: Colors.white,
                                 text: controller.isUpdateView
@@ -5579,7 +5581,7 @@ Widget _row(
   required String value,
 }) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+    padding: EdgeInsets.symmetric(horizontal: 12.r, vertical: 0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -5588,7 +5590,7 @@ Widget _row(
             Text(
               title,
               style: theme.textTheme.titleSmall?.copyWith(
-                fontSize: fontSize ?? 16,
+                fontSize: fontSize ?? 16.sp,
                 fontWeight: fontWeight ?? FontWeight.w700,
               ),
             ),
@@ -5598,7 +5600,7 @@ Widget _row(
         Text(
           value,
           style: theme.textTheme.titleSmall?.copyWith(
-            fontSize: fontSize ?? 16,
+            fontSize: fontSize ?? 16.sp,
             fontWeight: fontWeight ?? FontWeight.w700,
           ),
         ),
@@ -5617,7 +5619,7 @@ Widget _modifiers(
   return Visibility(
     visible: value.contains(':') ? value.length > 6 : value != '',
     child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8),
+      padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.r),
       child: Text.rich(
         maxLines: maxLines,
         style: theme.textTheme.labelSmall?.copyWith(

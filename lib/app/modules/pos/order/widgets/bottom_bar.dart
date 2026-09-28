@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,8 +34,8 @@ class BottomBar extends GetView<PosController> {
             BaseController.to.posDisplayMode ==
             PosDisplayMode.categoryWithItems;
         return Container(
-          height: 100,
-          padding: const EdgeInsets.only(right: 16, top: 12, bottom: 12),
+          height: 100.r,
+          padding: EdgeInsets.only(right: 16.r, top: 12.r, bottom: 12.r),
           decoration: BoxDecoration(
             color: ConfigController.to.isLightTheme
                 ? theme.cardColor
@@ -120,8 +122,8 @@ class BottomBar extends GetView<PosController> {
                       // ),
 
                       PrimaryBtn(
-                        width: 90,
-                        height: 80,
+                        width: 90.r,
+                        height: 80.r,
                         textColor: Colors.white,
                         color: StaticColors.blueColor,
                         onPressed: () async {
@@ -148,15 +150,15 @@ class BottomBar extends GetView<PosController> {
                           );
                         },
                         text: "Delete".toUpperCase(),
-                      ).marginOnly(right: 10),
+                      ).marginOnly(right: 10.r),
                       Visibility(
                         visible: !controller.isUpdateView,
                         child: PrimaryBtn(
-                          width: 90,
-                          height: 80,
+                          width: 90.r,
+                          height: 80.r,
                           textColor: Colors.white,
                           color: StaticColors.blueColor,
-                          padding: EdgeInsets.symmetric(horizontal: 4),
+                          padding: EdgeInsets.symmetric(horizontal: 4.r),
                           onPressed: () async {
                             if (controller.myOrder.carts.isEmpty) {
                               PopupDialog.showErrorMessage(
@@ -179,17 +181,17 @@ class BottomBar extends GetView<PosController> {
                             );
                           },
                           text: "CANCELL".toUpperCase(),
-                        ).marginOnly(right: 10),
+                        ).marginOnly(right: 10.r),
                       ),
 
                       // SizedBox(width: 10),
                       Visibility(
                         visible: !controller.isUpdateView,
                         child: PrimaryBtn(
-                          width: 90,
-                          height: 80,
-                          textMaxSize: 25,
-                          textMinSize: 20,
+                          width: 90.r,
+                          height: 80.r,
+                          textMaxSize: 25.sp.roundToDouble(),
+                          textMinSize: 20.sp.roundToDouble(),
                           textColor: Colors.white,
                           color: StaticColors.blueColor,
                           onPressed: () {
@@ -266,7 +268,7 @@ class BottomBar extends GetView<PosController> {
                             }
                           },
                           text: "Pay".toUpperCase(),
-                        ).marginOnly(right: 10),
+                        ).marginOnly(right: 10.r),
                       ),
                       // PrimaryBtn(
                       //   width: 90,
@@ -282,7 +284,7 @@ class BottomBar extends GetView<PosController> {
                       // ).marginOnly(right: 10),
 
                       PrimaryBtn(
-                        height: 80,
+                        height: 80.r,
 
                         textColor: Colors.white,
                         color: StaticColors.blueColor,
@@ -300,7 +302,7 @@ class BottomBar extends GetView<PosController> {
                           );
                         },
                         text: "Discount".toUpperCase(),
-                      ).marginOnly(right: 10),
+                      ).marginOnly(right: 10.r),
                       // ElevatedButton(
                       //   style: ElevatedButton.styleFrom(
                       //     backgroundColor: StaticColors.blueColor,
@@ -394,8 +396,8 @@ class BottomBar extends GetView<PosController> {
               Visibility(
                 visible: isCategoryWithItems,
                 replacement: SizedBox(
-                  width: 180,
-                  height: 70,
+                  width: 180.r,
+                  height: 70.r,
                   // color: theme.cardColor,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -406,11 +408,11 @@ class BottomBar extends GetView<PosController> {
                           PosController.to.changeItemsView();
                         },
                         child: Container(
-                          width: 60,
-                          height: 60,
+                          width: 60.rMin(44),
+                          height: 60.rMin(44),
                           decoration: BoxDecoration(
                             color: theme.cardColor,
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(6.r),
                             border: Border.all(
                               width: 2,
                               color:
@@ -418,7 +420,7 @@ class BottomBar extends GetView<PosController> {
                                   Colors.white,
                             ),
                           ),
-                          child: const Icon(Icons.arrow_back_ios_new, size: 40),
+                          child: Icon(Icons.arrow_back_ios_new, size: 40.r),
                         ),
                       ),
                       // const Icon(Icons.arrow_back_ios_new),
@@ -429,10 +431,10 @@ class BottomBar extends GetView<PosController> {
                           PosController.to.changeItemsView();
                         },
                         child: Container(
-                          width: 60,
-                          height: 60,
+                          width: 60.rMin(44),
+                          height: 60.rMin(44),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(6.r),
                             color: theme.cardColor,
                             border: Border.all(
                               width: 2,
@@ -441,15 +443,15 @@ class BottomBar extends GetView<PosController> {
                                   Colors.white,
                             ),
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.arrow_forward_ios_rounded,
-                            size: 40,
+                            size: 40.r,
                           ),
                         ),
                       ),
                     ],
                   ),
-                ).marginOnly(left: 10),
+                ).marginOnly(left: 10.r),
                 child: SizedBox.shrink(),
               ),
             ],

@@ -84,7 +84,7 @@ class AuthController extends GetxController {
       );
       PopupDialog.closeLoadingDialog();
 
-      if (res.statusCode == 200 && res.data["data"] != null) {
+      if (res.statusCode == 200 && res.data is Map && res.data["data"] != null) {
         //auth code
         // print(res.data["data"]["employee"].toString());
         password.value = "";
@@ -145,10 +145,21 @@ class AuthController extends GetxController {
         //   ClockInController.to.startclockIn();
         // }
         // clockIn logic
+      } else if (res.statusCode == null) {
+        // Request server porjonto jayni (internet nai / timeout / server down).
+        // Ei case e res.data null thake, tai res.data["message"] crash korto.
+        kLogger.e('Login network error: ${res.message}');
+        PopupDialog.showErrorMessage(
+          res.message.isNotEmpty
+              ? res.message
+              : "Cannot reach server. Check the internet connection.",
+        );
       } else if (res.statusCode == 500) {
         PopupDialog.showErrorMessage("Server Error");
       } else {
-        PopupDialog.showErrorMessage(res.data["message"] ?? "Login failed.");
+        final body = res.data;
+        final msg = body is Map ? body["message"]?.toString() : null;
+        PopupDialog.showErrorMessage(msg ?? "Login failed.");
       }
     } catch (e, stack) {
       kLogger.e('Error from %%%% login %%%% => $e\n$stack');
