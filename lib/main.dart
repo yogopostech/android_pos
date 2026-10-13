@@ -5,17 +5,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toastification/toastification.dart';
 import 'package:uuid/uuid.dart';
 import 'package:yogo_pos/app/helper/security_check.dart';
 import 'package:yogo_pos/app/modules/setting/controllers/payments_controller.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
+import 'package:yogo_pos/app/services/base/permission_service.dart';
 import 'package:yogo_pos/app/services/controller/config_controller.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:yogo_pos/app/widgets/permission_gate.dart';
 import 'package:yogo_pos/config/dark_theme.dart';
 import 'package:yogo_pos/config/light_theme.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:get/get.dart';
 import 'app/services/base/api_service.dart';
 import 'app/services/base/dio_interceptor.dart';
@@ -29,6 +33,9 @@ Future<void> main() async {
   // Main app instance
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  /// Android API level, used by the permission gate
+  await PermissionService.init();
 
   /// Shared Preferences
   await Preferences.init();
@@ -98,18 +105,44 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ToastificationWrapper(
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-
-        themeMode: ConfigController.to.isLightTheme
-            ? ThemeMode.light
-            : ThemeMode.dark,
-        theme: lightTheme,
-        darkTheme: darkTheme,
-        initialBinding: BaseBinding(apiService: apiService),
-        initialRoute: AppPages.INITIAL,
-        getPages: AppPages.routes,
+    // Sob size kDesignSize theke scale hobe
+    // (.r = size/padding/radius, .sp = font). Details: config/screen_config.dart
+    return ScreenUtilInit(
+      designSize: kDesignSize,
+      minTextAdapt: true,
+      fontSizeResolver: dampedFontSize,
+      builder: (context, child) => ToastificationWrapper(
+        child: GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          themeMode: ConfigController.to.isLightTheme
+              ? ThemeMode.light
+              : ThemeMode.dark,
+          theme: lightTheme,
+          darkTheme: darkTheme,
+          initialBinding: BaseBinding(apiService: apiService),
+          initialRoute: AppPages.INITIAL,
+          getPages: AppPages.routes,
+          // Device font-size setting boro thakleo layout bhangbe na, ar
+          // theme er text (titleMedium, bodyLarge...) o screen onujayi scale.
+          // PermissionGate: permission na pawa porjonto kono screen e jawa jabe na.
+          builder: (context, child) {
+            final mq = MediaQuery.of(context);
+            final theme = Theme.of(context);
+            return MediaQuery(
+              data: mq.copyWith(
+                textScaler: mq.textScaler.clamp(maxScaleFactor: 1.0),
+              ),
+              child: Theme(
+                data: theme.copyWith(
+                  textTheme: scaleTextTheme(theme.textTheme),
+                ),
+                child: PermissionGate(
+                  child: child ?? const SizedBox.shrink(),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
