@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/discount_model.dart';
 import 'package:yogo_pos/app/modules/pos/repo/pos_repo.dart';
 import 'package:yogo_pos/app/utils/extension/num_extensions.dart';
@@ -135,7 +136,7 @@ class SplitOrderController extends GetxController {
     if (splitAmountChecks.splitAmounts.isNotEmpty &&
         splitAmountChecks.splitAmounts.every((item) => item.payment == null)) {
       PopupDialog.customDialog(
-        width: 600,
+        width: 600.r,
         child: PopupDialog.permissionDialog(
           titleStyle: Get.theme.textTheme.headlineSmall,
           Get.theme,

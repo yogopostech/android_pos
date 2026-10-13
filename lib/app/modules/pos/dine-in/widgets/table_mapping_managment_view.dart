@@ -1,6 +1,7 @@
 // table_managment_view.dart
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in/controllers/dine_in_controller.dart';
 import 'package:yogo_pos/app/utils/static_colors.dart';
@@ -39,16 +40,16 @@ class TableManagmentView extends GetView<TableMappingController> {
         height: dialogHeight,
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.r),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.r),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // ============ CATEGORY FILTER BAR (TOP) ============
               Container(
-                height: 80,
+                height: 80.r,
                 color: Theme.of(context).scaffoldBackgroundColor,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -61,7 +62,7 @@ class TableManagmentView extends GetView<TableMappingController> {
                     return Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(right: 16),
+                          padding: EdgeInsets.only(right: 16.r),
                           child: _buildHorizontalCategoryButton(
                               label: "All Tables",
                               isSelected:
@@ -71,7 +72,7 @@ class TableManagmentView extends GetView<TableMappingController> {
                         ),
                         ...DineInController.to.tableCategoryList.map((cat) {
                           return Padding(
-                            padding: const EdgeInsets.only(right: 16),
+                            padding: EdgeInsets.only(right: 16.r),
                             child: _buildHorizontalCategoryButton(
                                 label: cat.name,
                                 isSelected:
@@ -87,12 +88,12 @@ class TableManagmentView extends GetView<TableMappingController> {
                 ),
               ),
               Container(
-                height: 2,
-                width: 1180,
+                height: 2.r,
+                width: 1180.r,
                 color: Colors.white,
               ),
               SizedBox(
-                height: 10,
+                height: 10.r,
               ),
               // ============ FLOOR PLAN (BOTTOM) ============
               Expanded(
@@ -195,25 +196,25 @@ class TableManagmentView extends GetView<TableMappingController> {
     required BuildContext context,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 6.r, vertical: 8.r),
       child: SizedBox(
-        width: 150,
-        height: 60,
+        width: 150.r,
+        height: 60.r,
         child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
             backgroundColor:
                 isSelected ? StaticColors.blueColor : Colors.grey[300],
             foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20.r),
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
             elevation: isSelected ? 6 : 2,
           ),
           child: Text(
             label.toUpperCase(),
             style: TextStyle(
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w600,
                 color: isSelected ? Colors.white : Colors.black),
             textAlign: TextAlign.center,
@@ -239,7 +240,7 @@ class TableManagmentView extends GetView<TableMappingController> {
       height: table.height,
       decoration: BoxDecoration(
         color: controller.getTableColor(table),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         border: Border.all(color: Colors.black12),
         boxShadow: const [
           BoxShadow(color: Colors.black26, blurRadius: 3, offset: Offset(1, 1))
@@ -293,20 +294,20 @@ class TableManagmentView extends GetView<TableMappingController> {
         mainAxisSize: MainAxisSize.min,
         children: [
           MyCustomText(table.tableName,
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.white)
-              .marginOnly(bottom: 4),
+              .marginOnly(bottom: 4.r),
           MyCustomText('Seats: ${table.tableCapacity}',
-                  fontSize: 14,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.white)
-              .marginOnly(bottom: 4),
+              .marginOnly(bottom: 4.r),
           Visibility(
             visible: table.currentOrder != null,
             child: MyCustomText(
                 '\$${table.currentOrder?.totalOrderAmount.toStringAsFixed(2) ?? '0.00'}',
-                fontSize: 14,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.white),
           ),
@@ -385,7 +386,7 @@ class TableManagmentView extends GetView<TableMappingController> {
       } else if (isPOSPage && isUpdateView) {
         PopupDialog.animatedDialog(
           isErr: true,
-          width: 500,
+          width: 500.r,
           title: "Cannot Change Table as ${table.tableName} has ongoing order",
         );
       } else if (isMainPage) {

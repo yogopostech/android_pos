@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/modules/pos/order/widgets/custom_order_dialog_options.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
@@ -68,7 +69,7 @@ class SearchAndCustomItemRow extends GetView<PosController> {
                               : false,
                           textColor: Colors.white,
                           borderColor: StaticColors.blueColor,
-                        ).marginOnly(right: 12);
+                        ).marginOnly(right: 12.r);
                       },
                     ),
                   ),
@@ -92,7 +93,7 @@ class SearchAndCustomItemRow extends GetView<PosController> {
                         text: data.toUpperCase(),
                         borderColor: StaticColors.blueColor,
                         textColor: Colors.white,
-                      ).marginOnly(right: 12);
+                      ).marginOnly(right: 12.r);
                     }),
                   ),
                 ),
@@ -103,7 +104,7 @@ class SearchAndCustomItemRow extends GetView<PosController> {
         // custom
         // const Spacer(),
         SizedBox(
-          width: 150,
+          width: 150.r,
           child: PrimaryBtn(
             onPressed: () {
               PopupDialog.customDialog(child: const CustomOrderDialogOptions());
@@ -112,9 +113,9 @@ class SearchAndCustomItemRow extends GetView<PosController> {
             text: 'Custom'.toUpperCase(),
             textColor: Colors.white,
           ),
-        ).marginOnly(right: 12, left: 12), // search
+        ).marginOnly(right: 12.r, left: 12.r), // search
         SizedBox(
-          width: 250,
+          width: 250.r,
           child: GetBuilder<PosController>(
             builder: (context) {
               return CustomTextField(
@@ -125,7 +126,7 @@ class SearchAndCustomItemRow extends GetView<PosController> {
                 focusNode: controller.searchFocusNode,
                 hintStyle: TextStyle(
                   color: Colors.grey.shade400,
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
                 ),
                 style: theme.textTheme.titleLarge?.copyWith(

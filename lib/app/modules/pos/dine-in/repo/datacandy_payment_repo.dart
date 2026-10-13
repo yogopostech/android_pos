@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:get/get.dart';
 import 'package:yogo_pos/app/formatter/card_number_formatter.dart';
 import 'package:yogo_pos/app/formatter/decimal_formatter.dart';
@@ -28,8 +30,8 @@ Future<void> showAnimatedSuccessDialog(BuildContext context,
   showDialog(
     context: context,
     builder: (_) => AnimatedMessageDialog(
-      height: 350,
-      width: 600,
+      height: 350.r,
+      width: 600.r,
       title: title ?? "Payment Successful!",
       // message:message ?? "Transaction Successful!",
       type: DialogType.success,
@@ -43,8 +45,8 @@ Future<void> showAnimatedErrorDialog(BuildContext context,
   showDialog(
     context: context,
     builder: (_) => AnimatedMessageDialog(
-      height: 350,
-      width: 750,
+      height: 350.r,
+      width: 750.r,
       title: title ?? "Payment Failed!",
       // message: message ?? "Something went wrong while processing your payment.",
       type: DialogType.error,
@@ -58,8 +60,8 @@ Future<void> showAnimatedNetworkErrorDialog(BuildContext context,
   showDialog(
     context: context,
     builder: (_) => AnimatedMessageDialog(
-      height: 350,
-      width: 400,
+      height: 350.r,
+      width: 400.r,
       title: title ?? "Network Issue",
       message: message ?? "Please check your internet connection.",
       type: DialogType.warning,
@@ -178,8 +180,8 @@ class DataCandyPaymentRepo {
   static showDialogPay(num minPay) {
     PopupDialog.customDialog(
       // borderColor: Colors.amber,
-      width: 900,
-      height: 420,
+      width: 900.r,
+      height: 420.r,
 
       child: _Child(minPay: minPay),
     );
@@ -234,23 +236,23 @@ class _ChildState extends State<_Child> {
               text: 'Total: \$${widget.minPay.toStringAsFixed(2)}',
               color: Colors.transparent,
               isOutline: true,
-              textMaxSize: 100,
-              textMinSize: 32,
-              height: 100,
-            ).marginOnly(bottom: 34),
+              textMaxSize: 100.sp.roundToDouble(),
+              textMinSize: 32.sp.roundToDouble(),
+              height: 100.rMin(kMinTouch),
+            ).marginOnly(bottom: 34.r),
             //crud number and price text field row
             Row(
               children: [
                 // ✅ Card
                 SizedBox(
-                  width: 250,
+                  width: 250.r,
                   child: CustomTextField(
                     keyboardType: KeyboardType.decimalFormatted,
                     focusNode: totalAmountFocusNode,
                     initOpenKeyboard: true,
                     inputFormatters: [DecimalFormatter()],
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 22, horizontal: 12),
+                    padding: EdgeInsets.symmetric(
+                        vertical: 22.r, horizontal: 12.r),
                     controller: totalAmountController,
                     hintText: "Card Amount",
                     extraLabel: "Card Amount",
@@ -288,8 +290,8 @@ class _ChildState extends State<_Child> {
                     child: CustomTextField(
                       focusNode: cardFocusNode,
                       keyboardType: KeyboardType.cardNumberFormatted,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 22, horizontal: 12),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 22.r, horizontal: 12.r),
                       inputFormatters: [CardNumberFormatter()],
                       controller: cardController,
                       hintText: "xxxx xxxx xxxx xxxx",
@@ -340,28 +342,28 @@ class _ChildState extends State<_Child> {
                       debugPrint("Enter Valid Nums");
                     }
                   },
-                  height: 70,
-                  width: 200,
+                  height: 70.rMin(kMinTouch),
+                  width: 200.r,
                   color: StaticColors.blueColor,
-                  padding: const EdgeInsets.all(4.0),
+                  padding: EdgeInsets.all(4.0.r),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.print,
                         color: Colors.white,
-                        size: 25,
-                      ).marginOnly(right: 12),
-                      const FittedBox(
+                        size: 25.r,
+                      ).marginOnly(right: 12.r),
+                      FittedBox(
                         child: MyCustomText(
                           'Print',
                           color: Colors.white,
-                          fontSize: 25,
+                          fontSize: 25.sp,
                         ),
                       ),
                     ],
                   ),
-                ).marginOnly(right: 40),
+                ).marginOnly(right: 40.r),
                 // No Print
                 PrimaryBtnWithChild(
                   onPressed: () async {
@@ -389,23 +391,23 @@ class _ChildState extends State<_Child> {
                       debugPrint("Enter Valid Nums");
                     }
                   },
-                  height: 70,
-                  width: 200,
+                  height: 70.rMin(kMinTouch),
+                  width: 200.r,
                   textColor: Colors.white,
-                  padding: const EdgeInsets.all(4.0),
+                  padding: EdgeInsets.all(4.0.r),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.do_disturb_alt,
-                        size: 25,
+                        size: 25.r,
                         color: Colors.white,
-                      ).marginOnly(right: 12),
-                      const FittedBox(
+                      ).marginOnly(right: 12.r),
+                      FittedBox(
                         child: MyCustomText(
                           color: Colors.white,
                           'No Print',
-                          fontSize: 25,
+                          fontSize: 25.sp,
                         ),
                       ),
                     ],
@@ -516,16 +518,16 @@ class _AnimatedMessageDialogState extends State<AnimatedMessageDialog>
           scale: _scaleAnimation,
           child: Dialog(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.r),
             ),
             elevation: 10,
             // backgroundColor: Colors.transparent,
             insetPadding:
-                const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
+                EdgeInsets.symmetric(horizontal: 40.r, vertical: 24.r),
             child: Container(
               width: widget.width,
               height: widget.height,
-              padding: const EdgeInsets.all(24),
+              padding: EdgeInsets.all(24.r),
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
@@ -536,39 +538,39 @@ class _AnimatedMessageDialogState extends State<AnimatedMessageDialog>
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const SizedBox(height: 16),
+                        SizedBox(height: 16.r),
                         Icon(
                           _dialogIcon,
                           color: _dialogColor,
-                          size: 100,
+                          size: 100.r,
                         ),
-                        const SizedBox(height: 16),
+                        SizedBox(height: 16.r),
                         Text(
                           widget.title,
                           textAlign: TextAlign.center,
                           maxLines: 2,
-                          style: const TextStyle(
-                            fontSize: 55,
+                          style: TextStyle(
+                            fontSize: 55.sp,
                             fontWeight: FontWeight.w900,
                             color: Colors.black54,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(height: 8.r),
                         if (widget.message != null &&
                             widget.message!.isNotEmpty) ...[
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8.r),
                           Text(
                             widget.message!,
                             maxLines: 3,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 24,
+                            style: TextStyle(
+                              fontSize: 24.sp,
                               color: Colors.black54,
                             ),
                           ),
                         ],
                         if (!widget.autoDismiss) ...[
-                          const SizedBox(height: 24),
+                          SizedBox(height: 24.r),
                           ElevatedButton(
                             onPressed: () =>
                                 Navigator.of(context, rootNavigator: true)
@@ -576,15 +578,15 @@ class _AnimatedMessageDialogState extends State<AnimatedMessageDialog>
                             style: ElevatedButton.styleFrom(
                               backgroundColor: _dialogColor,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(12.r),
                               ),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 12),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 40.r, vertical: 12.r),
                             ),
-                            child: const Text(
+                            child: Text(
                               "OK",
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 16.sp,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -597,12 +599,12 @@ class _AnimatedMessageDialogState extends State<AnimatedMessageDialog>
 
                   // ✅ Close icon (absolute position)
                   Positioned(
-                    top: -10,
-                    right: -10,
+                    top: -10.r,
+                    right: -10.r,
                     child: InkWell(
                       onTap: () =>
                           Navigator.of(context, rootNavigator: true).pop(),
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       child: Container(
                         decoration: const BoxDecoration(
                           color: Colors.white,
@@ -615,11 +617,11 @@ class _AnimatedMessageDialogState extends State<AnimatedMessageDialog>
                             )
                           ],
                         ),
-                        padding: const EdgeInsets.all(4),
+                        padding: EdgeInsets.all(4.r),
                         child: Icon(
                           Icons.close_rounded,
                           color: Colors.grey.shade700,
-                          size: 70,
+                          size: 70.r,
                         ),
                       ),
                     ),

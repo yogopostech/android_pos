@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class AppIndecator extends StatelessWidget {
@@ -10,7 +11,7 @@ class AppIndecator extends StatelessWidget {
     ThemeData theme = Theme.of(context);
     return SpinKitFadingCircle(
       color: theme.primaryColor,
-      size: 45.0,
+      size: 45.0.r,
     );
   }
 }

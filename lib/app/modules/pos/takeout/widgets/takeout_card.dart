@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/order_model.dart';
@@ -18,10 +19,10 @@ class TakeoutCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 170,
-        padding: const EdgeInsets.all(8.0),
+        height: 170.r,
+        padding: EdgeInsets.all(8.0.r),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(6.r),
           color: order.paymentStatus == "PAID"
               ? StaticColors.greenColor
               : StaticColors.yellowColor,
@@ -38,28 +39,28 @@ class TakeoutCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     MyFunc.capitalizeEachWord(s: order.guestName),
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
                 ),
                 MyCustomText(
                   "\$${order.totalOrderAmount.toStringAsFixed(2)}",
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),
               ],
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 4.r),
             Visibility(
               visible: order.guestPhoneNumber.isNotEmpty,
               child: MyCustomText(
                 "# ${order.guestPhoneNumber}",
-                fontSize: 20,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
-              ).marginOnly(bottom: 6),
+              ).marginOnly(bottom: 6.r),
             ),
             Text.rich(
               maxLines: 1,
@@ -82,15 +83,15 @@ class TakeoutCard extends StatelessWidget {
             ),
             MyCustomText(
               "Check ID: ${order.orderId}",
-              fontSize: 16,
+              fontSize: 16.sp,
               color: Colors.white,
             ),
             MyCustomText(
               "Token ID: ${order.tokenId}",
-              fontSize: 14,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w700,
               color: Colors.white,
-            ).marginSymmetric(vertical: 4),
+            ).marginSymmetric(vertical: 4.r),
 
             // guest phone number
 

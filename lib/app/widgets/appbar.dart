@@ -5,6 +5,7 @@ import 'package:yogo_pos/app/services/controller/config_controller.dart';
 import 'package:yogo_pos/app/utils/static_colors.dart';
 import 'package:yogo_pos/app/widgets/custom_btn.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -37,17 +38,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   // Specify the desired height of the AppBar
   @override
   Size get preferredSize =>
-      Size.fromHeight(isPrimary == true ? preferredHeight ?? 65 : 60);
+      Size.fromHeight(isPrimary == true ? preferredHeight ?? 65.r : 60.r);
 
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return AppBar(
       automaticallyImplyLeading: false,
-      titleSpacing: 24,
+      titleSpacing: 24.r,
       elevation: 0,
       centerTitle: centerTitle,
-      leadingWidth: 80,
+      leadingWidth: 80.r,
 
       backgroundColor:
           backgroundColor ??
@@ -82,7 +83,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   //** Buttons **
   Widget _topBar(ThemeData theme, BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 8.r),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -92,7 +93,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               Visibility(
                 visible: hasLogoutBtn,
                 child: PrimaryBtn(
-                  width: 100,
+                  width: 100.r,
                   onPressed: () {
                     Get.to(() => const AuthView());
                     AuthController.to.isShowSplashScreen.value = false;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void customAlertDialog({
   required BuildContext context,
@@ -25,10 +26,10 @@ void customAlertDialog({
             // titlePadding: titlePadding ??
             //     const EdgeInsets.only(left: 0, top: 32, right: 0, bottom: 16),
             contentPadding: contentPadding ??
-                const EdgeInsets.only(left: 16, top: 26, right: 16, bottom: 16),
+                EdgeInsets.only(left: 16.r, top: 26.r, right: 16.r, bottom: 16.r),
             content: child,
             shape: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(6.0),
+              borderRadius: BorderRadius.circular(6.0.r),
               borderSide: const BorderSide(color: Colors.white, width: 1.25),
             ),
           ),

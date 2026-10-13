@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in/controllers/dine_in_controller.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
@@ -16,13 +17,14 @@ class TableBody extends GetView<DineInController> {
   final bool isMainPage;
   final bool isPOSPage;
   final bool isUpdateView;
-  const TableBody(
-      {required this.isScrollable,
-      this.isMainPage = false,
-      this.isTransferItems = false,
-      this.isPOSPage = false,
-      this.isUpdateView = false,
-      super.key});
+  const TableBody({
+    required this.isScrollable,
+    this.isMainPage = false,
+    this.isTransferItems = false,
+    this.isPOSPage = false,
+    this.isUpdateView = false,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +43,9 @@ class TableBody extends GetView<DineInController> {
                 // header
                 _title(controller.tableCategoryList[index].name),
                 StaggeredGrid.count(
-                  crossAxisCount: 10,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
+                  crossAxisCount: 6,
+                  mainAxisSpacing: 8.r,
+                  crossAxisSpacing: 8.r,
                   children: List.generate(tables.length, (index) {
                     var table = tables[index];
                     return GestureDetector(
@@ -65,17 +67,21 @@ class TableBody extends GetView<DineInController> {
                           // for TransferItems
                           if (isTransferItems) {
                             PopupDialog.animatedDialog(
-                                isErr: true,
-                                width: 500,
-                                title:
-                                    "Cannot Transfer Items in ${table.tableAvailability} Table");
+                              isErr: true,
+                              width: 500.r,
+                              title:
+                                  "Cannot Transfer Items in ${table.tableAvailability} Table",
+                            );
                           }
                           // for pos page
                           if (isPOSPage) {
                             debugPrint(
-                                "isUpdateView===================> $isUpdateView");
-                            PosController.to.updateTableName(table,
-                                isUpdateView: isUpdateView);
+                              "isUpdateView===================> $isUpdateView",
+                            );
+                            PosController.to.updateTableName(
+                              table,
+                              isUpdateView: isUpdateView,
+                            );
                             Get.back();
                           }
                           // ! if table is BOOKING
@@ -89,31 +95,33 @@ class TableBody extends GetView<DineInController> {
                               Get.to(() => const OrderDetailsView());
                             } else {
                               PopupDialog.showErrorMessage(
-                                  "The table is currently empty");
+                                "The table is currently empty",
+                              );
                             }
                           }
                           // for TransferItems
                           if (isTransferItems) {
                             PosController.to.transferItemsAllSelectedItems(
-                                transferTableId: table.id,
-                                selectedItemIds: PosController.to.selectedItemList
-                                
-                                
-                                );
+                              transferTableId: table.id,
+                              selectedItemIds:
+                                  PosController.to.selectedItemList,
+                            );
                           }
                           // for pos page
                           if (isPOSPage) {
                             // order view
-                            
+
                             if (!PosController.to.isUpdateView) {
                               if (table.currentOrder != null) {
                                 // order view
                                 PosController.to.isUpdateView = true;
                                 PosController.to.orderType = "DINE_IN";
                                 PosController.to.setTakeOutTypeIndexAndValue(
-                                    table.currentOrder!.takeOutType ?? "");
+                                  table.currentOrder!.takeOutType ?? "",
+                                );
                                 PosController.to.guestController.text = table
-                                    .currentOrder!.numberOfPeople
+                                    .currentOrder!
+                                    .numberOfPeople
                                     .toString();
                                 PosController.to.tableController.text =
                                     table.currentOrder!.tableName;
@@ -131,10 +139,11 @@ class TableBody extends GetView<DineInController> {
                             } else {
                               // updated view
                               PopupDialog.animatedDialog(
-                                  isErr: true,
-                                  width: 500,
-                                  title:
-                                      "Cannot Change Table as ${table.tableName} has ongoing order");
+                                isErr: true,
+                                width: 500.r,
+                                title:
+                                    "Cannot Change Table as ${table.tableName} has ongoing order",
+                              );
                             }
                           }
                         }
@@ -146,10 +155,14 @@ class TableBody extends GetView<DineInController> {
                           BaseController.to.playTapSound();
                           if (table.tableAvailability == "HOLD_TABLES") {
                             controller.onChangeTableStatus(
-                                id: table.id, status: "AVAILABLE");
+                              id: table.id,
+                              status: "AVAILABLE",
+                            );
                           } else {
                             controller.onChangeTableStatus(
-                                id: table.id, status: "HOLD_TABLES");
+                              id: table.id,
+                              status: "HOLD_TABLES",
+                            );
                           }
                         }
                       },
@@ -159,20 +172,25 @@ class TableBody extends GetView<DineInController> {
                           BaseController.to.playTapSound();
                           if (table.tableAvailability == "HOLD_TABLES") {
                             controller.onChangeTableStatus(
-                                id: table.id, status: "AVAILABLE");
+                              id: table.id,
+                              status: "AVAILABLE",
+                            );
                           } else {
                             controller.onChangeTableStatus(
-                                id: table.id, status: "HOLD_TABLES");
+                              id: table.id,
+                              status: "HOLD_TABLES",
+                            );
                           }
                         }
                       },
                       child: Container(
-                        height: 110,
-                        padding: const EdgeInsets.all(8.0),
+                        height: 110.r,
+                        padding: EdgeInsets.all(8.0.r),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(6.r),
                           color: MyFunc.getTableColorWithStatus(
-                              table.tableAvailability),
+                            table.tableAvailability,
+                          ),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -183,51 +201,51 @@ class TableBody extends GetView<DineInController> {
                                 Expanded(
                                   child: MyCustomText(
                                     table.tableName,
-                                    fontSize: 22,
+                                    fontSize: 22.sp,
                                     fontWeight: FontWeight.w700,
                                     color: Colors.white,
                                   ),
                                 ),
                                 MyCustomText(
                                   '${table.tableCapacity}',
-                                  fontSize: 16,
+                                  fontSize: 16.sp,
                                   color: Colors.white,
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 3),
+                            SizedBox(height: 3.r),
                             Align(
                               alignment: Alignment.bottomLeft,
                               child: MyCustomText(
                                 table.currentOrder?.employee?.firstName ?? "",
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
                             ),
-                            const SizedBox(height: 3),
+                            SizedBox(height: 3.r),
                             Align(
                               alignment: Alignment.bottomLeft,
                               child: SizedBox(
-                                height: 20,
+                                height: 20.r,
                                 child: Visibility(
                                   visible:
                                       table.currentOrder?.totalOrderAmount !=
-                                          null,
+                                      null,
                                   child: MyCustomText(
                                     "\$${table.currentOrder?.totalOrderAmount.toStringAsFixed(2)}",
-                                    fontSize: 14,
+                                    fontSize: 14.sp,
                                     color: Colors.white,
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
                     );
                   }),
-                )
+                ),
               ],
             ),
           );
@@ -238,17 +256,17 @@ class TableBody extends GetView<DineInController> {
 
   Container _title(String title) {
     return Container(
-      height: 35,
+      height: 35.r,
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 6),
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      margin: EdgeInsets.symmetric(vertical: 6.r),
+      padding: EdgeInsets.symmetric(vertical: 8.r, horizontal: 16.r),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(6.r),
         color: StaticColors.blackLightColor,
       ),
       child: MyCustomText(
         title.toUpperCase(),
-        fontSize: 18,
+        fontSize: 18.sp,
         fontWeight: FontWeight.w600,
         color: Colors.white,
       ),

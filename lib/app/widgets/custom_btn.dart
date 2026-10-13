@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 // import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
@@ -20,8 +22,9 @@ class PrimaryBtn extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final bool isOutline;
   final bool isdisabled;
-  final double textMaxSize;
-  final double textMinSize;
+  /// null = default (18 / 14, screen onujayi scale hobe)
+  final double? textMaxSize;
+  final double? textMinSize;
   final int? maxLines;
   final FontWeight? fontWeight;
 
@@ -40,8 +43,8 @@ class PrimaryBtn extends StatelessWidget {
       this.padding,
       this.isOutline = false,
       this.isdisabled = false,
-      this.textMaxSize = 18,
-      this.textMinSize = 14,
+      this.textMaxSize,
+      this.textMinSize,
       this.maxLines,
       this.fontWeight,
       this.borderWidth});
@@ -49,8 +52,14 @@ class PrimaryBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
+    // Text size: age jevabe dekhato (DefaultTextStyle 14 ke min..max e clamp)
+    // shei size ei shuru hoy, kintu fixed-size button e na atle 8 porjonto
+    // choto hote pare, tai text button er baire overflow korbe na.
+    final double maxSize = (textMaxSize ?? 18.sp).roundToDouble();
+    final double minSize = (textMinSize ?? 14.sp).clamp(0, maxSize).toDouble();
+    final double wantSize = (style?.fontSize ?? 14.sp).clamp(minSize, maxSize).toDouble();
     return SizedBox(
-      height: height ?? 48,
+      height: height ?? 48.rMin(kMinTouch),
       width: width,
       child: ElevatedButton(
         onPressed: () {
@@ -85,11 +94,11 @@ class PrimaryBtn extends StatelessWidget {
                 : textColor ?? Colors.white;
           }),
           padding: WidgetStateProperty.all(
-            padding ?? const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+            padding ?? EdgeInsets.symmetric(vertical: 12.r, horizontal: 12.r),
           ),
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius ?? 6),
+              borderRadius: BorderRadius.circular(borderRadius ?? 6.r),
             ),
           ),
           side: WidgetStateProperty.resolveWith<BorderSide?>((states) {
@@ -116,16 +125,19 @@ class PrimaryBtn extends StatelessWidget {
         ),
         child: AutoSizeText(
           text,
-          maxLines: maxLines ?? 2, maxFontSize: textMaxSize,
-          minFontSize: textMinSize,
+          maxLines: maxLines ?? 2,
+          // AutoSizeText er min/max whole number hote hobe
+          maxFontSize: maxSize,
+          minFontSize: 8,
           textAlign: TextAlign.center,
-          style: style ??
-              TextStyle(
-                fontWeight: fontWeight,
-                color: isdisabled
-                    ? textColor ?? theme.colorScheme.surface.withAlpha(204)
-                    : textColor ?? theme.colorScheme.surface,
-              ),
+          style: (style ??
+                  TextStyle(
+                    fontWeight: fontWeight,
+                    color: isdisabled
+                        ? textColor ?? theme.colorScheme.surface.withAlpha(204)
+                        : textColor ?? theme.colorScheme.surface,
+                  ))
+              .copyWith(fontSize: wantSize),
           // overflow: TextOverflow.ellipsis,
         ),
       ),
@@ -181,7 +193,7 @@ class OutLineBtn extends StatelessWidget {
         backgroundColor: color ?? Colors.transparent,
         foregroundColor: textColor ?? theme.primaryColorDark,
         padding:
-            padding ?? const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+            padding ?? EdgeInsets.symmetric(vertical: 16.r, horizontal: 20.r),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius ?? 0),
         ),
@@ -253,9 +265,9 @@ class PrimaryBtnWithChild extends StatelessWidget {
                 backgroundColor: color ?? theme.primaryColor,
                 foregroundColor: textColor ?? Colors.white,
                 padding: padding ??
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                    EdgeInsets.symmetric(vertical: 12.r, horizontal: 12.r),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(borderRadius ?? 6),
+                  borderRadius: BorderRadius.circular(borderRadius ?? 6.r),
                 ),
                 // ****** Border color *******
                 side: side
@@ -274,9 +286,9 @@ class PrimaryBtnWithChild extends StatelessWidget {
                 foregroundColor: borderColor ?? StaticColors.greenLightColor,
                 // splashFactory: NoSplash.splashFactory,
                 padding: padding ??
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                    EdgeInsets.symmetric(vertical: 12.r, horizontal: 12.r),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(borderRadius ?? 6),
+                  borderRadius: BorderRadius.circular(borderRadius ?? 6.r),
                 ),
                 // ****** Border color *******
                 side: side ??

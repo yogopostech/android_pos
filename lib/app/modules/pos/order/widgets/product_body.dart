@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:uuid/uuid.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/discount_model.dart';
@@ -135,7 +137,7 @@ class _ProductBodyState extends State<ProductBody> {
         trackColor: WidgetStateProperty.all(theme.cardColor),
         trackBorderColor: WidgetStateProperty.all(Colors.transparent),
         thickness: WidgetStateProperty.all(6),
-        radius: const Radius.circular(8),
+        radius: Radius.circular(8.r),
         thumbVisibility: WidgetStateProperty.all(true),
         trackVisibility: WidgetStateProperty.all(true),
       ),
@@ -148,8 +150,8 @@ class _ProductBodyState extends State<ProductBody> {
             builder: (controller) {
               return StaggeredGrid.count(
                 crossAxisCount: widget.crossAxisCount,
-                mainAxisSpacing: 12,
-                crossAxisSpacing: 12,
+                mainAxisSpacing: 12.r,
+                crossAxisSpacing: 12.r,
                 children: List.generate(controller.productsForShow.length, (
                   index,
                 ) {
@@ -162,7 +164,7 @@ class _ProductBodyState extends State<ProductBody> {
                       controller.checkHasVariations(item.variations);
                       if (item.itemType == "weighing scale") {
                         PopupDialog.customDialog(
-                          width: 550,
+                          width: 550.r,
                           child: AddWingScaleCartDialog(item: item),
                         );
                       } else if (controller.hasVariations) {
@@ -200,7 +202,7 @@ class _ProductBodyState extends State<ProductBody> {
                       controller.selectedItemList.clear();
                     },
                     isOutline: true,
-                    height: 90,
+                    height: 90.rMin(kMinTouch),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,

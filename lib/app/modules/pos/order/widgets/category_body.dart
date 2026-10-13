@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yogo_pos/config/screen_config.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/utils/my_func.dart';
 import 'package:yogo_pos/app/utils/static_colors.dart';
@@ -89,7 +91,7 @@ class _CategoryBodyState extends State<CategoryBody> {
         trackColor: WidgetStateProperty.all(theme.cardColor),
         trackBorderColor: WidgetStateProperty.all(Colors.transparent),
         thickness: WidgetStateProperty.all(6),
-        radius: const Radius.circular(8),
+        radius: Radius.circular(8.r),
         thumbVisibility: WidgetStateProperty.all(true),
         trackVisibility: WidgetStateProperty.all(true),
       ),
@@ -102,18 +104,18 @@ class _CategoryBodyState extends State<CategoryBody> {
             builder: (controller) {
               return StaggeredGrid.count(
                 crossAxisCount: widget.crossAxisCount,
-                mainAxisSpacing: 12,
-                crossAxisSpacing: 12,
+                mainAxisSpacing: 12.r,
+                crossAxisSpacing: 12.r,
                 children: List.generate(
                   controller.categoryList.length,
                   (index) => PrimaryBtn(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 5,
-                      horizontal: 6,
+                    padding: EdgeInsets.symmetric(
+                      vertical: 5.r,
+                      horizontal: 6.r,
                     ),
-                    textMaxSize: 17,
-                    textMinSize: 12,
-                    height: 80,
+                    textMaxSize: 17.sp.roundToDouble(),
+                    textMinSize: 12.sp.roundToDouble(),
+                    height: 80.rMin(kMinTouch),
                     maxLines: 3,
                     onPressed: () {
                       controller.itemTypeActiveIndex = 0;
@@ -140,7 +142,7 @@ class _CategoryBodyState extends State<CategoryBody> {
                     text: controller.categoryList[index].title.toUpperCase(),
                   ),
                 ),
-              ).marginOnly(bottom: controller.categoryList.isNotEmpty ? 12 : 0);
+              ).marginOnly(bottom: controller.categoryList.isNotEmpty ? 12.r : 0);
             },
           ),
         ),

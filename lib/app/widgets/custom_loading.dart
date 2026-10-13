@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class CustomLoading extends StatelessWidget {
@@ -10,7 +11,7 @@ class CustomLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return SpinKitPulsingGrid(
       color: Theme.of(context).primaryColor,
-      size: 48,
+      size: 48.r,
     );
   }
 }

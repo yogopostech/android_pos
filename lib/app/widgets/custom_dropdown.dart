@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yogo_pos/app/widgets/my_custom_text.dart';
 
 class MyDropdownBtn extends StatelessWidget {
@@ -27,7 +28,7 @@ class MyDropdownBtn extends StatelessWidget {
       child: DropdownButton2(
         hint: MyCustomText(
           hintText,
-          fontSize: 24,
+          fontSize: 24.sp,
           fontWeight: FontWeight.w200,
           color: theme.hintColor,
         ),
@@ -36,9 +37,9 @@ class MyDropdownBtn extends StatelessWidget {
         onChanged: onChanged,
         //button style
         buttonStyleData: ButtonStyleData(
-          height: 115,
+          height: 115.r,
           width: double.infinity,
-          padding: const EdgeInsets.only(left: 14, right: 14),
+          padding: EdgeInsets.only(left: 14.r, right: 14.r),
           decoration: BoxDecoration(
             // color: theme.scaffoldBackgroundColor,
             color: Colors.transparent,
@@ -53,14 +54,14 @@ class MyDropdownBtn extends StatelessWidget {
         //button suffix icon
         iconStyleData: IconStyleData(
           icon: const Icon(Icons.expand_more),
-          iconSize: 24,
+          iconSize: 24.r,
           iconEnabledColor: theme.colorScheme.surface,
           iconDisabledColor: Colors.grey,
         ),
         //dropdown items style
         dropdownStyleData: DropdownStyleData(
-          maxHeight: 200,
-          width: dropdownStyleWidth ?? 300,
+          maxHeight: 200.r,
+          width: dropdownStyleWidth ?? 300.r,
           padding: EdgeInsets.zero,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(0),
@@ -68,16 +69,16 @@ class MyDropdownBtn extends StatelessWidget {
           ),
           offset: const Offset(0, 0),
           scrollbarTheme: ScrollbarThemeData(
-            radius: const Radius.circular(40),
+            radius: Radius.circular(40.r),
             thumbColor: WidgetStatePropertyAll(theme.colorScheme.surface),
             thickness: WidgetStateProperty.all<double>(6),
             thumbVisibility: WidgetStateProperty.all<bool>(true),
           ),
         ),
         menuItemStyleData: MenuItemStyleData(
-          height: 40,
+          height: 40.r,
           padding:
-              menuItemPadding ?? const EdgeInsets.only(left: 40, right: 14),
+              menuItemPadding ?? EdgeInsets.only(left: 40.r, right: 14.r),
           overlayColor: WidgetStatePropertyAll(
             Theme.of(context).cardColor, //item selector color
           ),
@@ -99,7 +100,7 @@ class CustomDropdownButton extends StatelessWidget {
     ThemeData theme = Theme.of(context);
     return DropdownButton<String>(
       value: value,
-      iconSize: 20,
+      iconSize: 20.r,
       elevation: 16,
       isDense: true,
       dropdownColor: Colors.red,

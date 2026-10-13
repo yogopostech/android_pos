@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyCustomText extends StatelessWidget {
   final String text;
@@ -36,7 +37,7 @@ class MyCustomText extends StatelessWidget {
         maxLines: maxLines,
         style: TextStyle(
             color: color ?? Theme.of(context).colorScheme.surface,
-            fontSize: fontSize ?? 16,
+            fontSize: fontSize ?? 16.sp,
             height: height ?? 1,
             fontWeight: fontWeight ?? FontWeight.w400,
             fontStyle: fontStyle ?? FontStyle.normal,

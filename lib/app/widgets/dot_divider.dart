@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DotDivider extends StatelessWidget {
   final double? width;
@@ -21,14 +22,14 @@ class DotDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: height ?? 4),
+      padding: EdgeInsets.symmetric(vertical: height ?? 4.r),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List.generate(dotQuantity ?? 100, (index) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: gap ?? 2.0),
+            padding: EdgeInsets.symmetric(horizontal: gap ?? 2.0.r),
             child: Container(
-              width: width ?? 4.0,
+              width: width ?? 4.0.r,
               height: thickness ?? 1.5,
               decoration: BoxDecoration(
                 color: color ?? theme.textTheme.bodyLarge?.color,

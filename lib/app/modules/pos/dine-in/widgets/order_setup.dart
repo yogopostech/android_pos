@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrderSetup extends StatelessWidget {
   const OrderSetup({super.key});
@@ -6,7 +7,7 @@ class OrderSetup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(20.0.r),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),
       ),

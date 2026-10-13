@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yogo_pos/app/helper/data_update_helper.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in-orders/controllers/dine_in_order_controller.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in-orders/widgets/print/esc_order_print_receipt.dart';
@@ -52,15 +53,15 @@ class SplitOrderView extends GetView<DineInController> {
               // },
               child: Scaffold(
                 body: Padding(
-                  padding: const EdgeInsetsDirectional.symmetric(
-                    horizontal: 16,
-                    vertical: 24,
+                  padding: EdgeInsetsDirectional.symmetric(
+                    horizontal: 16.r,
+                    vertical: 24.r,
                   ),
                   child: Column(
                     children: [
                       // header
                       _header(theme, SplitOrderController.to.mainOrder),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16.r),
                       Expanded(child: _splitBody(theme)),
                     ],
                   ),
@@ -92,8 +93,8 @@ class SplitOrderView extends GetView<DineInController> {
             Get.back();
           },
           child: Container(
-            width: 48,
-            height: 48,
+            width: 48.r,
+            height: 48.r,
             decoration: BoxDecoration(
               color: theme.cardColor,
               border: Border.all(
@@ -101,10 +102,10 @@ class SplitOrderView extends GetView<DineInController> {
                 color: theme.textTheme.labelLarge?.color ?? Colors.white,
               ),
             ),
-            child: const Icon(Icons.arrow_back_ios_rounded, size: 40),
+            child: Icon(Icons.arrow_back_ios_rounded, size: 40.r),
           ),
         ),
-        const SizedBox(width: 24),
+        SizedBox(width: 24.r),
         PrimaryBtn(
           onPressed: () {
             //if has paid split amount or split by items(not possible)
@@ -132,7 +133,7 @@ class SplitOrderView extends GetView<DineInController> {
                     SplitOrderController.to.splitAmountChecks.splitAmounts
                         .every((item) => item.payment == null))) {
               PopupDialog.customDialog(
-                width: 600,
+                width: 600.r,
                 child: PopupDialog.permissionDialog(
                   titleStyle: theme.textTheme.headlineSmall,
                   Get.theme,
@@ -170,7 +171,7 @@ class SplitOrderView extends GetView<DineInController> {
           color: StaticColors.greenColor,
           textColor: Colors.white,
         ),
-        const SizedBox(width: 12),
+        SizedBox(width: 12.r),
         PrimaryBtn(
           onPressed: () {
             if (SplitOrderController.to.pickedItem == null) {
@@ -183,7 +184,7 @@ class SplitOrderView extends GetView<DineInController> {
           color: StaticColors.greenColor,
           textColor: Colors.white,
         ),
-        const SizedBox(width: 12),
+        SizedBox(width: 12.r),
         PrimaryBtn(
           onPressed: () {
             if (SplitOrderController.to.pickedItem == null) {
@@ -286,13 +287,13 @@ class SplitOrderView extends GetView<DineInController> {
           color: StaticColors.blueColor,
           textColor: Colors.white,
         ),
-        const SizedBox(width: 12),
+        SizedBox(width: 12.r),
 
         PrimaryBtn(
           onPressed: () {
             SplitOrderController.to.resetSplitChecks();
           },
-          width: 100,
+          width: 100.r,
           text: "Reset",
           color: StaticColors.orangeColor,
           textColor: Colors.white,
@@ -305,7 +306,7 @@ class SplitOrderView extends GetView<DineInController> {
     return GetBuilder<SplitOrderController>(
       builder: (c) {
         return Container(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16.r),
           decoration: BoxDecoration(border: Border.all(color: Colors.white)),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -317,15 +318,15 @@ class SplitOrderView extends GetView<DineInController> {
                 },
                 child: Container(
                   color: theme.cardColor,
-                  padding: const EdgeInsets.all(16),
-                  width: 400,
+                  padding: EdgeInsets.all(16.r),
+                  width: 400.r,
                   child: Column(
                     children: [
                       // header
                       ColoredBox(
                         color: Colors.grey.shade700,
                         child: Padding(
-                          padding: const EdgeInsets.all(6.0),
+                          padding: EdgeInsets.all(6.0.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -341,7 +342,7 @@ class SplitOrderView extends GetView<DineInController> {
                           ),
                         ),
                       ),
-                      Divider(color: theme.dividerColor, height: 24),
+                      Divider(color: theme.dividerColor, height: 24.r),
                       // items area
                       Expanded(
                         child: Column(
@@ -371,13 +372,13 @@ class SplitOrderView extends GetView<DineInController> {
                                   );
                                 },
                                 separatorBuilder: (_, __) => Divider(
-                                  height: 6,
+                                  height: 6.r,
                                   color: theme.dividerColor.withAlpha(153),
                                 ),
                               ),
                             ),
                             Divider(
-                              height: 16,
+                              height: 16.r,
                               color: theme.dividerColor.withAlpha(153),
                             ),
                             // price area
@@ -487,7 +488,7 @@ class SplitOrderView extends GetView<DineInController> {
                         ),
                       ),
                       // btn area
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.r),
                       Row(
                         children: [
                           Expanded(
@@ -514,7 +515,7 @@ class SplitOrderView extends GetView<DineInController> {
               ),
 
               // *** Right area SPLIT RECEIPTS */
-              const SizedBox(width: 22),
+              SizedBox(width: 22.r),
               Expanded(
                 child: GetBuilder<SplitOrderController>(
                   builder: (c) {
@@ -525,8 +526,8 @@ class SplitOrderView extends GetView<DineInController> {
                         controller: c.splitChecksScrollController,
                         child: StaggeredGrid.count(
                           crossAxisCount: 2,
-                          mainAxisSpacing: 12,
-                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12.r,
+                          crossAxisSpacing: 12.r,
                           children: List.generate(c.listOfSpitChecksByItems.length, (
                             index,
                           ) {
@@ -543,10 +544,10 @@ class SplitOrderView extends GetView<DineInController> {
                                     },
                               child: Container(
                                 color: theme.cardColor,
-                                height: 600,
+                                height: 600.r,
                                 // width: 450,
                                 width: Get.width * 0.23,
-                                padding: const EdgeInsets.all(16),
+                                padding: EdgeInsets.all(16.r),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -592,13 +593,13 @@ class SplitOrderView extends GetView<DineInController> {
                                     ),
                                     Divider(
                                       color: theme.dividerColor.withAlpha(102),
-                                      height: 16,
+                                      height: 16.r,
                                     ),
                                     Align(
                                       alignment: Alignment.center,
                                       child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 4.0,
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: 4.0.r,
                                         ),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
@@ -606,7 +607,7 @@ class SplitOrderView extends GetView<DineInController> {
                                             Expanded(
                                               child: MyCustomText(
                                                 '${c.order.orderType.replaceAll('_', '-')}:  ${c.listOfSpitChecksByItems[index].guestName}',
-                                                fontSize: 18,
+                                                fontSize: 18.sp,
                                                 maxLines: 2,
                                               ),
                                             ),
@@ -623,9 +624,9 @@ class SplitOrderView extends GetView<DineInController> {
                                                         .updateGuestName(index),
                                                   );
                                                 },
-                                                child: const Padding(
+                                                child: Padding(
                                                   padding: EdgeInsets.symmetric(
-                                                    horizontal: 8.0,
+                                                    horizontal: 8.0.r,
                                                   ),
                                                   child: FaIcon(
                                                     FontAwesomeIcons
@@ -641,7 +642,7 @@ class SplitOrderView extends GetView<DineInController> {
                                     ),
                                     Divider(
                                       color: theme.dividerColor.withAlpha(102),
-                                      height: 16,
+                                      height: 16.r,
                                     ),
 
                                     //items row
@@ -682,7 +683,7 @@ class SplitOrderView extends GetView<DineInController> {
                                           );
                                         },
                                         separatorBuilder: (_, __) => Divider(
-                                          height: 6,
+                                          height: 6.r,
                                           color: theme.dividerColor.withAlpha(
                                             153,
                                           ),
@@ -720,9 +721,9 @@ class SplitOrderView extends GetView<DineInController> {
                                     // }),
                                     Divider(
                                       color: theme.dividerColor.withAlpha(102),
-                                      height: 16,
+                                      height: 16.r,
                                     ),
-                                    SizedBox(height: 8),
+                                    SizedBox(height: 8.r),
                                     //price area
                                     _priceRow(
                                       theme,
@@ -812,11 +813,11 @@ class SplitOrderView extends GetView<DineInController> {
                                                 null
                                             ? const SizedBox()
                                             : Container(
-                                                margin: const EdgeInsets.only(
-                                                  left: 4,
+                                                margin: EdgeInsets.only(
+                                                  left: 4.r,
                                                 ),
-                                                padding: const EdgeInsets.all(
-                                                  4.0,
+                                                padding: EdgeInsets.all(
+                                                  4.0.r,
                                                 ),
                                                 decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
@@ -943,15 +944,15 @@ class SplitOrderView extends GetView<DineInController> {
                                       theme,
                                       title:
                                           "Total${MyFunc.orderCondition(c.listOfSpitChecksByItems[index])}",
-                                      fontSize: 20,
-                                      spacing: 8,
+                                      fontSize: 20.sp,
+                                      spacing: 8.r,
                                       value:
                                           "\$${(c.listOfSpitChecksByItems[index].totalOrderAmount).toStringAsFixed(2)}",
                                     ),
-                                    SizedBox(height: 8),
+                                    SizedBox(height: 8.r),
                                     Divider(
                                       color: theme.dividerColor.withAlpha(102),
-                                      height: 16,
+                                      height: 16.r,
                                     ),
                                     Row(
                                       children: [
@@ -1016,7 +1017,7 @@ class SplitOrderView extends GetView<DineInController> {
                                             color: StaticColors.blueColor,
                                           ),
                                         ),
-                                        const SizedBox(width: 8),
+                                        SizedBox(width: 8.r),
                                         Expanded(
                                           child: PrimaryBtn(
                                             onPressed:
@@ -1038,7 +1039,7 @@ class SplitOrderView extends GetView<DineInController> {
                                                   }
                                                 : () {
                                                     PopupDialog.customDialog(
-                                                      width: 450,
+                                                      width: 450.r,
                                                       child: Visibility(
                                                         // visible: true,
                                                         // replacement:
@@ -1085,15 +1086,15 @@ class SplitOrderView extends GetView<DineInController> {
                       child: SingleChildScrollView(
                         child: StaggeredGrid.count(
                           crossAxisCount: 2,
-                          mainAxisSpacing: 12,
-                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12.r,
+                          crossAxisSpacing: 12.r,
                           children: List.generate(c.splitAmountChecks.splitAmounts.length, (
                             index,
                           ) {
                             var check = c.splitAmountChecks.splitAmounts[index];
                             return Container(
                               color: theme.cardColor,
-                              padding: const EdgeInsets.all(16),
+                              padding: EdgeInsets.all(16.r),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -1104,13 +1105,13 @@ class SplitOrderView extends GetView<DineInController> {
                                   ),
                                   Divider(
                                     color: theme.dividerColor.withAlpha(102),
-                                    height: 16,
+                                    height: 16.r,
                                   ),
                                   Align(
                                     alignment: Alignment.center,
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 4.0,
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 4.0.r,
                                       ),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -1118,7 +1119,7 @@ class SplitOrderView extends GetView<DineInController> {
                                           Expanded(
                                             child: MyCustomText(
                                               '${c.order.orderType.replaceAll('_', '-')}:  ${check.guestName}',
-                                              fontSize: 18,
+                                              fontSize: 18.sp,
                                               maxLines: 2,
                                             ),
                                           ),
@@ -1136,9 +1137,9 @@ class SplitOrderView extends GetView<DineInController> {
                                                       c.updateGuestName(index),
                                                 );
                                               },
-                                              child: const Padding(
+                                              child: Padding(
                                                 padding: EdgeInsets.symmetric(
-                                                  horizontal: 8.0,
+                                                  horizontal: 8.0.r,
                                                 ),
                                                 child: FaIcon(
                                                   FontAwesomeIcons.penToSquare,
@@ -1153,7 +1154,7 @@ class SplitOrderView extends GetView<DineInController> {
                                   ),
                                   Divider(
                                     color: theme.dividerColor.withAlpha(102),
-                                    height: 16,
+                                    height: 16.r,
                                   ),
                                   _priceRow(
                                     theme,
@@ -1165,7 +1166,7 @@ class SplitOrderView extends GetView<DineInController> {
                                   ),
                                   Divider(
                                     color: theme.dividerColor.withAlpha(102),
-                                    height: 16,
+                                    height: 16.r,
                                   ),
 
                                   _priceRow(
@@ -1176,7 +1177,7 @@ class SplitOrderView extends GetView<DineInController> {
                                   ),
                                   Divider(
                                     color: theme.dividerColor.withAlpha(102),
-                                    height: 16,
+                                    height: 16.r,
                                   ),
                                   if (check.packagingCost > 0.0) ...[
                                     _priceRow(
@@ -1187,11 +1188,11 @@ class SplitOrderView extends GetView<DineInController> {
                                       child: check.payment != null
                                           ? const SizedBox()
                                           : Container(
-                                              margin: const EdgeInsets.only(
-                                                left: 4,
+                                              margin: EdgeInsets.only(
+                                                left: 4.r,
                                               ),
-                                              padding: const EdgeInsets.all(
-                                                4.0,
+                                              padding: EdgeInsets.all(
+                                                4.0.r,
                                               ),
                                               decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
@@ -1220,7 +1221,7 @@ class SplitOrderView extends GetView<DineInController> {
                                     ),
                                     Divider(
                                       color: theme.dividerColor.withAlpha(102),
-                                      height: 16,
+                                      height: 16.r,
                                     ),
                                   ],
 
@@ -1234,7 +1235,7 @@ class SplitOrderView extends GetView<DineInController> {
                                     ),
                                     Divider(
                                       color: theme.dividerColor.withAlpha(102),
-                                      height: 16,
+                                      height: 16.r,
                                     ),
                                   ],
 
@@ -1248,7 +1249,7 @@ class SplitOrderView extends GetView<DineInController> {
                                     ),
                                     Divider(
                                       color: theme.dividerColor.withAlpha(102),
-                                      height: 16,
+                                      height: 16.r,
                                     ),
                                   ],
 
@@ -1264,7 +1265,7 @@ class SplitOrderView extends GetView<DineInController> {
                                     ),
                                     Divider(
                                       color: theme.dividerColor.withAlpha(102),
-                                      height: 16,
+                                      height: 16.r,
                                     ),
                                   ],
 
@@ -1278,7 +1279,7 @@ class SplitOrderView extends GetView<DineInController> {
                                     ),
                                     Divider(
                                       color: theme.dividerColor.withAlpha(102),
-                                      height: 16,
+                                      height: 16.r,
                                     ),
                                   ],
                                   //change
@@ -1291,7 +1292,7 @@ class SplitOrderView extends GetView<DineInController> {
                                     ),
                                     Divider(
                                       color: theme.dividerColor.withAlpha(102),
-                                      height: 16,
+                                      height: 16.r,
                                     ),
                                   ],
 
@@ -1299,12 +1300,12 @@ class SplitOrderView extends GetView<DineInController> {
                                     theme,
                                     title:
                                         "Total ${MyFunc.orderCondition(check)}",
-                                    fontSize: 20,
-                                    spacing: 8,
+                                    fontSize: 20.sp,
+                                    spacing: 8.r,
                                     value:
                                         "\$${(check.total + (check.payment?.cardTipAmount ?? 0) + (check.payment?.cashTipAmount ?? 0)).toStringAsFixed(2)}",
                                   ),
-                                  const SizedBox(height: 8),
+                                  SizedBox(height: 8.r),
 
                                   Row(
                                     children: [
@@ -1333,7 +1334,7 @@ class SplitOrderView extends GetView<DineInController> {
                                           color: StaticColors.blueColor,
                                         ),
                                       ),
-                                      const SizedBox(width: 8),
+                                      SizedBox(width: 8.r),
                                       Expanded(
                                         child: PrimaryBtn(
                                           onPressed: check.payment != null
@@ -1342,7 +1343,7 @@ class SplitOrderView extends GetView<DineInController> {
                                                 }
                                               : () {
                                                   PopupDialog.customDialog(
-                                                    width: 450,
+                                                    width: 450.r,
                                                     child: Visibility(
                                                       // visible: true,
                                                       // replacement:
@@ -1603,26 +1604,27 @@ class SplitOrderView extends GetView<DineInController> {
   // row
   Widget _priceRow(
     ThemeData theme, {
-    double fontSize = 16,
+    double? fontSize, // null = 16.sp
     required String title,
     required String value,
     Widget? child,
-    double spacing = 3,
+    double? spacing, // null = 3.r
   }) {
+    final double fs = fontSize ?? 16.sp;
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: spacing),
+      padding: EdgeInsets.symmetric(vertical: spacing ?? 3.r),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: Row(
               children: [
-                MyCustomText(title, fontSize: fontSize),
+                MyCustomText(title, fontSize: fs),
                 SizedBox(child: child),
               ],
             ),
           ),
-          MyCustomText(value, fontSize: fontSize),
+          MyCustomText(value, fontSize: fs),
         ],
       ),
     );
@@ -1646,7 +1648,7 @@ class SplitOrderView extends GetView<DineInController> {
             ? StaticColors.blueColor.withAlpha(45)
             : Colors.transparent,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 4.0.r, vertical: 20.r),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1668,11 +1670,11 @@ class SplitOrderView extends GetView<DineInController> {
                   Expanded(
                     child: Row(
                       children: [
-                        const MyCustomText('x ', fontSize: 14),
+                        MyCustomText('x ', fontSize: 14.sp),
                         Expanded(
                           child: MyCustomText(
                             double.parse(quantity).toFraction().toString(),
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -1682,7 +1684,7 @@ class SplitOrderView extends GetView<DineInController> {
                   MyCustomText(price, textAlign: TextAlign.right),
                 ],
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4.r),
               Visibility(
                 visible: discountModel.value > 0,
                 child: Text(
