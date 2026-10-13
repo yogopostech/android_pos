@@ -28,22 +28,26 @@ class PrintersController extends GetxController {
   // Paper Width
   RxString selectedPaperWidth = Preferences.paperWidth.obs;
   List<String> paperWidth = ["80mm", "60mm"];
+  /// The printers page now uses a plain text field for the IP, so the value
+  /// arrives as a String. The dropdown form is kept for older callers.
+  static String _asPrinterValue(dynamic value) {
+    if (value == null) return '';
+    if (value is DropDownValueModel) return value.name.trim();
+    return value.toString().trim();
+  }
+
   void onChangeKitchenPrinter(dynamic value) {
-    if (value != null) {
-      if (value is DropDownValueModel) {
-        Preferences.kitchenPrinter = value.name;
-        kitchenPrinter.value = value.name;
-      }
-    }
+    final printer = _asPrinterValue(value);
+    if (printer == kitchenPrinter.value) return;
+    Preferences.kitchenPrinter = printer;
+    kitchenPrinter.value = printer;
   }
 
   void onChangeCounterPrinter(dynamic value) {
-    if (value != null) {
-      if (value is DropDownValueModel) {
-        Preferences.counterPrinter = value.name;
-        counterPrinter.value = value.name;
-      }
-    }
+    final printer = _asPrinterValue(value);
+    if (printer == counterPrinter.value) return;
+    Preferences.counterPrinter = printer;
+    counterPrinter.value = printer;
   }
 
   void onChangePaperWidth(dynamic value) {
