@@ -79,19 +79,19 @@ class TopMenu extends GetView<PosController> {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
+                        // Width 48 fixed, kintu default padding 12.r scale hoy;
+                        // screen boro hole padding icon er jaiga kheye fele
+                        // (overflow). Icon button e padding lage na — button
+                        // nijei child ke center kore.
                         PrimaryBtnWithChild(
                           width: 48,
                           height: 48,
+                          padding: EdgeInsets.zero,
                           color: StaticColors.blueColor,
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.refresh_rounded,
-                                color: Colors.white,
-                                size: 23,
-                              ),
-                            ],
+                          child: const Icon(
+                            Icons.refresh_rounded,
+                            color: Colors.white,
+                            size: 23,
                           ),
                           onPressed: () async {
                             await DataUpdateHelper.allGetApiCall();
@@ -106,6 +106,7 @@ class TopMenu extends GetView<PosController> {
                         PrimaryBtnWithChild(
                           width: 48,
                           height: 48,
+                          padding: EdgeInsets.zero,
                           textColor: Colors.white,
                           color: StaticColors.blueColor,
                           child: const Icon(

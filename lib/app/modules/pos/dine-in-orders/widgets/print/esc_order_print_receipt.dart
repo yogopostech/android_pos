@@ -125,6 +125,8 @@ Uint8List escOrderPrintReceipt({
       order.orderType == "DELIVERY") {
     receipt.text(
       '${order.orderType == "DELIVERY" ? "Delivery" : "Pickup"}:${order.estimatedDate.toFormattedDate()} ${order.estimatedTime.isEmpty ? "" : ", ${order.estimatedTime}"}',
+      fontSize: 2,
+      fontWeight: FontWeight.bold,
     );
   }
 

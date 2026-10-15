@@ -259,6 +259,66 @@ class _GeneralState extends State<General> {
                     ),
                   ),
                   const SizedBox(height: 30),
+                  Text("Table Layout", style: theme.textTheme.titleLarge),
+                  8.height,
+                  SizedBox(
+                    width: 500,
+                    child: AbsorbPointer(
+                      absorbing:
+                          bc.restaurantDetails?.restaurant.posTableLayout !=
+                          PosTableLayout.both,
+                      child: DropdownSearch<PosTableLayout>(
+                        items: (f, cs) => const [
+                          PosTableLayout.standard,
+                          PosTableLayout.floorPlan,
+                        ],
+                        selectedItem: bc.posTableLayout,
+                        itemAsString: (item) => item.label,
+                        compareFn: (a, b) => a == b,
+                        popupProps: PopupProps.menu(
+                          fit: FlexFit.loose,
+                          itemBuilder: (context, item, isSelected, isDisabled) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 14,
+                              ),
+                              child: Text(
+                                item.label,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        decoratorProps: DropDownDecoratorProps(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.grey.shade400,
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                          baseStyle: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        onSelected: (value) {
+                          if (value != null) {
+                            bc.posTableLayout = value;
+                            Preferences.posTableLayout = value;
+                            BaseController.to.update();
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 30),
                 ],
               ),
             );

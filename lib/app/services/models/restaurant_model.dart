@@ -255,6 +255,29 @@ extension PosDisplayModeLabel on PosDisplayMode {
 }
 
 @JsonEnum()
+enum PosTableLayout {
+  @JsonValue('STANDARD')
+  standard,
+  @JsonValue('FLOOR_PLAN')
+  floorPlan,
+  @JsonValue('BOTH')
+  both,
+}
+
+extension PosTableLayoutLabel on PosTableLayout {
+  String get label {
+    switch (this) {
+      case PosTableLayout.standard:
+        return 'Standard';
+      case PosTableLayout.floorPlan:
+        return 'Floor Plan';
+      case PosTableLayout.both:
+        return 'Both';
+    }
+  }
+}
+
+@JsonEnum()
 enum CallerIdType {
   @JsonValue('TYPE_ONE')
   typeOne,
@@ -316,6 +339,7 @@ class RestaurantModel {
     required this.keyboardSoundEnabled,
     required this.posCombinePrint,
     required this.posCategoryDisplayMode,
+    required this.posTableLayout,
     required this.callerIdType,
     required this.allowCallerIdTypeChange,
     // JSON theke pora hoy na — constant behavior, tai default (required na)
@@ -449,6 +473,12 @@ class RestaurantModel {
     defaultValue: PosDisplayMode.itemsOnly,
   )
   final PosDisplayMode posCategoryDisplayMode;
+
+  @JsonKey(
+    unknownEnumValue: PosTableLayout.standard,
+    defaultValue: PosTableLayout.standard,
+  )
+  final PosTableLayout posTableLayout;
 
   @JsonKey(
     unknownEnumValue: CallerIdType.typeOne,

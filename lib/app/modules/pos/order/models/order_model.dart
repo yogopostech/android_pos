@@ -412,6 +412,8 @@ class CartModel {
     this.variationOptions = const [],
     this.modifiers = const [],
     required this.discount,
+    this.updatedAt,
+    this.createdAt,
   });
 
   String id;
@@ -433,6 +435,8 @@ class CartModel {
   List<OptionModel> variationOptions;
   List<String> modifiers;
   Discount discount;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
   factory CartModel.fromJson(Map<String, dynamic> json) {
     return CartModel(
@@ -465,6 +469,12 @@ class CartModel {
       modifiers: json["modifiers"] == null
           ? []
           : List<String>.from(json["modifiers"]),
+      createdAt: json["createdAt"] == null
+          ? null
+          : DateTime.tryParse(json["createdAt"]),
+      updatedAt: json["updatedAt"] == null
+          ? null
+          : DateTime.tryParse(json["updatedAt"]),
     );
   }
 
@@ -486,6 +496,8 @@ class CartModel {
     "variationOptions": variationOptions.map((x) => x.toJson()).toList(),
     "modifiers": modifiers,
     "discount": discount.toJson(),
+    "createdAt": createdAt.toString(),
+    "updatedAt": updatedAt.toString(),
   };
 
   CartModel copyWith({

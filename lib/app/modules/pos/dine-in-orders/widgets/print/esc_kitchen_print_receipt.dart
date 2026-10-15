@@ -16,6 +16,8 @@ Uint8List escKitchenPrintReceipt({
 }) {
   Receipt receipt = Receipt();
 
+  final orderPlacedAt = _commonCartCreatedAt(order.carts) ?? order.createdAt!;
+
   receipt
       .space(3)
       .text(
@@ -24,32 +26,10 @@ Uint8List escKitchenPrintReceipt({
         fontWeight: FontWeight.bold,
       )
       .text(
-        "Order Place: ${DateFormat('hh:mm a').format(order.createdAt!.toTimeZone())}",
+        "Order Place: ${DateFormat('hh:mm a').format(orderPlacedAt.toTimeZone())}",
         fontSize: 2,
         fontWeight: FontWeight.bold,
       );
-  // .flexRow(
-  //   children: [
-  //     Col.flex(
-  //       'Guest:${MyFunc.capitalize(order.guestName)}',
-  //       fontSize: 2,
-  //       fontWeight: FontWeight.bold,
-  //     ),
-  //     Col.flex(
-  //       DateFormat('hh:mm a').format(order.createdAt!.toTimeZone()),
-  //       fontSize: 2,
-  //       fontWeight: FontWeight.bold,
-  //       align: Align.right,
-  //     ),
-  //   ],
-  // );
-  // Guest name
-  // .text(
-  //   'Guest:${MyFunc.capitalize(order.guestName)}',
-  //   fontSize: 2,
-  //   fontWeight: FontWeight.bold,
-  // );
-
   // Phone number
   receipt
       .text(
@@ -68,6 +48,8 @@ Uint8List escKitchenPrintReceipt({
       order.orderType == "DELIVERY") {
     receipt.text(
       '${order.orderType == "DELIVERY" ? "Delivery" : "Pickup"}:${order.estimatedDate.toFormattedDate()} ${order.estimatedTime.isEmpty ? "" : ", ${order.estimatedTime}"}',
+      fontSize: 2,
+      fontWeight: FontWeight.bold,
     );
   }
 
@@ -146,11 +128,6 @@ Uint8List escKitchenPrintReceipt({
   if (isShowItems) {
     for (var data in order.carts.combineItems()) {
       var itemName = data.isCustomProduct ? "${data.name}(CUSTOM)" : data.name;
-      // Item quantity and name
-      // 1st item without space, then add space for next items
-      // if (data == order.carts.first) {
-      //   receipt.space();
-      // }
       receipt.flexRow(
         children: [
           Col.fixed(
@@ -216,4 +193,23 @@ Uint8List escKitchenPrintReceipt({
   );
   receipt.space(2).cut();
   return receipt.bytes;
+}
+
+/// Returns the shared `createdAt` when every cart was created in the same
+/// minute (the precision printed on the ticket). Returns null if carts is
+/// empty, any cart has no `createdAt`, or the times differ.
+DateTime? _commonCartCreatedAt(List<CartModel> carts) {
+  if (carts.isEmpty) return null;
+  final first = carts.first.createdAt;
+  if (first == null) return null;
+
+  final firstMinute = first.millisecondsSinceEpoch ~/ 60000;
+  for (final cart in carts) {
+    final createdAt = cart.createdAt;
+    if (createdAt == null ||
+        createdAt.millisecondsSinceEpoch ~/ 60000 != firstMinute) {
+      return null;
+    }
+  }
+  return first;
 }

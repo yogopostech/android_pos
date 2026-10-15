@@ -70,6 +70,7 @@ class Preferences {
   static const String FIRE_AND_LOGOUT = "fire_and_logout";
   //
   static const String POS_DISPLAY_MODE = "pos_display_mode";
+  static const String POS_TABLE_LAYOUT = 'POS_TABLE_LAYOUT';
   static const String CALLER_ID_TYPE = 'CALLER_ID_TYPE';
 
   // device id
@@ -301,6 +302,20 @@ class Preferences {
           PosDisplayMode.itemsOnly.index];
   static set posDisplayMode(PosDisplayMode value) =>
       preferences.setInt(POS_DISPLAY_MODE, value.index);
+
+  // ***** POS table layout *****
+  static PosTableLayout get posTableLayout {
+    final v = preferences.getString(POS_TABLE_LAYOUT) ?? 'standard';
+    return PosTableLayout.values.firstWhere(
+      (e) => e.name == v,
+      orElse: () => PosTableLayout.standard,
+    );
+  }
+
+  static set posTableLayout(PosTableLayout value) {
+    preferences.setString(POS_TABLE_LAYOUT, value.name);
+  }
+
   // ***** POS caller Id Mode *****
   static CallerIdType get callerIdType {
     final v = preferences.getString(CALLER_ID_TYPE) ?? 'typeOne';

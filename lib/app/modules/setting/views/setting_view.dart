@@ -26,52 +26,6 @@ class SettingView extends GetView<SettingController> {
             const TitleBar(),
             Expanded(
               child: Scaffold(
-                // appBar: AppBar(
-                //   backgroundColor: ConfigController.to.isLightTheme
-                //       ? theme.cardColor
-                //       : StaticColors.cartColor,
-                //   title: GetBuilder<SettingController>(
-                //     builder: (context) {
-                //       return Text(context.menuList[context.menuIndex].title);
-                //     },
-                //   ),
-                //   // backgroundColor: (ConfigController.to.isLightTheme
-                //   //     ? theme.canvasColor
-                //   //     : StaticColors.cartColor),
-                //   leading: IconButton(
-                //     icon: const Icon(Icons.arrow_back, size: 36),
-                //     onPressed: () {
-                //       Get.back();
-                //     },
-                //   ),
-                //   automaticallyImplyLeading: false,
-                //   centerTitle: true,
-                //   // ! colour theme
-                //   // actions: [
-                //   //   Container(
-                //   //     height: 45,
-                //   //     width: 45,
-                //   //     margin: const EdgeInsets.only(right: 12),
-                //   //     decoration: BoxDecoration(
-                //   //         shape: BoxShape.circle,
-                //   //         color: !ConfigController.to.isLightTheme
-                //   //             ? Colors.black
-                //   //             : Colors.white),
-                //   //     child: CustomInkWell(
-                //   //       onTap: ConfigController.to.toggleTheme,
-                //   //       child: SvgPicture.asset(
-                //   //         'assets/icons/theme.svg',
-                //   //         // height: 55,
-                //   //         colorFilter: ColorFilter.mode(
-                //   //             ConfigController.to.isLightTheme
-                //   //                 ? Colors.black
-                //   //                 : Colors.white,
-                //   //             BlendMode.srcIn),
-                //   //       ),
-                //   //     ),
-                //   //   ),
-                //   // ],
-                // ),
                 body: Row(
                   children: [
                     //menu

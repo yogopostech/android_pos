@@ -51,21 +51,23 @@ class BottomBar extends GetView<PosController> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      // Visibility(
-                      //   visible: kDebugMode,
-                      //   child: PrimaryBtn(
-                      //     width: 90,
-                      //     height: 80,
-                      //     textColor: Colors.white,
-                      //     color: StaticColors.blueColor,
-                      //     onPressed: () async {
-                      //       // cwsPurchaseDialog(amountCents: 5050);
-                      //       // print(Preferences.user);
-                      //       // Get.toNamed(Routes.CALLER_ID_PAGE);
-                      //     },
-                      //     text: "No Tips".toUpperCase(),
-                      //   ).marginOnly(right: 10),
-                      // ),
+                      Visibility(
+                        visible: kDebugMode,
+                        child: PrimaryBtn(
+                          width: 90,
+                          height: 80,
+                          textColor: Colors.white,
+                          color: StaticColors.blueColor,
+                          onPressed: () async {
+                            print(
+                              Preferences.counterPrinter +
+                                  "and" +
+                                  Preferences.kitchenPrinter,
+                            );
+                          },
+                          text: "Check printers ip ".toUpperCase(),
+                        ).marginOnly(right: 10),
+                      ),
                       // Visibility(
                       //   // visible: kDebugMode,
                       //   child: PrimaryBtn(
@@ -283,9 +285,17 @@ class BottomBar extends GetView<PosController> {
                       //   text: "Gift Card".toUpperCase(),
                       // ).marginOnly(right: 10),
 
+                      // Width na dile ei button scroll Row e unbounded thake,
+                      // tokhon centered text nijer exact width e layout hoy.
+                      // Tab e (DPR ~1.33, fractional font size) rounding er
+                      // jonno shesh letter ("T") next line e chole jay.
+                      // Fixed width + maxLines 1 => AutoSizeText ek line e
+                      // fit korabe (dorkar hole font ektu choto kore).
                       PrimaryBtn(
+                        width: 110.r,
                         height: 80.rMin(kMinTouch),
-
+                        padding: EdgeInsets.symmetric(horizontal: 4.r),
+                        maxLines: 1,
                         textColor: Colors.white,
                         color: StaticColors.blueColor,
                         onPressed: () {

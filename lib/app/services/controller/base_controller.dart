@@ -33,6 +33,7 @@ class BaseController extends GetxController {
   bool allowCallerIdTypeChange = false;
 
   PosDisplayMode posDisplayMode = PosDisplayMode.itemsOnly;
+  PosTableLayout posTableLayout = PosTableLayout.standard;
   CallerIdType callerIdType = CallerIdType.typeOne;
 
   pw.MemoryImage? printImg;
@@ -155,6 +156,11 @@ class BaseController extends GetxController {
             PosDisplayMode.both) {
           posDisplayMode = restaurant.restaurant.posCategoryDisplayMode;
           Preferences.posDisplayMode = posDisplayMode;
+        }
+        // table layout
+        if (restaurant.restaurant.posTableLayout != PosTableLayout.both) {
+          posTableLayout = restaurant.restaurant.posTableLayout;
+          Preferences.posTableLayout = posTableLayout;
         }
         // caller id type
         if (restaurant.restaurant.callerIdType != CallerIdType.both) {
@@ -482,6 +488,7 @@ class BaseController extends GetxController {
     hasCallerId.value = Preferences.hasCallerId;
     isCallerIdLocal.value = Preferences.isCallerIdLocal;
     posDisplayMode = Preferences.posDisplayMode;
+    posTableLayout = Preferences.posTableLayout;
     callerIdType = Preferences.callerIdType;
     getRestaurantDetails();
     getPackageInfo();

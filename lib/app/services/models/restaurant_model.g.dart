@@ -59,6 +59,13 @@ RestaurantModel _$RestaurantModelFromJson(
         unknownValue: PosDisplayMode.itemsOnly,
       ) ??
       PosDisplayMode.itemsOnly,
+  posTableLayout:
+      $enumDecodeNullable(
+        _$PosTableLayoutEnumMap,
+        json['posTableLayout'],
+        unknownValue: PosTableLayout.standard,
+      ) ??
+      PosTableLayout.standard,
   callerIdType:
       $enumDecodeNullable(
         _$CallerIdTypeEnumMap,
@@ -107,6 +114,7 @@ Map<String, dynamic> _$RestaurantModelToJson(RestaurantModel instance) =>
       'posCombinePrint': instance.posCombinePrint,
       'posCategoryDisplayMode':
           _$PosDisplayModeEnumMap[instance.posCategoryDisplayMode]!,
+      'posTableLayout': _$PosTableLayoutEnumMap[instance.posTableLayout]!,
       'callerIdType': _$CallerIdTypeEnumMap[instance.callerIdType]!,
       'allowCallerIdTypeChange': instance.allowCallerIdTypeChange,
     };
@@ -122,6 +130,12 @@ const _$PosDisplayModeEnumMap = {
   PosDisplayMode.itemsOnly: 'ITEMS_ONLY',
   PosDisplayMode.categoryWithItems: 'CATEGORY_WITH_ITEMS',
   PosDisplayMode.both: 'BOTH',
+};
+
+const _$PosTableLayoutEnumMap = {
+  PosTableLayout.standard: 'STANDARD',
+  PosTableLayout.floorPlan: 'FLOOR_PLAN',
+  PosTableLayout.both: 'BOTH',
 };
 
 const _$CallerIdTypeEnumMap = {
