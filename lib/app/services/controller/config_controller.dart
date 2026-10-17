@@ -4,11 +4,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/services/base/preferences.dart';
 import 'package:get/get.dart';
-import 'package:yogo_pos/app/services/controller/base_controller.dart';
 import 'package:yogo_pos/app/services/models/printer_model.dart';
-import 'package:yogo_pos/app/utils/logger.dart';
 import 'package:yogo_pos/app/utils/static_colors.dart';
-import 'package:yogo_pos/app/utils/urls.dart';
 
 class ConfigController extends GetxController {
   static ConfigController get to => Get.find();
@@ -26,74 +23,17 @@ class ConfigController extends GetxController {
   List<String> printerTypes = [];
   String selectedPrinterType = "";
 
-  // Future<void> getPrinters() async {
-  //       if (BaseController.to.restaurantDetails?.printerSelectionMode !=
-  //       "MULTIPLE") {
-  //     return;
-  //   }
-  //   try {
-  //     final res = await BaseController.to.apiService.makeGetRequest(
-  //       URLS.printers,
-  //     );
-  //     debugPrint('Printers API Response: ${res.data}');
-
-  //     if (res.statusCode != 200) return;
-
-  //     // Parse and sort by priority
-  //     rowPrinters =
-  //         (res.data["data"] as List)
-  //             .map((e) => PrinterModel.fromJson(e))
-  //             .toList()
-  //           ..sort((a, b) => a.priority.compareTo(b.priority));
-
-  //     // Save counter printer connection
-  //     Preferences.counterPrinter =
-  //         rowPrinters
-  //             .where((p) => p.isCounterPrinter)
-  //             .firstOrNull
-  //             ?.printerConnection ??
-  //         "";
-
-  //     // kLogger.i('Counter printer connection: ${Preferences.counterPrinter}');
-  //     // Initialize printer types and selection
-  //     _initializePrinterTypes();
-
-  //     kLogger.i('Loaded ${rowPrinters.length} printers');
-  //   } catch (e, st) {
-  //     kLogger.e('Error loading printers', error: e, stackTrace: st);
-  //   }
-  // }
-
-  void _initializePrinterTypes() {
-    // Build available printer types (POS first, then OLO)
-    printerTypes.clear();
-
-    final hasPOS = rowPrinters.any((p) => p.printerType == 'POS');
-    final hasOLO = rowPrinters.any((p) => p.printerType == 'OLO');
-
-    if (hasPOS) printerTypes.add('POS');
-    if (hasOLO) printerTypes.add('OLO');
-
-    // Auto-select first available type (POS if available, otherwise OLO)
-    if (printerTypes.isNotEmpty) {
-      if (selectedPrinterType.isEmpty) {
-        onSelectedPrinterType(printerTypes.first);
-      } else {
-        onSelectedPrinterType(selectedPrinterType);
-      }
-    }
-  }
 
   // Public method - can be called from other pages
-  void onSelectedPrinterType(String value) {
-    selectedPrinterType = value;
-    _filterPrintersByType(value);
-  }
+  // void onSelectedPrinterType(String value) {
+  //   selectedPrinterType = value;
+  //   _filterPrintersByType(value);
+  // }
 
-  void _filterPrintersByType(String type) {
-    printers = rowPrinters.where((p) => p.printerType == type).toList();
-    update();
-  }
+  // void _filterPrintersByType(String type) {
+  //   printers = rowPrinters.where((p) => p.printerType == type).toList();
+  //   update();
+  // }
 
 
   void toggleTheme() {

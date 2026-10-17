@@ -25,6 +25,7 @@ class CustomTableItem extends StatelessWidget {
   final String rush;
   final String heat;
   final String note;
+  final String stk;
   final List<OptionModel> options;
   final List<String> modifiers;
   final bool isSelected;
@@ -49,6 +50,7 @@ class CustomTableItem extends StatelessWidget {
       this.dontMake = '',
       this.rush = '',
       this.heat = '',
+      this.stk = '',
       this.note = '',
       this.onTap,
       this.discount,
@@ -93,6 +95,18 @@ class CustomTableItem extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 6.r),
               child: Checkbox(value: isSelected, onChanged: onChanged),
             ),
+            // item 2 (STK - sent to kitchen time)
+            SizedBox(
+              width: 140.r,
+              child: Text(
+                isHeader == true ? "STK" : stk,
+                style: isHeader == true
+                    ? theme.textTheme.labelMedium
+                    : theme.textTheme.bodyLarge,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ).marginSymmetric(horizontal: 10.r),
             // item 3
             Expanded(
               flex: 2,

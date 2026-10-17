@@ -34,7 +34,13 @@ dependencies:
   syncfusion_flutter_datepicker: 34.2.8
   dropdown_button2: ^2.3.9
   pdf: ^3.10.8
-  dropdown_textfield: ^1.2.0
+  # 1.2.0 on pub.dev crashes in onTapOutside ("Null is not a subtype of RenderBox")
+  # when the field is focused but the dropdown overlay is closed. Fixed upstream in
+  # ba7bc29 but never published. Switch back to pub.dev once > 1.2.0 is released.
+  dropdown_textfield:
+    git:
+      url: https://github.com/srtraj/dropdown_textfield.git
+      ref: ba7bc2988d2bd2d1e3e0c572db29c0122ba10cd1
   animated_text_kit: ^4.2.2
   path_provider: ^2.1.4
   fraction: ^5.0.2 #for divide items

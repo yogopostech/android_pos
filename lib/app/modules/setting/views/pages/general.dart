@@ -8,7 +8,6 @@ import 'package:yogo_pos/app/services/controller/base_controller.dart';
 import 'package:yogo_pos/app/services/controller/config_controller.dart';
 import 'package:yogo_pos/app/services/models/restaurant_model.dart';
 import 'package:yogo_pos/app/utils/int_extensions.dart';
-import 'package:yogo_pos/app/widgets/popup_dialogs.dart';
 
 class General extends StatefulWidget {
   const General({super.key});

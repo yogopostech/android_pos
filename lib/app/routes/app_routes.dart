@@ -45,6 +45,4 @@ abstract class _Paths {
   static const Gift_Card_Transaction_Details2 =
       '/Gift-Card-Transaction-Details2';
 
-    static const Rewards_Gift_Card =
-      '/Rewards-Gift-Card';
 }

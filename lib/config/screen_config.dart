@@ -29,9 +29,7 @@ double dampedFontSize(num fontSize, ScreenUtil su) {
 const double kMinTouch = 40;
 
 extension ScreenUtilMin on num {
-  /// `.r` er motoi scale kore, kintu [min] er choto hoy na.
-  /// Jemon `48.rMin(kMinTouch)` -> Tab e 40, boro screen e 48+.
-  double rMin(double min) => math.max(this.r, min);
+  double rMin(double min) => math.max(r, min);
 }
 
 /// Theme er text style gulo (titleMedium, bodyLarge...) o `.sp` er moto

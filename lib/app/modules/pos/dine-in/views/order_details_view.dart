@@ -3,10 +3,10 @@ import 'dart:ui';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:yogo_pos/config/screen_config.dart';
 import 'package:yogo_pos/app/helper/data_update_helper.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
-import 'package:yogo_pos/app/modules/pos/delivery/controllers/delivery_controller.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in-orders/controllers/dine_in_order_controller.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in-orders/widgets/print/esc_order_print_receipt.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in-orders/widgets/print/kitchen_print.dart';
@@ -32,7 +32,6 @@ import 'package:yogo_pos/app/utils/my_func.dart';
 import 'package:yogo_pos/app/utils/print_utils.dart';
 import 'package:yogo_pos/app/utils/static_colors.dart';
 import 'package:yogo_pos/app/widgets/cash_and_gift_card_dialog.dart';
-import 'package:yogo_pos/app/widgets/change_takeout_to_delivery.dart';
 import 'package:yogo_pos/app/widgets/custom_btn.dart';
 import 'package:yogo_pos/app/widgets/custom_textfield.dart';
 import 'package:yogo_pos/app/widgets/edit_delivery_fee.dart';
@@ -1119,7 +1118,9 @@ class OrderDetailsView extends GetView<DineInController> {
                                                               },
                                                               text: 'Moneris'
                                                                   .toUpperCase(),
-                                                              height: 103.rMin(kMinTouch),
+                                                              height: 103.rMin(
+                                                                kMinTouch,
+                                                              ),
                                                               color: StaticColors
                                                                   .blueColor,
                                                               padding:
@@ -1134,8 +1135,10 @@ class OrderDetailsView extends GetView<DineInController> {
                                                                 color: Colors
                                                                     .white,
                                                               ),
-                                                              textMaxSize: 20.sp.roundToDouble(),
-                                                              textMinSize: 20.sp.roundToDouble(),
+                                                              textMaxSize: 20.sp
+                                                                  .roundToDouble(),
+                                                              textMinSize: 20.sp
+                                                                  .roundToDouble(),
                                                               borderColor: Colors
                                                                   .transparent,
                                                               isOutline: true,
@@ -1232,7 +1235,9 @@ class OrderDetailsView extends GetView<DineInController> {
                                                               },
                                                               text: 'Elavon'
                                                                   .toUpperCase(),
-                                                              height: 103.rMin(kMinTouch),
+                                                              height: 103.rMin(
+                                                                kMinTouch,
+                                                              ),
                                                               color: StaticColors
                                                                   .blueColor,
                                                               padding:
@@ -1247,8 +1252,10 @@ class OrderDetailsView extends GetView<DineInController> {
                                                                 color: Colors
                                                                     .white,
                                                               ),
-                                                              textMaxSize: 20.sp.roundToDouble(),
-                                                              textMinSize: 20.sp.roundToDouble(),
+                                                              textMaxSize: 20.sp
+                                                                  .roundToDouble(),
+                                                              textMinSize: 20.sp
+                                                                  .roundToDouble(),
                                                               borderColor: Colors
                                                                   .transparent,
                                                               isOutline: true,
@@ -1369,7 +1376,9 @@ class OrderDetailsView extends GetView<DineInController> {
                                                             },
                                                             text: 'standalone'
                                                                 .toUpperCase(),
-                                                            height: 103.rMin(kMinTouch),
+                                                            height: 103.rMin(
+                                                              kMinTouch,
+                                                            ),
                                                             color: StaticColors
                                                                 .blueColor,
                                                             padding:
@@ -1385,8 +1394,10 @@ class OrderDetailsView extends GetView<DineInController> {
                                                                   color: Colors
                                                                       .white,
                                                                 ),
-                                                            textMaxSize: 20.sp.roundToDouble(),
-                                                            textMinSize: 20.sp.roundToDouble(),
+                                                            textMaxSize: 20.sp
+                                                                .roundToDouble(),
+                                                            textMinSize: 20.sp
+                                                                .roundToDouble(),
                                                             borderColor: Colors
                                                                 .transparent,
                                                             isOutline: true,
@@ -1748,7 +1759,13 @@ class OrderDetailsView extends GetView<DineInController> {
                           var totalPrice =
                               (item.price - item.discountAmount) *
                               item.quantity;
+                          String stk = item.createdAt == null
+                              ? "N/A"
+                              : DateFormat(
+                                  'MMM dd,hh:mm a',
+                                ).format(item.createdAt!);
                           return CustomTableItem(
+                            stk: stk,
                             onTap: () {
                               c.onChangeSelectedItemList(item.id);
                             },
@@ -2399,10 +2416,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                   Colors.white,
                             ),
                           ),
-                          child: Icon(
-                            Icons.arrow_back_ios_rounded,
-                            size: 40.r,
-                          ),
+                          child: Icon(Icons.arrow_back_ios_rounded, size: 40.r),
                         ),
                       ),
                     ],
@@ -2428,10 +2442,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                   Colors.white,
                             ),
                           ),
-                          child: Icon(
-                            Icons.arrow_back_ios_rounded,
-                            size: 40.r,
-                          ),
+                          child: Icon(Icons.arrow_back_ios_rounded, size: 40.r),
                         ),
                       ),
                     ],

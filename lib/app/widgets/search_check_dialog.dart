@@ -59,10 +59,10 @@ class _OrderSearchDialogState extends ConsumerState<OrderSearchDialog> {
   bool _hasSearched = false;
 
   // tracks which caller is currently processing delivery (shows spinner)
-  String? _deliveryLoadingId;
+  // String? _deliveryLoadingId;
 
   // selected caller — 1st caller auto-selected on open, user can tap to change
-  String? _selectedCallerId;
+  // String? _selectedCallerId;
 
   bool get _isCallerMode => widget.isCallerMode;
 
@@ -131,80 +131,77 @@ class _OrderSearchDialogState extends ConsumerState<OrderSearchDialog> {
 
   // ── Takeout ───────────────────────────────────────────────────────────────
 
-  void _onTakeout(CallerIdData data) {
-    final pos = PosController.to;
-    //routing
-    final currentRoute = Get.currentRoute;
-    if (currentRoute != '/pos') {
-      Get.until((route) => route.settings.name == '/pos');
-    }
-    pos.clearCartList();
-    // check page
-    if (pos.pageController.page != 0) {
-      pos.pageController.jumpToPage(0);
-    }
-    pos.onChangeOrderType("TAKEOUT");
-    pos.guestController.text = '1';
-    pos.tableController.text = "";
-    pos.guestNameController.text = data.callerName ?? '';
-    pos.guestPhoneController.text = data.phoneNumber ?? '';
-    Get.back();
-  }
+  // void _onTakeout(CallerIdData data) {
+  //   final pos = PosController.to;
+  //   //routing
+  //   final currentRoute = Get.currentRoute;
+  //   if (currentRoute != '/pos') {
+  //     Get.until((route) => route.settings.name == '/pos');
+  //   }
+  //   pos.clearCartList();
+  //   // check page
+  //   if (pos.pageController.page != 0) {
+  //     pos.pageController.jumpToPage(0);
+  //   }
+  //   pos.onChangeOrderType("TAKEOUT");
+  //   pos.guestController.text = '1';
+  //   pos.tableController.text = "";
+  //   pos.guestNameController.text = data.callerName ?? '';
+  //   pos.guestPhoneController.text = data.phoneNumber ?? '';
+  //   Get.back();
+  // }
 
-  Future<void> _onDelivery(CallerIdData data) async {
-    setState(() => _deliveryLoadingId = data.id);
-    try {
-      final res = await BaseController.to.apiService.makeGetRequest(
-        URLS.orders,
-        queryParameters: {
-          'limit': 5,
-          'search': (data.phoneNumber ?? '').trim(),
-          'orderType': 'DELIVERY',
-        },
-      );
-      if (res.statusCode == 200) {
-        final orders = (res.data['data'] as List)
-            .map((e) => OrderModel.fromJson(e))
-            .toList();
-        final pos = PosController.to;
-        pos.clearCartList();
-        if (orders.isNotEmpty) {
-          pos.repeatOrder(orders.first, isCleanItem: true);
-        } else {
-          //routing
-          final currentRoute = Get.currentRoute;
-          if (currentRoute != '/pos') {
-            Get.until((route) => route.settings.name == '/pos');
-          }
-          pos.clearCartList();
-          // check page
-          if (pos.pageController.page != 0) {
-            pos.pageController.jumpToPage(0);
-          }
-          pos.onChangeOrderType("DELIVERY");
-          pos.guestController.text = '1';
-          pos.tableController.text = "";
-          pos.guestNameController.text = data.callerName ?? '';
-          pos.guestPhoneController.text = data.phoneNumber ?? '';
-        }
-      }
-    } catch (e) {
-      kLogger.e('Delivery order search error => $e');
-    }
+  // Future<void> _onDelivery(CallerIdData data) async {
+  //   setState(() => _deliveryLoadingId = data.id);
+  //   try {
+  //     final res = await BaseController.to.apiService.makeGetRequest(
+  //       URLS.orders,
+  //       queryParameters: {
+  //         'limit': 5,
+  //         'search': (data.phoneNumber ?? '').trim(),
+  //         'orderType': 'DELIVERY',
+  //       },
+  //     );
+  //     if (res.statusCode == 200) {
+  //       final orders = (res.data['data'] as List)
+  //           .map((e) => OrderModel.fromJson(e))
+  //           .toList();
+  //       final pos = PosController.to;
+  //       pos.clearCartList();
+  //       if (orders.isNotEmpty) {
+  //         pos.repeatOrder(orders.first, isCleanItem: true);
+  //       } else {
+  //         //routing
+  //         final currentRoute = Get.currentRoute;
+  //         if (currentRoute != '/pos') {
+  //           Get.until((route) => route.settings.name == '/pos');
+  //         }
+  //         pos.clearCartList();
+  //         // check page
+  //         if (pos.pageController.page != 0) {
+  //           pos.pageController.jumpToPage(0);
+  //         }
+  //         pos.onChangeOrderType("DELIVERY");
+  //         pos.guestController.text = '1';
+  //         pos.tableController.text = "";
+  //         pos.guestNameController.text = data.callerName ?? '';
+  //         pos.guestPhoneController.text = data.phoneNumber ?? '';
+  //       }
+  //     }
+  //   } catch (e) {
+  //     kLogger.e('Delivery order search error => $e');
+  //   }
 
-    if (mounted) {
-      setState(() => _deliveryLoadingId = null);
-      Get.back();
-    }
-  }
+  //   if (mounted) {
+  //     setState(() => _deliveryLoadingId = null);
+  //     Get.back();
+  //   }
+  // }
 
   // ── Build ─────────────────────────────────────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
-  
-
-    final screenH = MediaQuery.of(context).size.height;
     final isLight = ConfigController.to.isLightTheme;
     final theme = Theme.of(context);
     return Dialog(
@@ -284,202 +281,6 @@ class _OrderSearchDialogState extends ConsumerState<OrderSearchDialog> {
 
 // ── Caller Info Header ────────────────────────────────────────────────────────
 
-class _CallerInfoHeader extends StatelessWidget {
-  final CallerIdData data;
-  final bool isSelected;
-  final bool isDeliveryLoading;
-  final int index;
-  final VoidCallback onSelect;
-  final VoidCallback? onTakeout; // null = disabled (not selected)
-  final VoidCallback? onDelivery; // null = disabled (not selected)
-
-  const _CallerInfoHeader({
-    required this.data,
-    required this.isSelected,
-    required this.isDeliveryLoading,
-    required this.onSelect,
-    required this.onTakeout,
-    required this.onDelivery,
-    required this.index,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final isLight = ConfigController.to.isLightTheme;
-    final textColor = isLight ? Colors.black : Colors.white;
-    final subColor = isLight
-        ? Colors.black.withAlpha(150)
-        : Colors.white.withAlpha(170);
-
-    return GestureDetector(
-      onTap: onSelect,
-      child: AnimatedContainer(
-        height: 100,
-        duration: const Duration(milliseconds: 160),
-        curve: Curves.easeOut,
-        decoration: BoxDecoration(
-          color: isSelected
-              ? StaticColors.greenColor.withAlpha(15)
-              : (isLight
-                    ? Colors.black.withAlpha(8)
-                    : Colors.white.withAlpha(10)),
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            width: 2,
-            color: isSelected
-                ? StaticColors.greenColor.withAlpha(200)
-                : (isLight
-                      ? Colors.black.withAlpha(15)
-                      : Colors.white.withAlpha(20)),
-          ),
-        ),
-        margin: const EdgeInsets.only(bottom: 10),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        child: Row(
-          children: [
-            // index badge
-            Container(
-              width: 40,
-              height: 40,
-              alignment: Alignment.center,
-              child: Text(
-                "$index.",
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ),
-            const SizedBox(width: 16),
-            // Line badge
-            Container(
-              height: 40,
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              decoration: BoxDecoration(
-                color: Colors.green.withAlpha(30),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.green.withAlpha(80)),
-              ),
-              child: Text(
-                'Line ${data.lineNumber}',
-                style: const TextStyle(
-                  color: Colors.green,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ),
-            const SizedBox(width: 16),
-
-            // Icon
-            Container(
-              width: 54,
-              height: 54,
-              decoration: BoxDecoration(
-                color: StaticColors.blueColor.withAlpha(30),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Icon(
-                Icons.phone_in_talk_outlined,
-                color: StaticColors.blueColor,
-                size: 26,
-              ),
-            ),
-            const SizedBox(width: 12),
-
-            // Name + phone
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    data.displayName,
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    data.displayPhone,
-                    style: TextStyle(
-                      color: subColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-
-                  const SizedBox(height: 2),
-                  Text(
-                    DateFormat(
-                      'MMM dd, hh:mm a',
-                    ).format(data.receivedAt.toLocal()),
-                    style: TextStyle(
-                      color: subColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // Takeout button — disabled when not selected
-            Visibility(
-              visible: isSelected,
-              child: Row(
-                children: [
-                  Opacity(
-                    opacity: isSelected ? 1.0 : 1.0,
-                    child: PrimaryBtn(
-                      text: 'Takeout',
-                      color: StaticColors.blueColor,
-                      textColor: Colors.white,
-                      width: 160,
-                      height: 80,
-                      textMinSize: 30,
-                      textMaxSize: 30,
-                      onPressed: onTakeout ?? () {},
-                    ),
-                  ),
-                  const SizedBox(width: 22),
-
-                  // Delivery button — spinner while loading, disabled when not selected
-                  isDeliveryLoading
-                      ? SizedBox(
-                          width: 140,
-                          height: 80,
-                          child: Center(
-                            child: SpinKitRing(
-                              color: StaticColors.orangeColor,
-                              size: 32,
-                            ),
-                          ),
-                        )
-                      : Opacity(
-                          opacity: isSelected ? 1.0 : 1.0,
-                          child: PrimaryBtn(
-                            text: 'Delivery',
-                            color: StaticColors.greenColor,
-                            textColor: Colors.white,
-                            width: 160,
-                            height: 80,
-                            textMinSize: 30,
-                            textMaxSize: 30,
-                            onPressed: onDelivery ?? () {},
-                          ),
-                        ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 // ── Order Card ────────────────────────────────────────────────────────────────
 

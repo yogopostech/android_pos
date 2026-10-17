@@ -1,15 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:yogo_pos/app/modules/setting/models/settings_menu_model.dart';
-import 'package:yogo_pos/app/modules/setting/views/pages/caller_id.dart';
 import 'package:yogo_pos/app/modules/setting/views/pages/general.dart';
 import 'package:yogo_pos/app/modules/setting/views/pages/payments.dart';
 import 'package:yogo_pos/app/modules/setting/views/pages/printers.dart';
-import 'package:yogo_pos/app/modules/setting/views/pages/services.dart';
 import 'package:yogo_pos/app/modules/setting/views/pages/time_sheet_report.dart';
-import 'package:yogo_pos/app/modules/setting/views/pages/weighing_scale.dart';
 import 'package:get/get.dart';
-import 'package:yogo_pos/app/modules/setting/widgets/datacandy_screen.dart';
 
 class SettingController extends GetxController {
   static SettingController get to => Get.find();

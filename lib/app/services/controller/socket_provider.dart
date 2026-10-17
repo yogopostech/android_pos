@@ -1,36 +1,21 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'package:toastification/toastification.dart';
 import 'package:yogo_pos/app/helper/app_helper.dart';
 import 'package:yogo_pos/app/helper/data_update_helper.dart';
 import 'package:yogo_pos/app/modules/clockIn/providers/clock_in_out.dart';
 import 'package:yogo_pos/app/modules/clockIn/widgets/clock_in_dialog.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
-import 'package:yogo_pos/app/modules/pos/delivery/controllers/delivery_controller.dart';
-import 'package:yogo_pos/app/modules/pos/dine-in-orders/widgets/print/esc_order_print_receipt.dart';
-import 'package:yogo_pos/app/modules/pos/dine-in-orders/widgets/print/esc_table_reservation_print_receipt.dart';
-import 'package:yogo_pos/app/modules/pos/dine-in-orders/widgets/print/kitchen_print.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in/models/employee_model.dart';
-import 'package:yogo_pos/app/modules/pos/onlineOrder/controllers/online_order_controller.dart';
-import 'package:yogo_pos/app/modules/pos/tableReservations/models/table_reservations_model.dart';
-import 'package:yogo_pos/app/modules/setting/providers/caller_id_notifier.dart';
-import 'package:yogo_pos/app/modules/setting/repo/caller_id_data.dart';
-import 'package:yogo_pos/app/modules/setting/repo/incoming_call_dialog.dart';
 import 'package:yogo_pos/app/modules/terminalIntegration/elavon-cws/providers/cws_credentials_provider.dart';
 import 'package:yogo_pos/app/services/base/preferences.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
 import 'package:yogo_pos/app/utils/logger.dart';
-import 'package:yogo_pos/app/utils/print_utils.dart';
 import 'package:yogo_pos/app/utils/urls.dart';
 import 'package:yogo_pos/app/widgets/moneris_dialog.dart';
 import 'package:yogo_pos/app/widgets/popup_dialogs.dart';
-import 'package:yogo_pos/app/widgets/search_check_dialog.dart';
 import '../../modules/pos/order/models/order_model.dart';
 
 part 'socket_provider.g.dart';
@@ -145,171 +130,6 @@ class SocketController extends _$SocketController {
     kLogger.e("Error: $err");
   }
 
-  // ─────────────────────────────────────────────────
-  // Event Handlers
-  // ─────────────────────────────────────────────────
-
-  Future<void> _onTableBooking(dynamic data) async {
-    if (kDebugMode) kLogger.i("tableBooking Placed: $data");
-
-    dynamic tableBookingData;
-    Function? callback;
-
-    if (data is List && data.isNotEmpty) {
-      tableBookingData = data[0];
-      if (data.length > 1 && data[1] is Function) {
-        callback = data[1] as Function;
-      }
-    } else {
-      tableBookingData = data;
-    }
-    callback?.call({"status": "SUCCESS"});
-
-    try {
-      final Reservations reservationData = Reservations.fromJson(
-        tableBookingData,
-      );
-
-      if (Preferences.isNotificationSound) {
-        BaseController.to.playNotificationSound();
-      }
-
-      toastification.show(
-        title: const Text("Table Reservation Received", maxLines: 1),
-        description: Text(
-          "Reservation Id #${reservationData.tableBookId}",
-          maxLines: 4,
-        ),
-        type: ToastificationType.info,
-        autoCloseDuration: const Duration(seconds: 5),
-      );
-
-      await _reservationDataPrint(reservationData);
-
-      if (kDebugMode) {
-        kLogger.i(
-          "✅ Table Reservation SUCCESS #${reservationData.tableBookId}",
-        );
-      }
-    } catch (e) {
-      PopupDialog.showErrorMessage(
-        "Table Reservation data format is not correct",
-      );
-      if (kDebugMode) kLogger.e('Table Reservation format error => $e');
-      // callback?.call({"status": "ERROR", "message": e.toString()});
-      if (kDebugMode) {
-        kLogger.e("❌ Sent ERROR acknowledgment for table booking");
-      }
-    }
-  }
-
-  void _onOnlineOrder(dynamic data) {
-    if (kDebugMode) kLogger.i("Online Order Placed: $data");
-
-    dynamic orderData;
-    Function? callback;
-
-    if (data is List && data.isNotEmpty) {
-      orderData = data[0];
-      if (data.length > 1 && data[1] is Function) {
-        callback = data[1] as Function;
-      }
-    } else {
-      orderData = data;
-    }
-    callback?.call({"status": "SUCCESS"});
-    try {
-      final OrderModel order = OrderModel.fromJson(orderData);
-
-      if (Preferences.isNotificationSound) {
-        BaseController.to.playNotificationSound();
-      }
-
-      toastification.show(
-        title: const Text("Online Order Received", maxLines: 1),
-        description: Text(
-          "Order #${order.orderId} - Amount: \$${order.totalOrderAmount.toStringAsFixed(2)}",
-          maxLines: 4,
-        ),
-        type: ToastificationType.info,
-        autoCloseDuration: const Duration(seconds: 5),
-      );
-
-      if (Preferences.isOloPrint) kitchenPrint(order);
-      if (Preferences.oloCustomerReceipt) {
-        PrintUtils().directPrint(
-          data: escOrderPrintReceipt(order: order),
-          printer: Preferences.counterPrinter,
-        );
-      }
-
-      if (Get.currentRoute != '/auth') OnlineOrderController.to.getOrders();
-
-      callback?.call({"status": "SUCCESS"});
-      if (kDebugMode) {
-        kLogger.i("✅ Online order SUCCESS #${order.orderId}");
-      }
-    } catch (e) {
-      PopupDialog.showErrorMessage("OLO data format is not correct");
-      if (kDebugMode) kLogger.e('Online order format error => $e');
-      // callback?.call({"status": "ERROR", "message": e.toString()});
-      if (kDebugMode) kLogger.e("❌ Sent ERROR acknowledgment for online order");
-    }
-  }
-
-  void _onDeliveryOrder(dynamic data) {
-    dynamic orderData;
-    Function? callback;
-
-    if (data is List && data.isNotEmpty) {
-      orderData = data[0];
-      if (data.length > 1 && data[1] is Function) {
-        callback = data[1] as Function;
-      }
-    } else {
-      orderData = data;
-    }
-    callback?.call({"status": "SUCCESS"});
-    try {
-      final OrderModel order = OrderModel.fromJson(orderData);
-
-      if (Preferences.isNotificationSound) {
-        BaseController.to.playNotificationSound();
-      }
-
-      toastification.show(
-        title: const Text("Delivery Order Received", maxLines: 1),
-        description: Text(
-          "Order #${order.orderId} - Amount: \$${order.totalOrderAmount.toStringAsFixed(2)}",
-          maxLines: 4,
-        ),
-        type: ToastificationType.info,
-        autoCloseDuration: const Duration(seconds: 5),
-      );
-
-      if (Preferences.isDeliveryOrderPrint) kitchenPrint(order);
-      if (Preferences.deliveryCustomerReceipt) {
-        PrintUtils().directPrint(
-          data: escOrderPrintReceipt(order: order),
-          printer: Preferences.counterPrinter,
-        );
-      }
-
-      if (Get.currentRoute != '/auth') DeliveryController.to.getOrders();
-
-      callback?.call({"status": "SUCCESS"});
-      if (kDebugMode) {
-        kLogger.i("✅ Delivery order SUCCESS #${order.orderId}");
-      }
-    } catch (e) {
-      PopupDialog.showErrorMessage("Delivery data format is not correct");
-      if (kDebugMode) kLogger.e('Delivery order format error => $e');
-      // callback?.call({"status": "ERROR", "message": e.toString()});
-      if (kDebugMode) {
-        kLogger.e("❌ Sent ERROR acknowledgment for delivery order");
-      }
-    }
-  }
 
   void _onDeviceDisconnect(dynamic data) {
     Function? callback;
@@ -506,10 +326,10 @@ class MyHttpOverrides extends HttpOverrides {
 // Print Helper
 // ─────────────────────────────────────────────────
 
-Future<void> _reservationDataPrint(Reservations reservationData) async {
-  final printData = escTableReservationReceipt(data: reservationData);
-  PrintUtils().directPrint(
-    data: printData,
-    printer: Preferences.kitchenPrinter,
-  );
-}
+// Future<void> _reservationDataPrint(Reservations reservationData) async {
+//   final printData = escTableReservationReceipt(data: reservationData);
+//   PrintUtils().directPrint(
+//     data: printData,
+//     printer: Preferences.kitchenPrinter,
+//   );
+// }

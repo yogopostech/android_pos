@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:yogo_pos/app/modules/auth/widgets/my_time.dart';
 import 'package:yogo_pos/app/modules/clockIn/providers/clock_in_out.dart';
-import 'package:yogo_pos/app/modules/setting/providers/serial_caller_id_service.dart';
 import 'package:yogo_pos/app/services/base/preferences.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
 import 'package:yogo_pos/app/utils/int_extensions.dart';
@@ -171,16 +170,16 @@ class TitleBar extends ConsumerWidget {
   }
 
   // btn
-  Widget _btn({Function()? onTap, required IconData icon}) {
-    return Container(
-      // color: Colors.grey.withAlpha(100),
-      width: 35.r,
-      height: double.infinity,
-      alignment: Alignment.center,
-      child: InkWell(
-        onTap: onTap,
-        child: Center(child: Icon(icon, color: Colors.black, size: 16.r)),
-      ),
-    );
-  }
+  // Widget _btn({Function()? onTap, required IconData icon}) {
+  //   return Container(
+  //     // color: Colors.grey.withAlpha(100),
+  //     width: 35.r,
+  //     height: double.infinity,
+  //     alignment: Alignment.center,
+  //     child: InkWell(
+  //       onTap: onTap,
+  //       child: Center(child: Icon(icon, color: Colors.black, size: 16.r)),
+  //     ),
+  //   );
+  // }
 }

@@ -5,10 +5,6 @@ import 'package:yogo_pos/app/modules/auth/controllers/auth_controller.dart';
 import 'package:yogo_pos/app/modules/clockIn/providers/clock_in_out.dart';
 import 'package:yogo_pos/app/modules/clockIn/widgets/clock_in_dialog.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
-import 'package:yogo_pos/app/modules/pos/delivery/controllers/delivery_controller.dart';
-import 'package:yogo_pos/app/modules/pos/onlineOrder/controllers/online_order_controller.dart';
-import 'package:yogo_pos/app/modules/pos/order/controllers/order_controller.dart';
-import 'package:yogo_pos/app/modules/pos/order/widgets/dialogs/cash_out_dialog.dart';
 import 'package:yogo_pos/app/modules/pos/repo/pos_repo.dart';
 import 'package:yogo_pos/app/routes/app_pages.dart';
 import 'package:yogo_pos/app/services/base/preferences.dart';
@@ -16,10 +12,8 @@ import 'package:yogo_pos/app/services/controller/base_controller.dart';
 import 'package:yogo_pos/app/utils/int_extensions.dart';
 import 'package:yogo_pos/app/utils/static_colors.dart';
 import 'package:yogo_pos/app/widgets/custom_btn.dart';
-import 'package:yogo_pos/app/widgets/date_time_picker_dialog.dart';
 import 'package:yogo_pos/app/widgets/popup_dialogs.dart';
 import 'package:get/get.dart';
-import 'package:yogo_pos/app/widgets/search_check_dialog.dart';
 import 'package:yogo_pos/main.dart';
 
 class TopMenu extends GetView<PosController> {

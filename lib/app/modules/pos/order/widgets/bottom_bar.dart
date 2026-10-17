@@ -6,21 +6,15 @@ import 'package:get/get.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in/widgets/dialogs/discount_dialog.dart';
 import 'package:yogo_pos/app/modules/pos/order/widgets/dialogs/order_payment_dialog.dart';
-import 'package:yogo_pos/app/modules/setting/controllers/caller_id_controller.dart';
-import 'package:yogo_pos/app/modules/terminalIntegration/elavon-cws/services/cws_gratuity.dart';
-import 'package:yogo_pos/app/modules/terminalIntegration/elavon-cws/views/cws_purchase_dialog.dart';
-import 'package:yogo_pos/app/routes/app_pages.dart';
 import 'package:yogo_pos/app/services/base/preferences.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
 import 'package:yogo_pos/app/services/controller/config_controller.dart';
 import 'package:yogo_pos/app/services/models/restaurant_model.dart';
 import 'package:yogo_pos/app/utils/my_func.dart';
-import 'package:yogo_pos/app/utils/print_utils.dart';
 
 import 'package:yogo_pos/app/utils/static_colors.dart';
 import 'package:yogo_pos/app/widgets/custom_btn.dart';
 import 'package:yogo_pos/app/widgets/popup_dialogs.dart';
-import 'package:yogo_pos/app/widgets/show_caller_order_split_dialog.dart';
 
 class BottomBar extends GetView<PosController> {
   final ThemeData theme;
@@ -59,10 +53,8 @@ class BottomBar extends GetView<PosController> {
                           textColor: Colors.white,
                           color: StaticColors.blueColor,
                           onPressed: () async {
-                            print(
-                              Preferences.counterPrinter +
-                                  "and" +
-                                  Preferences.kitchenPrinter,
+                            debugPrint(
+                              "counterPrinter:${Preferences.counterPrinter} and kitchenPrinter:${Preferences.kitchenPrinter}",
                             );
                           },
                           text: "Check printers ip ".toUpperCase(),

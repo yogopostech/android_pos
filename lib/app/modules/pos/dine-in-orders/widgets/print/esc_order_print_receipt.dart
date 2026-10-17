@@ -181,7 +181,11 @@ Uint8List escOrderPrintReceipt({
   for (var data in order.carts.combineItems(isCustomerRecipt: true)) {
     receipt.flexRow(
       children: [
-        Col.fixed('${data.quantity}', fontWeight: FontWeight.bold, width: 4),
+        Col.fixed(
+          _formatQty(data.quantity),
+          fontWeight: FontWeight.bold,
+          width: 4,
+        ),
         Col.flex(
           data.itemType == "weighing scale"
               ? "${data.name.toUpperCase()}(${data.weight}LB)"
@@ -555,4 +559,12 @@ Uint8List escOrderPrintReceipt({
     receipt.openDrawer();
   }
   return receipt.bytes;
+}
+
+String _formatQty(num qty) {
+  final rounded = (qty * 100).round() / 100;
+  if (rounded == rounded.truncateToDouble()) {
+    return rounded.toInt().toString();
+  }
+  return rounded.toStringAsFixed(2).replaceFirst(RegExp(r'0+$'), '');
 }

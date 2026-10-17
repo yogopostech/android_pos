@@ -1,14 +1,10 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:yogo_pos/app/formatter/decimal_formatter.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/discount_model.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/order_model.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/product_model.dart';
 import 'package:yogo_pos/app/services/base/preferences.dart';
-import 'package:yogo_pos/app/utils/logger.dart';
 import 'package:yogo_pos/app/utils/my_func.dart';
 import 'package:yogo_pos/app/utils/static_colors.dart';
 import 'package:yogo_pos/app/widgets/app_keyboard.dart';

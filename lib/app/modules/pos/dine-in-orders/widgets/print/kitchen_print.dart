@@ -1,12 +1,9 @@
-import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/foundation.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in-orders/widgets/print/esc_kitchen_print_receipt.dart';
 import 'package:yogo_pos/app/modules/pos/dine-in-orders/widgets/print/esc_table_change_print_receipt.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/order_model.dart';
 import 'package:yogo_pos/app/services/base/preferences.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
-import 'package:yogo_pos/app/services/controller/config_controller.dart';
-import 'package:yogo_pos/app/services/models/printer_model.dart';
 import 'package:yogo_pos/app/utils/extension/order_extention.dart';
 import 'package:yogo_pos/app/utils/logger.dart';
 import 'package:yogo_pos/app/utils/print_utils.dart';

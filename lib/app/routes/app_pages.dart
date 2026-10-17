@@ -8,8 +8,6 @@ import 'package:yogo_pos/app/modules/data_candy_gift_card/views/screens/data_can
 import 'package:yogo_pos/app/modules/data_candy_gift_card/views/screens/gift_card_view.dart';
 import 'package:yogo_pos/app/modules/data_candy_gift_card/views/screens/transaction_details_page.dart';
 import 'package:yogo_pos/app/modules/data_candy_gift_card/views/screens/transaction_view_page.dart';
-import 'package:yogo_pos/app/modules/rewards_gift_card/bindings/rewards_gift_card_binding.dart';
-import 'package:yogo_pos/app/modules/rewards_gift_card/screens/gift_card_screen.dart';
 import 'package:yogo_pos/app/modules/terminalIntegration/moneris/moneris_response_table/views/moneris_respnse_table_view.dart';
 
 import '../middleware/router_welcome.dart';
@@ -104,10 +102,5 @@ class AppPages {
       binding: GiftCardTransactionBindings(),
     ),
 
-    GetPage(
-      name: _Paths.Rewards_Gift_Card,
-      page: () => const GiftCardMasterScreen2(),
-      binding: RewardsGiftCardBinding(),
-    ),
   ];
 }

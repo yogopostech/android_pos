@@ -1062,11 +1062,11 @@ Widget _row(
   );
 }
 
-String get _serverName {
-  final emp = BaseController.to.employeeData;
-  final first = emp?.firstName ?? '';
-  final lastInitial = (emp?.lastName.isNotEmpty ?? false)
-      ? ' ${emp!.lastName[0]}.'
-      : '';
-  return '$first$lastInitial'.toUpperCase();
-}
+// String get _serverName {
+//   final emp = BaseController.to.employeeData;
+//   final first = emp?.firstName ?? '';
+//   final lastInitial = (emp?.lastName.isNotEmpty ?? false)
+//       ? ' ${emp!.lastName[0]}.'
+//       : '';
+//   return '$first$lastInitial'.toUpperCase();
+// }

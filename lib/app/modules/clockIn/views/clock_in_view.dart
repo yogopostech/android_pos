@@ -6,7 +6,6 @@ import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/modules/pos/repo/pos_repo.dart';
 import 'package:yogo_pos/app/routes/app_pages.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
-import 'package:yogo_pos/app/services/controller/config_controller.dart';
 import 'package:yogo_pos/app/utils/static_colors.dart';
 import 'package:yogo_pos/app/widgets/appbar.dart';
 import 'package:yogo_pos/app/widgets/title_bar.dart';
