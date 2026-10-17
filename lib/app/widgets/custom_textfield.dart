@@ -403,6 +403,10 @@ class CustomSearchTextField extends StatelessWidget {
       dropDownList: dropDownList,
       onChanged: onChanged,
       validator: validator,
+      // Icons default to colorScheme.onSurfaceVariant, which our themes leave
+      // unset, so it falls back to onSurface (black in dark, white in light).
+      dropDownIconProperty: IconProperty(color: theme.hintColor),
+      clearIconProperty: IconProperty(color: theme.hintColor),
       listTextStyle: theme.textTheme.labelLarge?.copyWith(color: Colors.black),
       textFieldDecoration: InputDecoration(
         filled: isFilled,
@@ -441,6 +445,7 @@ class CustomSearchTextField extends StatelessWidget {
         ),
         // ********** hintText ********
         hintText: hintText,
+        hintStyle: TextStyle(color: theme.hintColor),
         // ********** label ********
         labelStyle: theme.textTheme.labelLarge,
       ),
