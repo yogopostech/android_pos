@@ -99,7 +99,7 @@ class CustomTableItem extends StatelessWidget {
             SizedBox(
               width: 140.r,
               child: Text(
-                isHeader == true ? "STK" : stk,
+                isHeader == true ? "OPT" : stk,
                 style: isHeader == true
                     ? theme.textTheme.labelMedium
                     : theme.textTheme.bodyLarge,

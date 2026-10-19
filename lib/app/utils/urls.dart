@@ -9,7 +9,7 @@ class URLS {
   // static String baseURL = 'https://5577.yogoeats.com/api/v1'; //for Line 1
   // static String baseURL =
   //     'https://squelchily-phylic-tamala.ngrok-free.dev/api/v1'; //for  ngrok
-  // static String baseURL = 'https://yogopos.onrender.com/api/v1'; //for   Y2
+  static String baseURL = 'https://yogopos.onrender.com/api/v1'; //for   Y2
 
   // static String baseURL = 'https://l1.yogoeats.com/api/v1'; //for new Line 1
   // static String baseURL = 'https://l2.yogoeats.com/api/v1'; //for new Line 2
@@ -18,8 +18,8 @@ class URLS {
 
   // static String baseURL = 'https://c1.yogoeats.com/api/v1'; //For Line c1
   //   static String baseURL = 'https://server2.yogoeats.com/api/v1';//For Line 2
-  static String baseURL =
-      'https://yogopos-backend-1.onrender.com/api/v1'; //For Yogo Server Y1
+  // static String baseURL =
+  //     'https://yogopos-backend-1.onrender.com/api/v1'; //For Yogo Server Y1
   // static String baseURL = 'https://v3.yogoeats.com/api/v1'; //For new Line 3
 
   //** end popint **

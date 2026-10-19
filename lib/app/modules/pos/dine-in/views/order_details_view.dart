@@ -4,6 +4,7 @@ import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:yogo_pos/app/utils/extension/my_extension.dart';
 import 'package:yogo_pos/config/screen_config.dart';
 import 'package:yogo_pos/app/helper/data_update_helper.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
@@ -1762,8 +1763,8 @@ class OrderDetailsView extends GetView<DineInController> {
                           String stk = item.createdAt == null
                               ? "N/A"
                               : DateFormat(
-                                  'MMM dd,hh:mm a',
-                                ).format(item.createdAt!);
+                                  'hh:mm a',
+                                ).format(item.createdAt!.toTimeZone());
                           return CustomTableItem(
                             stk: stk,
                             onTap: () {

@@ -1298,9 +1298,12 @@ class PosController extends GetxController {
     var uuid = Uuid();
     if (index >= 0 && index < myOrder.carts.length) {
       CartModel cartToRepeat = myOrder.carts[index];
+      final nowUtc = DateTime.now().toUtc();
       CartModel repeatedCart = cartToRepeat.copyWith(
         id: uuid.v4(),
         isUpdated: false,
+        createdAt: nowUtc,
+        updatedAt: nowUtc,
       );
       myOrder.carts.add(repeatedCart);
       calculateTotalPrice();
@@ -1312,9 +1315,23 @@ class PosController extends GetxController {
 
   Future repeatAllSelectedItems({bool isUpdateView = true}) async {
     if (selectedItemList.isNotEmpty) {
-      // Use the extension method to replicate selected items
+      final nowUtc = DateTime.now().toUtc();
+
+      // Print copy: same items, but stamped with the time they were added
+      // so the "ITEMS ADDED" ticket shows now, not the original order time.
       var selecteOrder = myOrder.filterCartsByIds(selectedItemList);
-      myOrder = myOrder.replicateSelectedItemsByIds(selectedItemList);
+      selecteOrder = selecteOrder.copyWith(
+        carts: selecteOrder.carts
+            .map((c) => c.copyWith(createdAt: nowUtc, updatedAt: nowUtc))
+            .toList(),
+      );
+
+      // Use the extension method to replicate selected items
+      // (same nowUtc so the ticket time matches what is saved)
+      myOrder = myOrder.replicateSelectedItemsByIds(
+        selectedItemList,
+        stampedAt: nowUtc,
+      );
       // clear the selected Item List
       selectedItemList.clear();
       await calculateTotalPrice();

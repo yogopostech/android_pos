@@ -3,6 +3,7 @@ import 'package:yogo_pos/app/modules/setting/controllers/printers_controller.dar
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
 import 'package:yogo_pos/app/services/controller/config_controller.dart';
 import 'package:get/get.dart';
+import 'package:yogo_pos/app/widgets/app_keyboard.dart';
 import 'package:yogo_pos/app/widgets/custom_textfield.dart';
 
 class Printers extends GetView<PrintersController> {
@@ -36,6 +37,7 @@ class Printers extends GetView<PrintersController> {
                         return SizedBox(
                           width: 320,
                           child: CustomTextField(
+                            keyboardType: KeyboardType.numericWithDot,
                             controller: controller.counterPrinterController,
                             hintText: controller.counterPrinter.value.isEmpty
                                 ? "Select Counter Printer"
@@ -77,6 +79,7 @@ class Printers extends GetView<PrintersController> {
                           child: CustomTextField(
                             controller: controller.kitchenPrinterController,
                             //allow 123.232.323.23 max 10 characters ip address
+                            keyboardType: KeyboardType.numericWithDot,
                             allowRegex: RegExp(r'^[0-9\.]{0,18}$'),
                             hintText: controller.kitchenPrinter.value.isEmpty
                                 ? "Select Kitchen Printer"

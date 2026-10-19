@@ -1054,6 +1054,18 @@ class CartArea extends GetView<PosController> {
                                   var myOrder = controller.myOrder
                                       .toNonUpdate();
 
+                                  final nowUtc = DateTime.now().toUtc();
+                                  myOrder = myOrder.copyWith(
+                                    carts: myOrder.carts
+                                        .map(
+                                          (c) => c.copyWith(
+                                            createdAt: nowUtc,
+                                            updatedAt: nowUtc,
+                                          ),
+                                        )
+                                        .toList(),
+                                  );
+
                                   if (controller.isUpdateView) {
                                     controller.myOrder.splitAmounts = [];
                                     controller.myOrder.splitOrders = [];

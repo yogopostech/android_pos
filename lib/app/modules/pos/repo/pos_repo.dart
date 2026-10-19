@@ -48,8 +48,9 @@ class PosRepo {
       totalPrice += item.price * item.quantity;
       totalDiscount += item.discountAmount * item.quantity;
 
-      // GST Calculation
-      if (item.itemType != "weighing scale") {
+     // GST Calculation
+      const noGstTypes = {"weighing scale", "no tax"};
+      if (!noGstTypes.contains(item.itemType)) {
         totalGst += itemTotal * gstRate;
       }
 
@@ -128,12 +129,12 @@ class PosRepo {
         BaseController.to.restaurantDetails?.restaurant.dineIn ?? false;
     bool takeOut =
         BaseController.to.restaurantDetails?.restaurant.takeout ?? false;
-    // bool delivery =
-    //     BaseController.to.restaurantDetails?.restaurant.posDelivery ?? false;
+    bool delivery =
+        BaseController.to.restaurantDetails?.restaurant.posDelivery ?? false;
 
     if (takeOut) myList.add("TAKEOUT");
     if (dineIn) myList.add("DINE_IN");
-    // if (delivery) myList.add("DELIVERY");
+    if (delivery) myList.add("DELIVERY");
 
     if (myList.isNotEmpty) {
       PosController.to.myOrder.orderType = myList.first;
@@ -183,6 +184,8 @@ class PosRepo {
   static Future<List<AddressModel>> fetchAddrassSuggestions(
     String query,
   ) async {
+    // final dio = Dio();
+    // const String googleApiKey = 'AIzaSyCOKkuWege1QdwYUZCRe91WqJkAGIy3f5A';
 
     try {
       final response = await BaseController.to.apiService.makeGetRequest(

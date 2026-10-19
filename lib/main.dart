@@ -67,10 +67,7 @@ Future<void> main() async {
   ]);
 
   /// Status bar + navigation bar hide
-  await SystemChrome.setEnabledSystemUIMode(
-    SystemUiMode.manual,
-    overlays: [],
-  );
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
   /// Initialize the dioflutter
   final dio = Dio();
@@ -136,9 +133,7 @@ class MyApp extends ConsumerWidget {
                 data: theme.copyWith(
                   textTheme: scaleTextTheme(theme.textTheme),
                 ),
-                child: PermissionGate(
-                  child: child ?? const SizedBox.shrink(),
-                ),
+                child: PermissionGate(child: child ?? const SizedBox.shrink()),
               ),
             );
           },

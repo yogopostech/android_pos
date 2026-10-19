@@ -17,6 +17,8 @@ Uint8List escKitchenPrintReceipt({
   Receipt receipt = Receipt();
 
   final orderPlacedAt = _commonCartCreatedAt(order.carts) ?? order.createdAt!;
+  final nowUtc = DateTime.now().toUtc();
+  final printedTime = isCheckCanceled ? nowUtc : orderPlacedAt;
 
   receipt
       .space(3)
@@ -26,7 +28,7 @@ Uint8List escKitchenPrintReceipt({
         fontWeight: FontWeight.bold,
       )
       .text(
-        "Order Place: ${DateFormat('hh:mm a').format(orderPlacedAt.toTimeZone())}",
+        "Order Place: ${DateFormat('hh:mm a').format(printedTime.toTimeZone())}",
         fontSize: 2,
         fontWeight: FontWeight.bold,
       );

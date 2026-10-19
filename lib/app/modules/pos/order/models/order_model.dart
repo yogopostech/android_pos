@@ -311,6 +311,7 @@ class OrderModel {
     bool? orderSeen,
     Employee? employee,
     DateTime? createdAt,
+    DateTime? updatedAt,
     String? orderId,
     OrderDeliveryModel? delivery,
     String? estimatedTime,
@@ -367,6 +368,7 @@ class OrderModel {
       takeOutType: takeOutType ?? this.takeOutType,
       employee: employee ?? this.employee,
       createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
       orderId: orderId ?? this.orderId,
       tip: tip ?? this.tip,
       isVoid: isVoid ?? this.isVoid,
@@ -496,8 +498,8 @@ class CartModel {
     "variationOptions": variationOptions.map((x) => x.toJson()).toList(),
     "modifiers": modifiers,
     "discount": discount.toJson(),
-    "createdAt": createdAt.toString(),
-    "updatedAt": updatedAt.toString(),
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
   };
 
   CartModel copyWith({
@@ -524,6 +526,8 @@ class CartModel {
     Discount? discount,
     List<OptionModel>? variationOptions,
     List<String>? modifiers,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return CartModel(
       id: id ?? this.id,
@@ -544,6 +548,8 @@ class CartModel {
       modifiers: modifiers ?? this.modifiers,
       discount: discount ?? this.discount,
       printers: printers ?? this.printers,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 }
