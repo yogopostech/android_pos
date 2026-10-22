@@ -174,6 +174,10 @@ class SplitOrderView extends GetView<DineInController> {
         SizedBox(width: 12.r),
         PrimaryBtn(
           onPressed: () {
+            if (SplitOrderController.to.isSplitByAmount) {
+              SplitOrderController.to.showAmountSplitActiveMessage();
+              return;
+            }
             if (SplitOrderController.to.pickedItem == null) {
               PopupDialog.showErrorMessage('Select an item to proceed');
               return;
@@ -187,6 +191,10 @@ class SplitOrderView extends GetView<DineInController> {
         SizedBox(width: 12.r),
         PrimaryBtn(
           onPressed: () {
+            if (SplitOrderController.to.isSplitByAmount) {
+              SplitOrderController.to.showAmountSplitActiveMessage();
+              return;
+            }
             if (SplitOrderController.to.pickedItem == null) {
               PopupDialog.showErrorMessage('Select an item to proceed');
               return;
@@ -816,9 +824,7 @@ class SplitOrderView extends GetView<DineInController> {
                                                 margin: EdgeInsets.only(
                                                   left: 4.r,
                                                 ),
-                                                padding: EdgeInsets.all(
-                                                  4.0.r,
-                                                ),
+                                                padding: EdgeInsets.all(4.0.r),
                                                 decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
                                                   border: Border.all(
@@ -949,11 +955,12 @@ class SplitOrderView extends GetView<DineInController> {
                                       value:
                                           "\$${(c.listOfSpitChecksByItems[index].totalOrderAmount).toStringAsFixed(2)}",
                                     ),
-                                    SizedBox(height: 8.r),
+
                                     Divider(
                                       color: theme.dividerColor.withAlpha(102),
-                                      height: 16.r,
+                                      height: 8.r,
                                     ),
+                                    SizedBox(height: 8.r),
                                     Row(
                                       children: [
                                         Expanded(
@@ -991,8 +998,7 @@ class SplitOrderView extends GetView<DineInController> {
                                                               .to
                                                               .listOfSpitChecksByItems[index],
                                                         ),
-                                                        printer:
-                                                            printerName,
+                                                        printer: printerName,
                                                       );
                                                     } else {
                                                       PopupDialog.showErrorMessage(
@@ -1191,9 +1197,7 @@ class SplitOrderView extends GetView<DineInController> {
                                               margin: EdgeInsets.only(
                                                 left: 4.r,
                                               ),
-                                              padding: EdgeInsets.all(
-                                                4.0.r,
-                                              ),
+                                              padding: EdgeInsets.all(4.0.r),
                                               decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                                 border: Border.all(

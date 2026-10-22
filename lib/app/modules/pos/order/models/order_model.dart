@@ -222,12 +222,9 @@ class OrderModel {
 
   Map<String, dynamic> toJson() => {
     "carts": carts.map((x) => x.toJson()).toList(),
-    if (orderType == "DINE_IN")
-      "splitOrderCarts": splitOrderCarts.map((x) => x.toJson()).toList(),
-    if (orderType == "DINE_IN")
-      "splitAmounts": splitAmounts.map((x) => x.toJson()).toList(),
-    if (orderType == "DINE_IN")
-      "splitOrders": splitOrders.map((x) => x.toJson()).toList(),
+    "splitOrderCarts": splitOrderCarts.map((x) => x.toJson()).toList(),
+    "splitAmounts": splitAmounts.map((x) => x.toJson()).toList(),
+    "splitOrders": splitOrders.map((x) => x.toJson()).toList(),
     "guestName": guestName,
     "guestEmail": guestEmail,
     "orderType": orderType,

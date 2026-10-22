@@ -144,6 +144,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           SizedBox(height: widget.extralabeldownpadding ?? 10.r),
         TextFormField(
           // enableInteractiveSelection: false,
+          
 
           // ********** controller ********
           controller: widget.controller,

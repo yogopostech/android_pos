@@ -200,7 +200,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                     text: 'Dine-in'.toUpperCase(),
                                     textMaxSize: textMaxSize,
                                     textMinSize: textMinSize,
-                                  ).marginOnly(right: 12.r),
+                                  ).marginOnly(right: 10.r),
                                 ),
 
                                 GetBuilder<PosController>(
@@ -267,7 +267,7 @@ class OrderDetailsView extends GetView<DineInController> {
                                       text: "Print\nCheck".toUpperCase(),
                                     );
                                   },
-                                ).marginOnly(right: 40.r),
+                                ).marginOnly(right: 16.r),
                                 Visibility(
                                   visible:
                                       PosController

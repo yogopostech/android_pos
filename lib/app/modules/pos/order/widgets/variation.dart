@@ -544,9 +544,7 @@ class _VariationRow extends StatelessWidget {
             MyFunc.capitalizeEachWord(s: variation.name),
             style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w700,
-              color: hasIssue
-                  ? StaticColors.orangeColor
-                  : colorScheme.onSurface,
+              color: hasIssue ? StaticColors.orangeColor : null,
             ),
           ),
           const SizedBox(height: 4),

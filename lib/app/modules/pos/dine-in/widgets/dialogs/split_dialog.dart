@@ -20,17 +20,17 @@ class SplitDialogs {
     required VoidCallback onTap,
   }) {
     PopupDialog.customDialog(
-        width: 900,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Expanded(
-                      child: CustomTextField(
+      width: 900,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Expanded(
+                  child: CustomTextField(
                     controller: guestController,
                     initOpenKeyboard: true,
                     keyboardType: KeyboardType.numeric,
@@ -41,42 +41,46 @@ class SplitDialogs {
                     autofocus: true,
                     style: const TextStyle(fontSize: 30),
                     padding: const EdgeInsets.symmetric(
-                        vertical: 26, horizontal: 22),
-                  )),
-                  const SizedBox(width: 16),
-                  Expanded(
-                      child: CustomTextField(
+                      vertical: 26,
+                      horizontal: 22,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: CustomTextField(
                     controller: amountController,
                     extraLabel:
                         SplitOrderController.to.order.orderType == "TAKEOUT"
-                            ? "Total Amount(- Packaging Cost)"
-                            : "Total Amount",
+                        ? "Total Amount(- Packaging Cost)"
+                        : "Total Amount",
                     extraLabelFontSize: 22,
                     hintText: '',
                     readOnly: true,
                     style: const TextStyle(fontSize: 30),
                     padding: const EdgeInsets.symmetric(
-                        vertical: 26, horizontal: 22),
-                  )),
-                  const SizedBox(width: 16),
-                  PrimaryBtnWithChild(
-                    onPressed: onTap,
-                    height: 115,
-                    width: 128,
-                    padding: const EdgeInsets.all(4.0),
-                    color: StaticColors.blueColor,
-                    child: const FittedBox(
-                      child: MyCustomText(
-                        'Submit',
-                        fontSize: 100,
-                      ),
+                      vertical: 26,
+                      horizontal: 22,
                     ),
                   ),
-                ],
-              ),
-            )
-          ],
-        ));
+                ),
+                const SizedBox(width: 16),
+                PrimaryBtnWithChild(
+                  onPressed: onTap,
+                  height: 115,
+                  width: 128,
+                  padding: const EdgeInsets.all(4.0),
+                  color: StaticColors.blueColor,
+                  child: const FittedBox(
+                    child: MyCustomText('Submit', fontSize: 100),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   static guestName({
@@ -84,17 +88,17 @@ class SplitDialogs {
     required VoidCallback onTap,
   }) {
     PopupDialog.customDialog(
-        width: 700,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Expanded(
-                      child: CustomTextField(
+      width: 700,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Expanded(
+                  child: CustomTextField(
                     controller: guestController,
                     initOpenKeyboard: true,
                     extraLabel: 'Guest Name:',
@@ -105,27 +109,28 @@ class SplitDialogs {
                     autofocus: true,
                     style: const TextStyle(fontSize: 48),
                     padding: const EdgeInsets.symmetric(
-                        vertical: 26, horizontal: 22),
-                  )),
-                  const SizedBox(width: 16),
-                  PrimaryBtnWithChild(
-                    onPressed: onTap,
-                    height: 115,
-                    width: 128,
-                    color: StaticColors.blueColor,
-                    padding: const EdgeInsets.all(4.0),
-                    child: const FittedBox(
-                      child: MyCustomText(
-                        'Submit',
-                        fontSize: 100,
-                      ),
+                      vertical: 26,
+                      horizontal: 22,
                     ),
                   ),
-                ],
-              ),
-            )
-          ],
-        ));
+                ),
+                const SizedBox(width: 16),
+                PrimaryBtnWithChild(
+                  onPressed: onTap,
+                  height: 115,
+                  width: 128,
+                  color: StaticColors.blueColor,
+                  padding: const EdgeInsets.all(4.0),
+                  child: const FittedBox(
+                    child: MyCustomText('Submit', fontSize: 100),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   static divideItem({
@@ -133,10 +138,7 @@ class SplitDialogs {
     required VoidCallback onTap1of3,
     required VoidCallback onTap1of4,
   }) {
-    PopupDialog.customDialog(
-      width: 550,
-      child: _DevidedItemWidget(),
-    );
+    PopupDialog.customDialog(width: 550, child: _DevidedItemWidget());
   }
 }
 
@@ -197,13 +199,15 @@ class __DevidedItemWidgetState extends State<_DevidedItemWidget> {
             Expanded(
               child: CustomTextField(
                 controller: _textController,
-                initOpenKeyboard: true,
+                // initOpenKeyboard: true,
                 keyboardType: KeyboardType.numeric,
                 allowRegex: CommonRegexPatterns.digitsOnlyWithLength(2),
                 extraLabelFontSize: 22,
                 style: const TextStyle(fontSize: 30),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 26, horizontal: 22),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 26,
+                  horizontal: 22,
+                ),
               ),
             ),
             const SizedBox(width: 8),
@@ -216,7 +220,8 @@ class __DevidedItemWidgetState extends State<_DevidedItemWidget> {
                     Get.back();
                   } else {
                     PopupDialog.showErrorMessage(
-                        "Please enter a valid number (2-99)");
+                      "Please enter a valid number (2-99)",
+                    );
                   }
                 } else {
                   PopupDialog.showErrorMessage("Please enter a number");
@@ -227,10 +232,7 @@ class __DevidedItemWidgetState extends State<_DevidedItemWidget> {
               padding: const EdgeInsets.all(4.0),
               color: StaticColors.blueColor,
               child: const FittedBox(
-                child: MyCustomText(
-                  'Submit',
-                  fontSize: 45,
-                ),
+                child: MyCustomText('Submit', fontSize: 45),
               ),
             ),
           ],

@@ -17,6 +17,7 @@ import 'package:yogo_pos/app/modules/pos/order/widgets/variation.dart';
 import 'package:yogo_pos/app/services/base/preferences.dart';
 import 'package:yogo_pos/app/services/controller/base_controller.dart';
 import 'package:yogo_pos/app/services/controller/config_controller.dart';
+import 'package:yogo_pos/app/services/models/restaurant_model.dart';
 import 'package:yogo_pos/app/utils/extension/order_extention.dart';
 import 'package:yogo_pos/app/utils/logger.dart';
 import 'package:yogo_pos/app/utils/my_reg_exp.dart';
@@ -299,33 +300,17 @@ class CartArea extends GetView<PosController> {
                                   onSubmit: () {
                                     controller.isTableReadOnly = false;
                                     Get.back();
-                                    DineInController.to.getTableCategories();
-                                    PopupDialog.customDialog(
-                                      width: Get.width * 0.8,
-                                      height: Get.height * .85,
-                                      child: const TableBody(
-                                        isScrollable: true,
-                                        isPOSPage: true,
-                                        isUpdateView: true,
-                                      ),
-                                    );
+                                    _showTableDialog(isUpdateView: true);
                                   },
                                   title: "Change Table?",
                                 );
                               } else {
-                                DineInController.to.getTableCategories();
-                                PopupDialog.customDialog(
-                                  width: Get.width * 0.8,
-                                  height: Get.height * .85,
-                                  child: const TableBody(
-                                    isScrollable: true,
-                                    isPOSPage: true,
-                                  ),
-                                );
+                                _showTableDialog(isUpdateView: false);
                               }
                             },
                           ),
                         ),
+                       
                         const SizedBox(width: 12),
                         Expanded(
                           child: CustomTextField(
@@ -1118,20 +1103,32 @@ class CartArea extends GetView<PosController> {
   }
 }
 
-// ignore: unused_element
 void _showTableDialog({required bool isUpdateView}) {
-  PopupDialog.customDialog(
-    width: Get.width * 0.80,
-    child: SizedBox(
+  if (BaseController.to.posTableLayout == PosTableLayout.floorPlan) {
+    PopupDialog.customDialog(
       width: Get.width * 0.80,
-      height: Get.height * 0.80,
-      child: TableManagmentView(
-        isScrollable: false,
+      child: SizedBox(
+        width: Get.width * 0.80,
+        height: Get.height * 0.80,
+        child: TableManagmentView(
+          isScrollable: false,
+          isPOSPage: true,
+          isUpdateView: isUpdateView,
+        ),
+      ),
+    );
+  } else {
+    DineInController.to.getTableCategories();
+    PopupDialog.customDialog(
+      width: Get.width * 0.8,
+      height: Get.height * .85,
+      child: TableBody(
+        isScrollable: true,
         isPOSPage: true,
         isUpdateView: isUpdateView,
       ),
-    ),
-  );
+    );
+  }
 }
 
 Widget _row(
