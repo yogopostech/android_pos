@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
@@ -129,6 +130,8 @@ class CartArea extends GetView<PosController> {
                             controller.calculateTotalPrice();
                           },
                           text: orderType.replaceAll("_", "-").toUpperCase(),
+                          textMaxSize: 22.sp.roundToDouble(),
+                          textMinSize: 16.sp.roundToDouble(),
                         ),
                       );
                     }),
@@ -310,7 +313,7 @@ class CartArea extends GetView<PosController> {
                             },
                           ),
                         ),
-                       
+
                         const SizedBox(width: 12),
                         Expanded(
                           child: CustomTextField(

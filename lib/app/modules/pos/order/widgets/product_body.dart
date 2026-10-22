@@ -150,8 +150,8 @@ class _ProductBodyState extends State<ProductBody> {
             builder: (controller) {
               return StaggeredGrid.count(
                 crossAxisCount: widget.crossAxisCount,
-                mainAxisSpacing: 12.r,
-                crossAxisSpacing: 12.r,
+                mainAxisSpacing: 8.r,
+                crossAxisSpacing: 8.r,
                 children: List.generate(controller.productsForShow.length, (
                   index,
                 ) {

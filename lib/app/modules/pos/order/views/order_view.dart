@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yogo_pos/app/modules/pos/controllers/pos_controller.dart';
 import 'package:yogo_pos/app/modules/pos/order/models/order_model.dart';
 import 'package:yogo_pos/app/modules/pos/order/widgets/bottom_bar.dart';
@@ -109,7 +110,7 @@ class OrderView extends GetView<PosController> {
                                   ? true
                                   : controller.isItemsShow,
                               child: SizedBox(
-                                width: 180,
+                                width: 160.r,
                                 child: ModifiersRow(),
                               ),
                             );

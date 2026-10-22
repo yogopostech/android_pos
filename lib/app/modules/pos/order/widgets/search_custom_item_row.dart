@@ -69,7 +69,7 @@ class SearchAndCustomItemRow extends GetView<PosController> {
                               : false,
                           textColor: Colors.white,
                           borderColor: StaticColors.blueColor,
-                        ).marginOnly(right: 12.r);
+                        ).marginOnly(right: 8.r);
                       },
                     ),
                   ),
@@ -93,7 +93,7 @@ class SearchAndCustomItemRow extends GetView<PosController> {
                         text: data.toUpperCase(),
                         borderColor: StaticColors.blueColor,
                         textColor: Colors.white,
-                      ).marginOnly(right: 12.r);
+                      ).marginOnly(right: 8.r);
                     }),
                   ),
                 ),
@@ -104,7 +104,7 @@ class SearchAndCustomItemRow extends GetView<PosController> {
         // custom
         // const Spacer(),
         SizedBox(
-          width: 150.r,
+          width: 110.r,
           child: PrimaryBtn(
             onPressed: () {
               PopupDialog.customDialog(child: const CustomOrderDialogOptions());
@@ -113,9 +113,9 @@ class SearchAndCustomItemRow extends GetView<PosController> {
             text: 'Custom'.toUpperCase(),
             textColor: Colors.white,
           ),
-        ).marginOnly(right: 12.r, left: 12.r), // search
+        ).marginOnly(right: 8.r, left: 8.r), // search
         SizedBox(
-          width: 250.r,
+          width: 200.r,
           child: GetBuilder<PosController>(
             builder: (context) {
               return CustomTextField(
